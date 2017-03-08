@@ -1,0 +1,542 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2422A1CD1E7052F600CE2B84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2422A1CC1E7052F600CE2B84 /* AppDelegate.swift */; };
+		2422A1CF1E7052F600CE2B84 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2422A1CE1E7052F600CE2B84 /* GameScene.sks */; };
+		2422A1D11E7052F600CE2B84 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2422A1D01E7052F600CE2B84 /* Actions.sks */; };
+		2422A1D31E7052F600CE2B84 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2422A1D21E7052F600CE2B84 /* GameScene.swift */; };
+		2422A1D51E7052F600CE2B84 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2422A1D41E7052F600CE2B84 /* GameViewController.swift */; };
+		2422A1D81E7052F600CE2B84 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2422A1D61E7052F600CE2B84 /* Main.storyboard */; };
+		2422A1DA1E7052F600CE2B84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2422A1D91E7052F600CE2B84 /* Assets.xcassets */; };
+		2422A1DD1E7052F600CE2B84 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2422A1DB1E7052F600CE2B84 /* LaunchScreen.storyboard */; };
+		2422A1E81E7052F700CE2B84 /* DriftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2422A1E71E7052F700CE2B84 /* DriftTests.swift */; };
+		2422A1F31E7052F700CE2B84 /* DriftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2422A1F21E7052F700CE2B84 /* DriftUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2422A1E41E7052F700CE2B84 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2422A1C11E7052F600CE2B84 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2422A1C81E7052F600CE2B84;
+			remoteInfo = Drift;
+		};
+		2422A1EF1E7052F700CE2B84 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2422A1C11E7052F600CE2B84 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2422A1C81E7052F600CE2B84;
+			remoteInfo = Drift;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2422A1C91E7052F600CE2B84 /* Drift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Drift.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2422A1CC1E7052F600CE2B84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2422A1CE1E7052F600CE2B84 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		2422A1D01E7052F600CE2B84 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
+		2422A1D21E7052F600CE2B84 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		2422A1D41E7052F600CE2B84 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		2422A1D71E7052F600CE2B84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2422A1D91E7052F600CE2B84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2422A1DC1E7052F600CE2B84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2422A1DE1E7052F600CE2B84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2422A1E31E7052F700CE2B84 /* DriftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DriftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2422A1E71E7052F700CE2B84 /* DriftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriftTests.swift; sourceTree = "<group>"; };
+		2422A1E91E7052F700CE2B84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2422A1EE1E7052F700CE2B84 /* DriftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DriftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2422A1F21E7052F700CE2B84 /* DriftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriftUITests.swift; sourceTree = "<group>"; };
+		2422A1F41E7052F700CE2B84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2422A1C61E7052F600CE2B84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2422A1E01E7052F700CE2B84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2422A1EB1E7052F700CE2B84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2422A1C01E7052F600CE2B84 = {
+			isa = PBXGroup;
+			children = (
+				2422A1CB1E7052F600CE2B84 /* Drift */,
+				2422A1E61E7052F700CE2B84 /* DriftTests */,
+				2422A1F11E7052F700CE2B84 /* DriftUITests */,
+				2422A1CA1E7052F600CE2B84 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2422A1CA1E7052F600CE2B84 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2422A1C91E7052F600CE2B84 /* Drift.app */,
+				2422A1E31E7052F700CE2B84 /* DriftTests.xctest */,
+				2422A1EE1E7052F700CE2B84 /* DriftUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2422A1CB1E7052F600CE2B84 /* Drift */ = {
+			isa = PBXGroup;
+			children = (
+				2422A1CC1E7052F600CE2B84 /* AppDelegate.swift */,
+				2422A1CE1E7052F600CE2B84 /* GameScene.sks */,
+				2422A1D01E7052F600CE2B84 /* Actions.sks */,
+				2422A1D21E7052F600CE2B84 /* GameScene.swift */,
+				2422A1D41E7052F600CE2B84 /* GameViewController.swift */,
+				2422A1D61E7052F600CE2B84 /* Main.storyboard */,
+				2422A1D91E7052F600CE2B84 /* Assets.xcassets */,
+				2422A1DB1E7052F600CE2B84 /* LaunchScreen.storyboard */,
+				2422A1DE1E7052F600CE2B84 /* Info.plist */,
+			);
+			path = Drift;
+			sourceTree = "<group>";
+		};
+		2422A1E61E7052F700CE2B84 /* DriftTests */ = {
+			isa = PBXGroup;
+			children = (
+				2422A1E71E7052F700CE2B84 /* DriftTests.swift */,
+				2422A1E91E7052F700CE2B84 /* Info.plist */,
+			);
+			path = DriftTests;
+			sourceTree = "<group>";
+		};
+		2422A1F11E7052F700CE2B84 /* DriftUITests */ = {
+			isa = PBXGroup;
+			children = (
+				2422A1F21E7052F700CE2B84 /* DriftUITests.swift */,
+				2422A1F41E7052F700CE2B84 /* Info.plist */,
+			);
+			path = DriftUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2422A1C81E7052F600CE2B84 /* Drift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2422A1F71E7052F700CE2B84 /* Build configuration list for PBXNativeTarget "Drift" */;
+			buildPhases = (
+				2422A1C51E7052F600CE2B84 /* Sources */,
+				2422A1C61E7052F600CE2B84 /* Frameworks */,
+				2422A1C71E7052F600CE2B84 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Drift;
+			productName = Drift;
+			productReference = 2422A1C91E7052F600CE2B84 /* Drift.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2422A1E21E7052F700CE2B84 /* DriftTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2422A1FA1E7052F700CE2B84 /* Build configuration list for PBXNativeTarget "DriftTests" */;
+			buildPhases = (
+				2422A1DF1E7052F700CE2B84 /* Sources */,
+				2422A1E01E7052F700CE2B84 /* Frameworks */,
+				2422A1E11E7052F700CE2B84 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2422A1E51E7052F700CE2B84 /* PBXTargetDependency */,
+			);
+			name = DriftTests;
+			productName = DriftTests;
+			productReference = 2422A1E31E7052F700CE2B84 /* DriftTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2422A1ED1E7052F700CE2B84 /* DriftUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2422A1FD1E7052F700CE2B84 /* Build configuration list for PBXNativeTarget "DriftUITests" */;
+			buildPhases = (
+				2422A1EA1E7052F700CE2B84 /* Sources */,
+				2422A1EB1E7052F700CE2B84 /* Frameworks */,
+				2422A1EC1E7052F700CE2B84 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2422A1F01E7052F700CE2B84 /* PBXTargetDependency */,
+			);
+			name = DriftUITests;
+			productName = DriftUITests;
+			productReference = 2422A1EE1E7052F700CE2B84 /* DriftUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2422A1C11E7052F600CE2B84 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = nus.cs3217.drift;
+				TargetAttributes = {
+					2422A1C81E7052F600CE2B84 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+					2422A1E21E7052F700CE2B84 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 2422A1C81E7052F600CE2B84;
+					};
+					2422A1ED1E7052F700CE2B84 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 2422A1C81E7052F600CE2B84;
+					};
+				};
+			};
+			buildConfigurationList = 2422A1C41E7052F600CE2B84 /* Build configuration list for PBXProject "Drift" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2422A1C01E7052F600CE2B84;
+			productRefGroup = 2422A1CA1E7052F600CE2B84 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2422A1C81E7052F600CE2B84 /* Drift */,
+				2422A1E21E7052F700CE2B84 /* DriftTests */,
+				2422A1ED1E7052F700CE2B84 /* DriftUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2422A1C71E7052F600CE2B84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2422A1D81E7052F600CE2B84 /* Main.storyboard in Resources */,
+				2422A1CF1E7052F600CE2B84 /* GameScene.sks in Resources */,
+				2422A1DA1E7052F600CE2B84 /* Assets.xcassets in Resources */,
+				2422A1DD1E7052F600CE2B84 /* LaunchScreen.storyboard in Resources */,
+				2422A1D11E7052F600CE2B84 /* Actions.sks in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2422A1E11E7052F700CE2B84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2422A1EC1E7052F700CE2B84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2422A1C51E7052F600CE2B84 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2422A1D31E7052F600CE2B84 /* GameScene.swift in Sources */,
+				2422A1D51E7052F600CE2B84 /* GameViewController.swift in Sources */,
+				2422A1CD1E7052F600CE2B84 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2422A1DF1E7052F700CE2B84 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2422A1E81E7052F700CE2B84 /* DriftTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2422A1EA1E7052F700CE2B84 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2422A1F31E7052F700CE2B84 /* DriftUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2422A1E51E7052F700CE2B84 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2422A1C81E7052F600CE2B84 /* Drift */;
+			targetProxy = 2422A1E41E7052F700CE2B84 /* PBXContainerItemProxy */;
+		};
+		2422A1F01E7052F700CE2B84 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2422A1C81E7052F600CE2B84 /* Drift */;
+			targetProxy = 2422A1EF1E7052F700CE2B84 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2422A1D61E7052F600CE2B84 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2422A1D71E7052F600CE2B84 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2422A1DB1E7052F600CE2B84 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2422A1DC1E7052F600CE2B84 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2422A1F51E7052F700CE2B84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		2422A1F61E7052F700CE2B84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2422A1F81E7052F700CE2B84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Drift/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nus.cs3217.drift.Drift;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		2422A1F91E7052F700CE2B84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Drift/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nus.cs3217.drift.Drift;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		2422A1FB1E7052F700CE2B84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = DriftTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nus.cs3217.drift.DriftTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Drift.app/Drift";
+			};
+			name = Debug;
+		};
+		2422A1FC1E7052F700CE2B84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = DriftTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nus.cs3217.drift.DriftTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Drift.app/Drift";
+			};
+			name = Release;
+		};
+		2422A1FE1E7052F700CE2B84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = DriftUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nus.cs3217.drift.DriftUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Drift;
+			};
+			name = Debug;
+		};
+		2422A1FF1E7052F700CE2B84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = DriftUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nus.cs3217.drift.DriftUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Drift;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2422A1C41E7052F600CE2B84 /* Build configuration list for PBXProject "Drift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2422A1F51E7052F700CE2B84 /* Debug */,
+				2422A1F61E7052F700CE2B84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2422A1F71E7052F700CE2B84 /* Build configuration list for PBXNativeTarget "Drift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2422A1F81E7052F700CE2B84 /* Debug */,
+				2422A1F91E7052F700CE2B84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		2422A1FA1E7052F700CE2B84 /* Build configuration list for PBXNativeTarget "DriftTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2422A1FB1E7052F700CE2B84 /* Debug */,
+				2422A1FC1E7052F700CE2B84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		2422A1FD1E7052F700CE2B84 /* Build configuration list for PBXNativeTarget "DriftUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2422A1FE1E7052F700CE2B84 /* Debug */,
+				2422A1FF1E7052F700CE2B84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2422A1C11E7052F600CE2B84 /* Project object */;
+}
