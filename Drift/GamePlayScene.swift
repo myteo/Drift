@@ -13,6 +13,12 @@ class GameScene: SKScene {
     
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
+
+    // Entity-Component System
+    var entityManager: EntityManager!
+    
+    // Camera
+    var mainCamera: SKCameraNode!
     
     // Scene Nodes
     var car: SKSpriteNode!
@@ -27,7 +33,9 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         loadSceneNodes()
+        setupEntities()
         setupObjects()
+        setupCamera()
     }
     
     override func sceneDidLoad() {
@@ -35,12 +43,6 @@ class GameScene: SKScene {
     }
     
     func loadSceneNodes() {
-        // Car
-        guard let car = childNode(withName: "Car") as? SKSpriteNode else {
-            fatalError("Car Sprite Node not loaded")
-        }
-        self.car = car
-        
         // Grass Tiles
         Tiles.GrassNodeNames.forEach { grassName in
             guard let grassBG = childNode(withName: grassName) as? SKTileMapNode else {
@@ -67,8 +69,20 @@ class GameScene: SKScene {
         }
     }
     
+    func setupEntities() {
+        entityManager = EntityManager(scene: self)
+    }
+    
     func setupObjects() {
+        setupCar()
         setupObstacles()
+    }
+    
+    func setupCar() {
+        guard let car = childNode(withName: "Car") as? SKSpriteNode else {
+            fatalError("Car Sprite Node not loaded")
+        }
+        self.car = car
     }
     
     func setupObstacles() {
@@ -78,21 +92,31 @@ class GameScene: SKScene {
             let row = Int.random(Tiles.Rows)
             let grassBG = grassBGs[Int.random(grassBGs.count)]
             if let _ = grassBG.tileDefinition(atColumn: column, row: row) {
-                NSLog("\(row) \(column)")
                 let treeSprite = SKSpriteNode(imageNamed: "treeShort")
                 var grassTileCenter = grassBG.centerOfTile(atColumn: column, row: row)
-                grassTileCenter.x += CGFloat(Int.random(Int(Tiles.Width) / 3))
-                grassTileCenter.y += CGFloat(Int.random(Int(Tiles.Height) / 3))
+                let displacement = Int.random(9)
+                grassTileCenter.x += CGFloat(displacement)
+                grassTileCenter.y += CGFloat(displacement)
                 treeSprite.position = grassTileCenter
                 addChild(treeSprite)
             }
         }
     }
     
+    func setupCamera() {
+        mainCamera = self.childNode(withName: "MainCamera") as! SKCameraNode
+        mainCamera.zPosition = 10
+        self.camera = mainCamera
+    }
+    
+    // MARK: Touches
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
-            switch nodes(at: location)[0].name! {
+            guard let spriteName = nodes(at: location)[0].name else {
+                return
+            }
+            switch spriteName {
             case Sprites.AntiClockwiseName:
                 // turn ac
                 break
@@ -104,7 +128,7 @@ class GameScene: SKScene {
         }
     }
     
-    func turnAC() {
+    func turnVehicle() {
         
     }
     

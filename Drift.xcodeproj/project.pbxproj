@@ -23,6 +23,9 @@
 		248667A61E707A4A00B8CE7D /* Sprites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248667A51E707A4A00B8CE7D /* Sprites.swift */; };
 		248667A91E70E0F100B8CE7D /* Int+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248667A81E70E0F100B8CE7D /* Int+Random.swift */; };
 		248667AB1E70F47300B8CE7D /* CGFloat+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248667AA1E70F47300B8CE7D /* CGFloat+Operations.swift */; };
+		248667AE1E70FC7400B8CE7D /* EntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248667AD1E70FC7400B8CE7D /* EntityManager.swift */; };
+		248667B21E70FCEB00B8CE7D /* MoveComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248667B11E70FCEB00B8CE7D /* MoveComponent.swift */; };
+		248667B41E70FCF900B8CE7D /* SpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248667B31E70FCF900B8CE7D /* SpriteComponent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +68,9 @@
 		248667A51E707A4A00B8CE7D /* Sprites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sprites.swift; path = Constants/Sprites.swift; sourceTree = "<group>"; };
 		248667A81E70E0F100B8CE7D /* Int+Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Int+Random.swift"; path = "Extensions/Int+Random.swift"; sourceTree = "<group>"; };
 		248667AA1E70F47300B8CE7D /* CGFloat+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGFloat+Operations.swift"; path = "Extensions/CGFloat+Operations.swift"; sourceTree = "<group>"; };
+		248667AD1E70FC7400B8CE7D /* EntityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EntityManager.swift; path = Entities/EntityManager.swift; sourceTree = "<group>"; };
+		248667B11E70FCEB00B8CE7D /* MoveComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoveComponent.swift; path = Components/MoveComponent.swift; sourceTree = "<group>"; };
+		248667B31E70FCF900B8CE7D /* SpriteComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteComponent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +164,8 @@
 		2422A2011E70536700CE2B84 /* Game Classes */ = {
 			isa = PBXGroup;
 			children = (
+				248667AC1E70FBF100B8CE7D /* Components */,
+				2422A2021E70537100CE2B84 /* Entities */,
 				2422A2041E7053B500CE2B84 /* View */,
 				2422A2031E70537800CE2B84 /* Controllers / Managers */,
 				2422A2001E70535900CE2B84 /* Model */,
@@ -165,11 +173,12 @@
 			name = "Game Classes";
 			sourceTree = "<group>";
 		};
-		2422A2021E70537100CE2B84 /* Sprites */ = {
+		2422A2021E70537100CE2B84 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				248667AD1E70FC7400B8CE7D /* EntityManager.swift */,
 			);
-			name = Sprites;
+			name = Entities;
 			sourceTree = "<group>";
 		};
 		2422A2031E70537800CE2B84 /* Controllers / Managers */ = {
@@ -184,7 +193,6 @@
 			children = (
 				2422A2061E7053EF00CE2B84 /* GamePlay */,
 				2422A2121E7059B200CE2B84 /* Tiles */,
-				2422A2021E70537100CE2B84 /* Sprites */,
 				2422A2051E7053C100CE2B84 /* Scenes */,
 			);
 			name = View;
@@ -246,6 +254,15 @@
 				248667AA1E70F47300B8CE7D /* CGFloat+Operations.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		248667AC1E70FBF100B8CE7D /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				248667B11E70FCEB00B8CE7D /* MoveComponent.swift */,
+				248667B31E70FCF900B8CE7D /* SpriteComponent.swift */,
+			);
+			name = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -392,7 +409,10 @@
 				248667A61E707A4A00B8CE7D /* Sprites.swift in Sources */,
 				2422A1CD1E7052F600CE2B84 /* AppDelegate.swift in Sources */,
 				248667A91E70E0F100B8CE7D /* Int+Random.swift in Sources */,
+				248667B21E70FCEB00B8CE7D /* MoveComponent.swift in Sources */,
+				248667B41E70FCF900B8CE7D /* SpriteComponent.swift in Sources */,
 				2422A20A1E7055F100CE2B84 /* Tiles.swift in Sources */,
+				248667AE1E70FC7400B8CE7D /* EntityManager.swift in Sources */,
 				248667AB1E70F47300B8CE7D /* CGFloat+Operations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
