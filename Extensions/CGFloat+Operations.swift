@@ -13,7 +13,7 @@ extension CGFloat {
         left = left + CGFloat(right)
     }
 
-    static public func / (left: CGFloat, right: Int) -> CGFloat {
-        return CGFloat(Double(left) / Double(right))
+    static public func * (left: CGFloat, right: CGVector) -> CGVector {
+        return CGVector(dx: left * right.dx, dy: left * right.dy)
     }
 }

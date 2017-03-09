@@ -7,9 +7,17 @@
 //
 
 import SpriteKit
+import Foundation
+
+enum SpinDirection: String {
+    case Clockwise, AntiClockwise
+}
 
 enum Direction: Int {
     case N = 0, NE, E, SE, S, SW, W, NW
+    
+    static let xOffset = cos(M_PI / 6)
+    static let yOffset = sin(M_PI / 6)
     
     var name: String {
         get {
@@ -29,14 +37,14 @@ enum Direction: Int {
     var vector: CGVector {
         get {
             switch self {
-            case .N: return CGVector(dx: 0, dy: -1)
-            case .S: return CGVector(dx: 0, dy: 1)
+            case .N: return CGVector(dx: 0, dy: 1)
+            case .S: return CGVector(dx: 0, dy: -1)
             case .E: return CGVector(dx: 1, dy: 0)
             case .W: return CGVector(dx: -1, dy: 0)
-            case .NW: return CGVector(dx: -1, dy: -1)
-            case .NE: return CGVector(dx: 1, dy: -1)
-            case .SW: return CGVector(dx: -1, dy: 1)
-            case .SE: return CGVector(dx: 1, dy: 1)
+            case .NW: return CGVector(dx: -Direction.xOffset, dy: Direction.yOffset)
+            case .NE: return CGVector(dx: Direction.xOffset, dy: Direction.yOffset)
+            case .SW: return CGVector(dx: -Direction.xOffset, dy: -Direction.yOffset)
+            case .SE: return CGVector(dx: Direction.xOffset, dy: -Direction.yOffset)
             }
         }
     }
@@ -45,14 +53,14 @@ enum Direction: Int {
     var path: CGPath {
         var path: CGPath
         switch self {
-        case .NE: path = CGPath.from(points: [[-16,-4],[3,8],[16,1],[-2,-11]])!
-        case .E: path = CGPath.from(points: [[-16,3],[15,3],[15,-7],[-16,-7]])!
-        case .N: path = CGPath.from(points: [[-6,11],[6,11],[6,-10],[-6,-10]])!
-        case .S: path = CGPath.from(points: [[-7,9],[6,9],[6,-9],[-6,-9]])!
-        case .W: path = CGPath.from(points: [[-16,3],[14,3],[14,-6],[-16,-6]])!
-        case .NW: path = CGPath.from(points: [[-17,0],[-5,8],[16,-3],[4,-9]])!
-        case .SW: path = CGPath.from(points: [[-16,-5],[2,7],[14,1],[-4,-11]])!
-        case .SE: path = CGPath.from(points: [[-16,0],[-3,9],[16,-4],[5,-12]])!
+        case .NE: path = CGPath.from(points: [[-16,-4],[3,8],[16,1],[-2,-11]])
+        case .E: path = CGPath.from(points: [[-16,3],[15,3],[15,-7],[-16,-7]])
+        case .N: path = CGPath.from(points: [[-6,11],[6,11],[6,-10],[-6,-10]])
+        case .S: path = CGPath.from(points: [[-7,9],[6,9],[6,-9],[-6,-9]])
+        case .W: path = CGPath.from(points: [[-16,3],[14,3],[14,-6],[-16,-6]])
+        case .NW: path = CGPath.from(points: [[-17,0],[-5,8],[16,-3],[4,-9]])
+        case .SW: path = CGPath.from(points: [[-16,-5],[2,7],[14,1],[-4,-11]])
+        case .SE: path = CGPath.from(points: [[-16,0],[-3,9],[16,-4],[5,-12]])
         }
         return path
     }

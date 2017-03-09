@@ -44,12 +44,13 @@ class GameScene: SKScene {
     
     func loadSceneNodes() {
         // Grass Tiles
-        Tiles.GrassNodeNames.forEach { grassName in
+        Tiles.Grass.NodeNames.forEach { grassName in
             guard let grassBG = childNode(withName: grassName) as? SKTileMapNode else {
                 fatalError("\(grassName) node not loaded")
             }
             grassBGs.append(grassBG)
             grassBG.tileSize.height = Tiles.Height
+            grassBG.physicsBody?.friction = Tiles.Grass.Friction
         }
 
         // Water Tiles
@@ -60,12 +61,13 @@ class GameScene: SKScene {
         waterBG.tileSize.height = Tiles.Height
         
         // Road Tiles
-        Tiles.RoadNodeNames.forEach { roadName in
+        Tiles.Road.NodeNames.forEach { roadName in
             guard let roadBG = childNode(withName: roadName) as? SKTileMapNode else {
                 fatalError("\(roadName) node not loaded")
             }
             roadBGs.append(roadBG)
             roadBG.tileSize.height = Tiles.Height
+            roadBG.physicsBody?.friction = Tiles.Road.Friction
         }
     }
     
@@ -80,7 +82,7 @@ class GameScene: SKScene {
     
     func setupPlayer() {
         player = self.childNode(withName: "Car") as! Vehicle
-        player.initVehicle(name: Sprites.CarColors.Black)
+        player.initVehicle(name: Sprites.Car.Colors.Black)
 //        player.position = Sprites.StartLane.First
 //        addChild(player)
     }
@@ -93,11 +95,17 @@ class GameScene: SKScene {
             let grassBG = grassBGs[Int.random(grassBGs.count)]
             if let _ = grassBG.tileDefinition(atColumn: column, row: row) {
                 let treeSprite = SKSpriteNode(imageNamed: "treeShort")
+                let centerOfMass = CGPoint(x: treeSprite.position.x,
+                                           y: treeSprite.position.y - treeSprite.size.height / 3)
+                treeSprite.physicsBody = SKPhysicsBody(circleOfRadius: 1.5, center: centerOfMass)
+                treeSprite.physicsBody?.categoryBitMask = ColliderType.Obstacles
+                treeSprite.physicsBody?.collisionBitMask = ColliderType.Vehicles
                 var grassTileCenter = grassBG.centerOfTile(atColumn: column, row: row)
                 let displacement = Int.random(9)
                 grassTileCenter.x += CGFloat(displacement)
                 grassTileCenter.y += CGFloat(displacement)
                 treeSprite.position = grassTileCenter
+                treeSprite.zPosition = 10
                 addChild(treeSprite)
             }
         }
@@ -117,33 +125,35 @@ class GameScene: SKScene {
                 return
             }
             switch spriteName {
-            case Sprites.AcceleratorName:
-                
-                break
-            case Sprites.AntiClockwiseName: player.turnAntiClockwise()
-            case Sprites.ClockwiseName: player.turnClockwise()
+            case Sprites.AcceleratorName: player.accelerate()
+            case Sprites.BrakeName: player.decelerate()
+            case Sprites.AntiClockwiseName: player.turn(SpinDirection.AntiClockwise)
+            case Sprites.ClockwiseName: player.turn(SpinDirection.Clockwise)
             default: break
             }
         }
     }
     
-    func turnVehicle() {
-        
-    }
-    
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in touches {
+            let location = touch.location(in: self)
+            if let spriteName = nodes(at: location)[0].name
+                , spriteName == Sprites.BrakeName {
+                player.decelerate()
+            }
+        }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        // Only braking depends is ended on release, foot is still on accelerator
+        player.isDecelerating = false
     }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-    }
-    
     
     override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
+        player.update()
+        mainCamera.position = player.position
         
+        // Default GameKit boilerplate
         // Initialize _lastUpdateTime if it has not already been
         if (self.lastUpdateTime == 0) {
             self.lastUpdateTime = currentTime

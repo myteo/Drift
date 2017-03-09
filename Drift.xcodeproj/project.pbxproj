@@ -30,6 +30,7 @@
 		248667B91E7118CD00B8CE7D /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248667B81E7118CD00B8CE7D /* Direction.swift */; };
 		248667BB1E711FF900B8CE7D /* CGPath+Constructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248667BA1E711FF800B8CE7D /* CGPath+Constructor.swift */; };
 		248667BF1E712E7100B8CE7D /* ColliderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248667BE1E712E7100B8CE7D /* ColliderType.swift */; };
+		248667C11E71584B00B8CE7D /* CGVector+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248667C01E71584B00B8CE7D /* CGVector+Operations.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		248667B81E7118CD00B8CE7D /* Direction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Direction.swift; path = Constants/Direction.swift; sourceTree = "<group>"; };
 		248667BA1E711FF800B8CE7D /* CGPath+Constructor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGPath+Constructor.swift"; path = "Extensions/CGPath+Constructor.swift"; sourceTree = "<group>"; };
 		248667BE1E712E7100B8CE7D /* ColliderType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColliderType.swift; path = Constants/ColliderType.swift; sourceTree = "<group>"; };
+		248667C01E71584B00B8CE7D /* CGVector+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGVector+Operations.swift"; path = "Extensions/CGVector+Operations.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,6 +250,7 @@
 				248667A81E70E0F100B8CE7D /* Int+Random.swift */,
 				248667AA1E70F47300B8CE7D /* CGFloat+Operations.swift */,
 				248667BA1E711FF800B8CE7D /* CGPath+Constructor.swift */,
+				248667C01E71584B00B8CE7D /* CGVector+Operations.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 			files = (
 				2422A1D31E7052F600CE2B84 /* GamePlayScene.swift in Sources */,
 				2422A1D51E7052F600CE2B84 /* GameViewController.swift in Sources */,
+				248667C11E71584B00B8CE7D /* CGVector+Operations.swift in Sources */,
 				248667A61E707A4A00B8CE7D /* Sprites.swift in Sources */,
 				2422A1CD1E7052F600CE2B84 /* AppDelegate.swift in Sources */,
 				248667A91E70E0F100B8CE7D /* Int+Random.swift in Sources */,

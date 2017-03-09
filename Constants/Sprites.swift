@@ -14,12 +14,13 @@ struct Sprites {
     static let AntiClockwiseName = "AntiClockwise"
     static let ClockwiseName = "Clockwise"
     
-    struct CarColors {
-        static let Blue = "carBlue3_"
-        static let Black = "carBlack2_"
+    struct Car {
+        struct Colors {
+            static let Blue = "carBlue3_"
+            static let Black = "carBlack2_"
+        }
+        static let Mass = CGFloat(3)
     }
-    
-    static let CarMass = 10
     
     struct StartLane {
         static let First = CGPoint(x: -500, y: -6)

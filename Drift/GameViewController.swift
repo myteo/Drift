@@ -34,9 +34,11 @@ class GameViewController: UIViewController {
                     view.presentScene(sceneNode)
                     
                     view.ignoresSiblingOrder = true
-                    
+                    view.isMultipleTouchEnabled = true
+
                     view.showsFPS = true
                     view.showsNodeCount = true
+                    view.showsPhysics = true
                 }
             }
         }

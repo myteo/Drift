@@ -9,20 +9,10 @@
 import SpriteKit
 
 extension CGPath {
-    static func from(points: [[Int]]) -> CGPath? {
-        var CGPoints = points.map { CGPoint(x: $0[0], y: $0[1]) }
-//        let sprite = SKSpriteNode(imageNamed: imageNamed)
-//        let offsetX = CGFloat(sprite.frame.size.width * sprite.anchorPoint.x)
-//        let offsetY = CGFloat(sprite.frame.size.height * sprite.anchorPoint.y)
+    static func from(points: [[Int]]) -> CGPath {
+        let points = points.map { CGPoint(x: $0[0], y: $0[1]) }
         let path = CGMutablePath()
-        guard points.count > 1 else {
-            return nil
-        }
-        path.move(to: CGPoints.first!)
-        for i in 1..<CGPoints.count {
-            let point = CGPoints[i]
-            path.addLine(to: point)
-        }
+        path.addLines(between: points)
         path.closeSubpath()
         return path
     }
