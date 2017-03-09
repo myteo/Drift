@@ -27,4 +27,8 @@ struct Sprites {
         static let Second = CGPoint(x: -450, y: -16)
         static let Thrid = CGPoint(x: -400, y: -40)
     }
+    
+    struct Trees {
+        static let Names = ["treeTall", "treeShort", "treeConiferTall", "treeTall_autumn", "treeShort_autumn", "treeConiferShort"]
+    }
 }

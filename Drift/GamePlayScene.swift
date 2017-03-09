@@ -89,15 +89,16 @@ class GameScene: SKScene {
     
     func setupObstacles() {
         let numberOfObjects = 300
+        let collisionRadius = CGFloat(2.1)
         for _ in 1...numberOfObjects {
             let column = Int.random(Tiles.Columns)
             let row = Int.random(Tiles.Rows)
             let grassBG = grassBGs[Int.random(grassBGs.count)]
             if let _ = grassBG.tileDefinition(atColumn: column, row: row) {
-                let treeSprite = SKSpriteNode(imageNamed: "treeShort")
+                let treeSprite = SKSpriteNode(imageNamed: Sprites.Trees.Names[Int.random(Sprites.Trees.Names.count)])
                 let centerOfMass = CGPoint(x: treeSprite.position.x,
-                                           y: treeSprite.position.y - treeSprite.size.height / 3)
-                treeSprite.physicsBody = SKPhysicsBody(circleOfRadius: 1.5, center: centerOfMass)
+                                           y: treeSprite.position.y - treeSprite.size.height/2 + collisionRadius*2)
+                treeSprite.physicsBody = SKPhysicsBody(circleOfRadius: collisionRadius, center: centerOfMass)
                 treeSprite.physicsBody?.categoryBitMask = ColliderType.Obstacles
                 treeSprite.physicsBody?.collisionBitMask = ColliderType.Vehicles
                 var grassTileCenter = grassBG.centerOfTile(atColumn: column, row: row)
