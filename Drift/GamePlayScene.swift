@@ -81,10 +81,13 @@ class GameScene: SKScene {
     }
     
     func setupPlayer() {
+        // Use node in GamePlayScene.sks to get position
         player = self.childNode(withName: "Car") as! Vehicle
         player.initVehicle(name: Sprites.Car.Colors.Black)
-//        player.position = Sprites.StartLane.First
-//        addChild(player)
+        
+        // If want to set position manually
+        // player.position = Sprites.StartLane.First
+        // addChild(player)
     }
     
     func setupObstacles() {
