@@ -21,7 +21,7 @@ class GameScene: SKScene {
     var mainCamera: SKCameraNode!
     
     // Scene Nodes
-    var car: SKSpriteNode!
+    var player: Vehicle!
 
     // Tile Map Nodes
     var waterBGs = [SKTileMapNode]()
@@ -74,15 +74,15 @@ class GameScene: SKScene {
     }
     
     func setupObjects() {
-        setupCar()
+        setupPlayer()
         setupObstacles()
     }
     
-    func setupCar() {
-        guard let car = childNode(withName: "Car") as? SKSpriteNode else {
-            fatalError("Car Sprite Node not loaded")
-        }
-        self.car = car
+    func setupPlayer() {
+        player = self.childNode(withName: "Car") as! Vehicle
+        player.initVehicle(name: Sprites.CarColors.Black)
+//        player.position = Sprites.StartLane.First
+//        addChild(player)
     }
     
     func setupObstacles() {
@@ -117,12 +117,11 @@ class GameScene: SKScene {
                 return
             }
             switch spriteName {
-            case Sprites.AntiClockwiseName:
-                // turn ac
+            case Sprites.AcceleratorName:
+                
                 break
-            case Sprites.ClockwiseName:
-                // turn c
-                break
+            case Sprites.AntiClockwiseName: player.turnAntiClockwise()
+            case Sprites.ClockwiseName: player.turnClockwise()
             default: break
             }
         }
