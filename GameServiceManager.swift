@@ -67,13 +67,14 @@ class GameServiceManager: NSObject {
     }
     
     func update(position: CGPoint) {
-        NSLog("%@", "sending position: \(position) to \(session.connectedPeers.count) peers")
+        //NSLog("%@", "sending position: \(position) to \(session.connectedPeers.count) peers")
 
         guard session.connectedPeers.count > 0 else {
             return
         }
         
-        let data = NSKeyedArchiver.archivedData(withRootObject: position)
+        let positionString = NSStringFromCGPoint(position)
+        let data = NSKeyedArchiver.archivedData(withRootObject: positionString)
         let unsafePointer = (data as NSData).bytes.assumingMemoryBound(to: UInt8.self)
         session.connectedPeers.forEach {
             peerOutputStreams[$0]?.write(unsafePointer, maxLength: data.count)
@@ -81,13 +82,14 @@ class GameServiceManager: NSObject {
     }
     
     func update(direction: Direction) {
-        NSLog("%@", "sending direction: \(direction) to \(session.connectedPeers.count) peers")
+        //NSLog("%@", "sending direction: \(direction) to \(session.connectedPeers.count) peers")
 
         guard session.connectedPeers.count > 0 else {
             return
         }
         
-        let data = NSKeyedArchiver.archivedData(withRootObject: direction)
+        let directionString = String(direction.rawValue)
+        let data = NSKeyedArchiver.archivedData(withRootObject: directionString)
         let unsafePointer = (data as NSData).bytes.assumingMemoryBound(to: UInt8.self)
         session.connectedPeers.forEach {
             peerOutputStreams[$0]?.write(unsafePointer, maxLength: data.count)
@@ -115,10 +117,16 @@ extension GameServiceManager: StreamDelegate {
             return
         }
         
-        if let position = NSKeyedUnarchiver.unarchiveObject(with: dataString as Data) as? CGPoint {
-            self.delegate?.positionChanged(for: peerID, to: position, manager: self)
-        } else if let direction = NSKeyedUnarchiver.unarchiveObject(with: dataString as Data) as? Direction {
+        if let directionString = NSKeyedUnarchiver.unarchiveObject(with: dataString as Data) as? String,
+            let directionInt = Int(directionString),
+            let direction = Direction(rawValue: directionInt) {
+            print("updating direction")
+            print("new direction is \(direction)")
             self.delegate?.directionChanged(for: peerID, to: direction, manager: self)
+        } else if let positionString = NSKeyedUnarchiver.unarchiveObject(with: dataString as Data) as? String {
+            print("updating position")
+            let position = CGPointFromString(positionString)
+            self.delegate?.positionChanged(for: peerID, to: position, manager: self)
         }
         
     }
@@ -182,8 +190,12 @@ extension GameServiceManager: MCSessionDelegate {
             outputStream.delegate = self
             outputStream.schedule(in: .main, forMode: .defaultRunLoopMode)
             outputStream.open()
-            
             peerOutputStreams[peerID] = outputStream
+            
+            print("\(peerID) connected")
+            
+            // Setup player
+            self.delegate?.playerJoined(for: peerID, manager: self)
         }
         
         // Disconnected
@@ -199,6 +211,10 @@ extension GameServiceManager: MCSessionDelegate {
             
             peerInputStreams[inputStream] = nil
             peerOutputStreams[peerID] = nil
+            
+            print("\(peerID) disconnected")
+            
+            self.delegate?.playerLeft(for: peerID, manager: self)
         }
     }
     

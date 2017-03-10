@@ -18,4 +18,6 @@ protocol GameServiceManagerDelegate {
     func positionChanged(for peerID: MCPeerID, to position: CGPoint, manager: GameServiceManager)
     func directionChanged(for peerID: MCPeerID, to direction: Direction, manager: GameServiceManager)
     
+    func playerJoined(for peerID: MCPeerID, manager: GameServiceManager)
+    func playerLeft(for peerID: MCPeerID, manager: GameServiceManager)
 }

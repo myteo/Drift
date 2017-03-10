@@ -8,11 +8,13 @@
 
 import SpriteKit
 import GameplayKit
+import MultipeerConnectivity
 
 class GameScene: SKScene {
     
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
+    var gameService = GameServiceManager()
 
     // Entity-Component System
     var entityManager: EntityManager!
@@ -29,7 +31,10 @@ class GameScene: SKScene {
     var roadBGs = [SKTileMapNode]()
     var obstacleBG: SKTileMapNode!
     
-    private var lastUpdateTime : TimeInterval = 0
+    // Temporary sprite listing
+    var otherPlayers = [MCPeerID : Vehicle]()
+    
+    private var lastUpdateTime: TimeInterval = 0
     
     override func didMove(to view: SKView) {
         loadSceneNodes()
@@ -40,6 +45,7 @@ class GameScene: SKScene {
     
     override func sceneDidLoad() {
         self.lastUpdateTime = 0
+        gameService.delegate = self
     }
     
     func loadSceneNodes() {
@@ -84,6 +90,7 @@ class GameScene: SKScene {
         // Use node in GamePlayScene.sks to get position
         player = self.childNode(withName: "Car") as! Vehicle
         player.initVehicle(name: Sprites.Car.Colors.Black)
+        player.position = Sprites.StartLane.First
         
         // If want to set position manually
         // player.position = Sprites.StartLane.First
@@ -157,6 +164,10 @@ class GameScene: SKScene {
         player.update()
         mainCamera.position = player.position
         
+        // Send position and direction updates
+        gameService.update(position: player.position)
+        gameService.update(direction: player.direction)
+        
         // Default GameKit boilerplate
         // Initialize _lastUpdateTime if it has not already been
         if (self.lastUpdateTime == 0) {
@@ -172,5 +183,51 @@ class GameScene: SKScene {
         }
         
         self.lastUpdateTime = currentTime
+    }
+}
+
+extension GameScene: GameServiceManagerDelegate {
+    
+    func connectedDevicesChanged(manager: GameServiceManager, connectedDevices: [String]) {
+        NSLog("%@", "connectedDevices: \(connectedDevices)")
+    }
+    
+    func positionChanged(for peerID: MCPeerID, to position: CGPoint, manager: GameServiceManager) {
+        // Update the position of other player sprite
+        guard let otherPlayer = otherPlayers[peerID] else {
+            return
+        }
+        
+        otherPlayer.position = position
+    }
+    
+    func directionChanged(for peerID: MCPeerID, to direction: Direction, manager: GameServiceManager) {
+        // Update the direction of other player sprite
+        guard let otherPlayer = otherPlayers[peerID] else {
+            return
+        }
+        otherPlayer.direction = direction
+    }
+    
+    func playerJoined(for peerID: MCPeerID, manager: GameServiceManager) {
+        // Setup a new sprite for player
+        let otherPlayer = Vehicle()
+        self.addChild(otherPlayer)
+        otherPlayer.initVehicle(name: Sprites.Car.Colors.Blue)
+        otherPlayer.position = Sprites.StartLane.First
+        
+        print("Added \(peerID) sprite")
+        
+        // insert to listing
+        otherPlayers[peerID] = otherPlayer
+    }
+    
+    func playerLeft(for peerID: MCPeerID, manager: GameServiceManager) {
+        // Remove the corresponding sprite of player
+        guard let otherPlayer = otherPlayers[peerID] else {
+            return
+        }
+        
+        otherPlayer.removeFromParent()
     }
 }
