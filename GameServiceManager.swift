@@ -128,7 +128,21 @@ extension GameServiceManager: StreamDelegate {
             let position = CGPointFromString(positionString)
             self.delegate?.positionChanged(for: peerID, to: position, manager: self)
         }
-        
+        /*
+        while (input.hasBytesAvailable) {
+            if let directionString = NSKeyedUnarchiver.unarchiveObject(with: dataString as Data) as? String,
+                let directionInt = Int(directionString),
+                let direction = Direction(rawValue: directionInt) {
+                print("updating direction")
+                print("new direction is \(direction)")
+                self.delegate?.directionChanged(for: peerID, to: direction, manager: self)
+            } else if let positionString = NSKeyedUnarchiver.unarchiveObject(with: dataString as Data) as? String {
+                print("updating position")
+                let position = CGPointFromString(positionString)
+                self.delegate?.positionChanged(for: peerID, to: position, manager: self)
+            }
+        }
+        */
     }
     
 }

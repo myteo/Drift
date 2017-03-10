@@ -213,8 +213,13 @@ extension GameScene: GameServiceManagerDelegate {
         // Setup a new sprite for player
         let otherPlayer = Vehicle()
         self.addChild(otherPlayer)
-        otherPlayer.initVehicle(name: Sprites.Car.Colors.Blue)
+        
+        
+        // Hard code for 2 players first
+        //let otherPlayer = self.childNode(withName: "Car2") as! Vehicle
+        otherPlayer.initVehicle(name: Sprites.Car.Colors.Black)
         otherPlayer.position = Sprites.StartLane.First
+        otherPlayer.zPosition = 10
         
         print("Added \(peerID) sprite")
         
