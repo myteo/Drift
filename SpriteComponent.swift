@@ -20,6 +20,12 @@ class SpriteComponent: GKComponent {
         super.init()
     }
     
+    init(entity: GKEntity, spriteNode: SKSpriteNode) {
+        node = spriteNode
+        node.entity = entity
+        super.init()
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

@@ -22,6 +22,8 @@ class GameScene: SKScene {
     
     // Scene Nodes
     var player: Vehicle!
+    
+    var AI: AIRacer!
 
     // Tile Map Nodes
     var waterBGs = [SKTileMapNode]()
@@ -77,6 +79,7 @@ class GameScene: SKScene {
     
     func setupObjects() {
         setupPlayer()
+        setupAIRacers()
         setupObstacles()
     }
     
@@ -88,6 +91,13 @@ class GameScene: SKScene {
         // If want to set position manually
         // player.position = Sprites.StartLane.First
         // addChild(player)
+    }
+    
+    func setupAIRacers() {
+        // Use node in GamePlayScene.sks to get position
+        let vehicleSpriteNode = self.childNode(withName: "AI-1") as! Vehicle
+        vehicleSpriteNode.initVehicle(name: Sprites.Car.Colors.Blue)
+        AI = AIRacer(spriteNode: vehicleSpriteNode)
     }
     
     func setupObstacles() {
