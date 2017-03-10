@@ -32,6 +32,9 @@
 		248667BF1E712E7100B8CE7D /* ColliderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248667BE1E712E7100B8CE7D /* ColliderType.swift */; };
 		248667C11E71584B00B8CE7D /* CGVector+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248667C01E71584B00B8CE7D /* CGVector+Operations.swift */; };
 		ABDF490B1E730F77004EEC4C /* AIRacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF490A1E730F77004EEC4C /* AIRacer.swift */; };
+		ABDF490D1E73262D004EEC4C /* CGPoint+Constructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF490C1E73262D004EEC4C /* CGPoint+Constructor.swift */; };
+		ABDF490F1E73268A004EEC4C /* float2+Constructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF490E1E73268A004EEC4C /* float2+Constructor.swift */; };
+		ABDF49111E732745004EEC4C /* MoveBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF49101E732745004EEC4C /* MoveBehavior.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +86,9 @@
 		248667BE1E712E7100B8CE7D /* ColliderType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColliderType.swift; path = Constants/ColliderType.swift; sourceTree = "<group>"; };
 		248667C01E71584B00B8CE7D /* CGVector+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGVector+Operations.swift"; path = "Extensions/CGVector+Operations.swift"; sourceTree = "<group>"; };
 		ABDF490A1E730F77004EEC4C /* AIRacer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIRacer.swift; sourceTree = "<group>"; };
+		ABDF490C1E73262D004EEC4C /* CGPoint+Constructor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Constructor.swift"; sourceTree = "<group>"; };
+		ABDF490E1E73268A004EEC4C /* float2+Constructor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "float2+Constructor.swift"; sourceTree = "<group>"; };
+		ABDF49101E732745004EEC4C /* MoveBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveBehavior.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,6 +260,8 @@
 				248667AA1E70F47300B8CE7D /* CGFloat+Operations.swift */,
 				248667BA1E711FF800B8CE7D /* CGPath+Constructor.swift */,
 				248667C01E71584B00B8CE7D /* CGVector+Operations.swift */,
+				ABDF490C1E73262D004EEC4C /* CGPoint+Constructor.swift */,
+				ABDF490E1E73268A004EEC4C /* float2+Constructor.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -262,6 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				248667B11E70FCEB00B8CE7D /* MoveComponent.swift */,
+				ABDF49101E732745004EEC4C /* MoveBehavior.swift */,
 				248667B31E70FCF900B8CE7D /* SpriteComponent.swift */,
 			);
 			name = Components;
@@ -416,6 +425,7 @@
 			files = (
 				2422A1D31E7052F600CE2B84 /* GamePlayScene.swift in Sources */,
 				2422A1D51E7052F600CE2B84 /* GameViewController.swift in Sources */,
+				ABDF490F1E73268A004EEC4C /* float2+Constructor.swift in Sources */,
 				248667C11E71584B00B8CE7D /* CGVector+Operations.swift in Sources */,
 				248667A61E707A4A00B8CE7D /* Sprites.swift in Sources */,
 				2422A1CD1E7052F600CE2B84 /* AppDelegate.swift in Sources */,
@@ -424,6 +434,8 @@
 				248667B41E70FCF900B8CE7D /* SpriteComponent.swift in Sources */,
 				2422A20A1E7055F100CE2B84 /* Tiles.swift in Sources */,
 				248667B71E7105FB00B8CE7D /* Vehicle.swift in Sources */,
+				ABDF490D1E73262D004EEC4C /* CGPoint+Constructor.swift in Sources */,
+				ABDF49111E732745004EEC4C /* MoveBehavior.swift in Sources */,
 				248667AE1E70FC7400B8CE7D /* EntityManager.swift in Sources */,
 				248667AB1E70F47300B8CE7D /* CGFloat+Operations.swift in Sources */,
 				248667B91E7118CD00B8CE7D /* Direction.swift in Sources */,

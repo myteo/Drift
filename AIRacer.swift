@@ -18,6 +18,10 @@ class AIRacer: GKEntity {
         let spriteComponent = SpriteComponent(entity: self,
                                               spriteNode: spriteNode)
         addComponent(spriteComponent)
+        let moveComponent = MoveComponent(maxSpeed: 50,
+                                          maxAcceleration: 1,
+                                          radius: Float(spriteNode.size.width / 2))
+        addComponent(moveComponent)
     }
     
     required init?(coder aDecoder: NSCoder) {

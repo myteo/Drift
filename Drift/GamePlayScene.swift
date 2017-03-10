@@ -98,6 +98,7 @@ class GameScene: SKScene {
         let vehicleSpriteNode = self.childNode(withName: "AI-1") as! Vehicle
         vehicleSpriteNode.initVehicle(name: Sprites.Car.Colors.Blue)
         AI = AIRacer(spriteNode: vehicleSpriteNode)
+        entities.append(AI)
     }
     
     func setupObstacles() {

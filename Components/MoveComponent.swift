@@ -6,9 +6,45 @@
 //  Copyright © 2017 nus.cs3217.drift. All rights reserved.
 //
 
+import Foundation
 import SpriteKit
 import GameplayKit
 
-class MoveComponent: GKComponent {
+class MoveComponent: GKAgent2D, GKAgentDelegate {
+    
+    init(maxSpeed: Float, maxAcceleration: Float, radius: Float) {
+        super.init()
+        delegate = self
+        self.maxSpeed = maxSpeed
+        self.maxAcceleration = maxAcceleration
+        self.radius = radius
+        self.mass = 0.01
+        // TODO: Implement better AI behavior
+        behavior = MoveBehavior(targetSpeed: maxSpeed, avoid: [])
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func agentWillUpdate(_ agent: GKAgent) {
+        guard let spriteComponent = entity?.component(ofType: SpriteComponent.self) else {
+            return
+        }
+        
+        position = float2(spriteComponent.node.position)
+    }
+    
+    func agentDidUpdate(_ agent: GKAgent) {
+        guard let spriteComponent = entity?.component(ofType: SpriteComponent.self) else {
+            return
+        }
+        
+        spriteComponent.node.position = CGPoint(position)
+    }
+    
+    override func update(deltaTime seconds: TimeInterval) {
+        super.update(deltaTime: seconds)
+    }
     
 }
