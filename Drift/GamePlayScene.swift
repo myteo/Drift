@@ -166,7 +166,7 @@ class GameScene: SKScene {
         
         // Send position and direction updates
         gameService.update(position: player.position)
-        gameService.update(direction: player.direction)
+        //gameService.update(direction: player.direction)
         
         // Default GameKit boilerplate
         // Initialize _lastUpdateTime if it has not already been
