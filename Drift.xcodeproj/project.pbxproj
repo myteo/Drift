@@ -31,6 +31,8 @@
 		248667BB1E711FF900B8CE7D /* CGPath+Constructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248667BA1E711FF800B8CE7D /* CGPath+Constructor.swift */; };
 		248667BF1E712E7100B8CE7D /* ColliderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248667BE1E712E7100B8CE7D /* ColliderType.swift */; };
 		248667C11E71584B00B8CE7D /* CGVector+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248667C01E71584B00B8CE7D /* CGVector+Operations.swift */; };
+		F12EA0D91E7418ED00682E91 /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12EA0D81E7418ED00682E91 /* Data+Extensions.swift */; };
+		F12EA0DB1E741E6100682E91 /* PlayerPositionUpdateMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12EA0DA1E741E6100682E91 /* PlayerPositionUpdateMessage.swift */; };
 		F1D6419E1E71B6E200CC00EC /* GameServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D6419D1E71B6E200CC00EC /* GameServiceManager.swift */; };
 		F1D641A01E71B76F00CC00EC /* GameServiceManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D6419F1E71B76F00CC00EC /* GameServiceManagerDelegate.swift */; };
 /* End PBXBuildFile section */
@@ -83,6 +85,8 @@
 		248667BA1E711FF800B8CE7D /* CGPath+Constructor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGPath+Constructor.swift"; path = "Extensions/CGPath+Constructor.swift"; sourceTree = "<group>"; };
 		248667BE1E712E7100B8CE7D /* ColliderType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColliderType.swift; path = Constants/ColliderType.swift; sourceTree = "<group>"; };
 		248667C01E71584B00B8CE7D /* CGVector+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGVector+Operations.swift"; path = "Extensions/CGVector+Operations.swift"; sourceTree = "<group>"; };
+		F12EA0D81E7418ED00682E91 /* Data+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Extensions.swift"; sourceTree = "<group>"; };
+		F12EA0DA1E741E6100682E91 /* PlayerPositionUpdateMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerPositionUpdateMessage.swift; sourceTree = "<group>"; };
 		F1D6419D1E71B6E200CC00EC /* GameServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameServiceManager.swift; sourceTree = "<group>"; };
 		F1D6419F1E71B76F00CC00EC /* GameServiceManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameServiceManagerDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -200,6 +204,7 @@
 			children = (
 				F1D6419D1E71B6E200CC00EC /* GameServiceManager.swift */,
 				F1D6419F1E71B76F00CC00EC /* GameServiceManagerDelegate.swift */,
+				F12EA0DA1E741E6100682E91 /* PlayerPositionUpdateMessage.swift */,
 			);
 			name = "Controllers / Managers";
 			sourceTree = "<group>";
@@ -257,6 +262,7 @@
 				248667AA1E70F47300B8CE7D /* CGFloat+Operations.swift */,
 				248667BA1E711FF800B8CE7D /* CGPath+Constructor.swift */,
 				248667C01E71584B00B8CE7D /* CGVector+Operations.swift */,
+				F12EA0D81E7418ED00682E91 /* Data+Extensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -420,9 +426,11 @@
 				2422A1D31E7052F600CE2B84 /* GamePlayScene.swift in Sources */,
 				2422A1D51E7052F600CE2B84 /* GameViewController.swift in Sources */,
 				248667C11E71584B00B8CE7D /* CGVector+Operations.swift in Sources */,
+				F12EA0D91E7418ED00682E91 /* Data+Extensions.swift in Sources */,
 				248667A61E707A4A00B8CE7D /* Sprites.swift in Sources */,
 				2422A1CD1E7052F600CE2B84 /* AppDelegate.swift in Sources */,
 				248667A91E70E0F100B8CE7D /* Int+Random.swift in Sources */,
+				F12EA0DB1E741E6100682E91 /* PlayerPositionUpdateMessage.swift in Sources */,
 				F1D641A01E71B76F00CC00EC /* GameServiceManagerDelegate.swift in Sources */,
 				248667B21E70FCEB00B8CE7D /* MoveComponent.swift in Sources */,
 				248667B41E70FCF900B8CE7D /* SpriteComponent.swift in Sources */,

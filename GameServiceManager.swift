@@ -19,6 +19,9 @@ class GameServiceManager: NSObject {
     private let serviceAdvertiser: MCNearbyServiceAdvertiser
     private let serviceBrowser: MCNearbyServiceBrowser
     
+    fileprivate var incomingCounter = 0
+    fileprivate var outgoingCounter = 0
+    
     lazy var session: MCSession = {
         let session = MCSession(peer: self.myPeerId, securityIdentity: nil, encryptionPreference: .none)
         session.delegate = self
@@ -63,9 +66,9 @@ class GameServiceManager: NSObject {
         guard session.connectedPeers.count > 0 else {
             return
         }
-                
-        let positionString = NSStringFromCGPoint(position)
-        try? self.session.send(positionString.data(using: .utf8)!, toPeers: session.connectedPeers, with: .reliable)
+        
+        let message = PlayerPositionUpdateMessage(counter: outgoingCounter, position: position)
+        try? self.session.send(Data.init(from: message), toPeers: session.connectedPeers, with: .unreliable)
     }
     
     func update(direction: Direction) {
@@ -141,11 +144,16 @@ extension GameServiceManager: MCSessionDelegate {
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         NSLog("%@", "didReceiveData: \(data)")
         
-        let string = String(data: data, encoding: .utf8)!
-        let position = CGPointFromString(string)
+        let message = data.to(type: PlayerPositionUpdateMessage.self)
+        
+        guard message.counter >= incomingCounter || message.counter == 0 else {
+            print("ignoring outdated message")
+            return
+        }
         
         print("updating opponent")
-        self.delegate?.positionChanged(for: peerID, to: position, manager: self)
+        incomingCounter = message.counter
+        self.delegate?.positionChanged(for: peerID, to: message.position, manager: self)
         
         //let str = String(data: data, encoding: .utf8)!
         //self.delegate?.colorChanged(manager: self, colorString: str)
