@@ -20,7 +20,7 @@ class GameServiceManager: NSObject {
     private let serviceBrowser: MCNearbyServiceBrowser
     
     lazy var session: MCSession = {
-        let session = MCSession(peer: self.myPeerId, securityIdentity: nil, encryptionPreference: .required)
+        let session = MCSession(peer: self.myPeerId, securityIdentity: nil, encryptionPreference: .none)
         session.delegate = self
         return session
     }()
@@ -65,7 +65,7 @@ class GameServiceManager: NSObject {
         }
                 
         let positionString = NSStringFromCGPoint(position)
-        try? self.session.send(positionString.data(using: .utf8)!, toPeers: session.connectedPeers, with: .unreliable)
+        try? self.session.send(positionString.data(using: .utf8)!, toPeers: session.connectedPeers, with: .reliable)
     }
     
     func update(direction: Direction) {

@@ -199,9 +199,11 @@ extension GameScene: GameServiceManagerDelegate {
             return
         }
         
+        
         DispatchQueue.main.sync {
             otherPlayer.position = position
         }
+ 
     }
     
     func directionChanged(for peerID: MCPeerID, to direction: Direction, manager: GameServiceManager) {
