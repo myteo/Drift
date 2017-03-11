@@ -63,7 +63,7 @@ class GameServiceManager: NSObject {
         guard session.connectedPeers.count > 0 else {
             return
         }
-        
+                
         let positionString = NSStringFromCGPoint(position)
         try? self.session.send(positionString.data(using: .utf8)!, toPeers: session.connectedPeers, with: .unreliable)
     }
@@ -144,6 +144,7 @@ extension GameServiceManager: MCSessionDelegate {
         let string = String(data: data, encoding: .utf8)!
         let position = CGPointFromString(string)
         
+        print("updating opponent")
         self.delegate?.positionChanged(for: peerID, to: position, manager: self)
         
         //let str = String(data: data, encoding: .utf8)!

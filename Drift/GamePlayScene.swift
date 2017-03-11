@@ -161,6 +161,7 @@ class GameScene: SKScene {
     }
     
     override func update(_ currentTime: TimeInterval) {
+        print("updating world")
         player.update()
         mainCamera.position = player.position
         
@@ -198,7 +199,9 @@ extension GameScene: GameServiceManagerDelegate {
             return
         }
         
-        otherPlayer.position = position
+        DispatchQueue.main.sync {
+            otherPlayer.position = position
+        }
     }
     
     func directionChanged(for peerID: MCPeerID, to direction: Direction, manager: GameServiceManager) {
@@ -211,13 +214,13 @@ extension GameScene: GameServiceManagerDelegate {
     
     func playerJoined(for peerID: MCPeerID, manager: GameServiceManager) {
         // Setup a new sprite for player
-        let otherPlayer = Vehicle()
-        self.addChild(otherPlayer)
+        //let otherPlayer = Vehicle()
+        //self.addChild(otherPlayer)
         
         
         // Hard code for 2 players first
-        //let otherPlayer = self.childNode(withName: "Car2") as! Vehicle
-        otherPlayer.initVehicle(name: Sprites.Car.Colors.Black)
+        let otherPlayer = self.childNode(withName: "Car2") as! Vehicle
+        otherPlayer.initVehicle(name: Sprites.Car.Colors.Blue)
         otherPlayer.position = Sprites.StartLane.First
         otherPlayer.zPosition = 10
         
