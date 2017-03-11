@@ -12,15 +12,23 @@ import GameplayKit
 
 class MoveComponent: GKAgent2D, GKAgentDelegate {
     
-    init(maxSpeed: Float, maxAcceleration: Float, radius: Float) {
+    init(maxSpeed: Float, maxAcceleration: Float, radius: Float, mass: Float, node: SKNode) {
         super.init()
         delegate = self
         self.maxSpeed = maxSpeed
         self.maxAcceleration = maxAcceleration
         self.radius = radius
-        self.mass = 0.01
-        // TODO: Implement better AI behavior
-        behavior = MoveBehavior(targetSpeed: maxSpeed, avoid: [])
+        self.mass = mass
+        
+        guard let gameScene = node.scene as? GameScene else {
+            return
+        }
+        behavior = MoveBehavior(
+                targetSpeed: maxSpeed,
+                avoid: [],
+                permanentObstacles: gameScene.aiMovementBoundaries,
+                waypoints: gameScene.aiMovementWaypoints
+        )
     }
     
     required init?(coder aDecoder: NSCoder) {

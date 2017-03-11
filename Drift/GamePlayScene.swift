@@ -22,8 +22,9 @@ class GameScene: SKScene {
     
     // Scene Nodes
     var player: Vehicle!
-    
     var AI: AIRacer!
+    var aiMovementBoundaries: [SKNode]!
+    var aiMovementWaypoints: [CGPoint]!
 
     // Tile Map Nodes
     var waterBGs = [SKTileMapNode]()
@@ -79,6 +80,7 @@ class GameScene: SKScene {
     
     func setupObjects() {
         setupPlayer()
+        setupAIMovement()
         setupAIRacers()
         setupObstacles()
     }
@@ -93,6 +95,21 @@ class GameScene: SKScene {
         // addChild(player)
     }
     
+    func setupAIMovement() {
+        aiMovementBoundaries = []
+        let aiMovementContainer = self.childNode(withName: "Boundaries")!
+        for child in aiMovementContainer.children {
+            aiMovementBoundaries.append(child)
+        }
+
+        aiMovementWaypoints = []
+        let aiWaypointContainer = self.childNode(withName: "Waypoints")!
+        for child in aiWaypointContainer.children {
+            let positionInScene = convert(child.position, from: aiWaypointContainer)
+            aiMovementWaypoints.append(positionInScene)
+        }
+    }
+
     func setupAIRacers() {
         // Use node in GamePlayScene.sks to get position
         let vehicleSpriteNode = self.childNode(withName: "AI-1") as! Vehicle

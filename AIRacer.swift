@@ -11,19 +11,21 @@ import SpriteKit
 import GameplayKit
 
 class AIRacer: GKEntity {
-    
+
     init(spriteNode: SKSpriteNode) {
-        
+
         super.init()
         let spriteComponent = SpriteComponent(entity: self,
                                               spriteNode: spriteNode)
         addComponent(spriteComponent)
-        let moveComponent = MoveComponent(maxSpeed: 50,
-                                          maxAcceleration: 1,
-                                          radius: Float(spriteNode.size.width / 2))
+        let moveComponent = MoveComponent(maxSpeed: 300,
+                                          maxAcceleration: 170,
+                                          radius: Float(spriteNode.size.width / 2),
+                                          mass: 0.7,
+                                          node: spriteNode)
         addComponent(moveComponent)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
