@@ -14,11 +14,12 @@ class MoveComponent: GKAgent2D, GKAgentDelegate {
     
     private let entityManager: EntityManager
     private let type: MoveType
-    private var previousPoint = CGPoint()
+    private var previousPoint: CGPoint
     
     init(type: MoveType, node: SKSpriteNode, entityManager: EntityManager) {
         self.entityManager = entityManager
         self.type = type
+        self.previousPoint = node.position
         super.init()
         delegate = self
         self.maxSpeed = type.maxSpeed
@@ -50,6 +51,9 @@ class MoveComponent: GKAgent2D, GKAgentDelegate {
     }
     
     func agentWillUpdate(_ agent: GKAgent) {
+        if type == .PlayerRacer {
+            return
+        }
         guard let spriteComponent = entity?.component(ofType: SpriteComponent.self) else {
             return
         }
@@ -58,6 +62,9 @@ class MoveComponent: GKAgent2D, GKAgentDelegate {
     }
     
     func agentDidUpdate(_ agent: GKAgent) {
+        if type == .PlayerRacer {
+            return
+        }
         guard let spriteComponent = entity?.component(ofType: SpriteComponent.self) else {
             return
         }
@@ -66,8 +73,9 @@ class MoveComponent: GKAgent2D, GKAgentDelegate {
         spriteComponent.node.position = nextPosition
         if let vehicle = spriteComponent.node as? Vehicle {
             let texture = vehicle.getTexture(prefix: vehicle.imagePrefix, direction: newDirection)
-            spriteComponent.node.texture = texture
-            spriteComponent.node.size = texture.size()
+            vehicle.texture = texture
+            vehicle.size = texture.size()
+            vehicle.resetPhysicsBody(direction: newDirection)
         }
         previousPoint = nextPosition
     }
