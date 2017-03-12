@@ -14,6 +14,7 @@ class MoveComponent: GKAgent2D, GKAgentDelegate {
     
     private let entityManager: EntityManager
     private let type: MoveType
+    private var previousPoint = CGPoint()
     
     init(type: MoveType, node: SKSpriteNode, entityManager: EntityManager) {
         self.entityManager = entityManager
@@ -52,16 +53,23 @@ class MoveComponent: GKAgent2D, GKAgentDelegate {
         guard let spriteComponent = entity?.component(ofType: SpriteComponent.self) else {
             return
         }
-        
         position = float2(spriteComponent.node.position)
+        previousPoint = spriteComponent.node.position
     }
     
     func agentDidUpdate(_ agent: GKAgent) {
         guard let spriteComponent = entity?.component(ofType: SpriteComponent.self) else {
             return
         }
-        
-        spriteComponent.node.position = CGPoint(position)
+        let nextPosition = CGPoint(position)
+        let newDirection = Direction.getNextDirection(previousPoint, nextPosition)
+        spriteComponent.node.position = nextPosition
+        if let vehicle = spriteComponent.node as? Vehicle {
+            let texture = vehicle.getTexture(prefix: vehicle.imagePrefix, direction: newDirection)
+            spriteComponent.node.texture = texture
+            spriteComponent.node.size = texture.size()
+        }
+        previousPoint = nextPosition
     }
     
     override func update(deltaTime seconds: TimeInterval) {

@@ -16,4 +16,6 @@ extension CGFloat {
     static public func * (left: CGFloat, right: CGVector) -> CGVector {
         return CGVector(dx: left * right.dx, dy: left * right.dy)
     }
+    
+    static let π = CGFloat(M_PI)
 }

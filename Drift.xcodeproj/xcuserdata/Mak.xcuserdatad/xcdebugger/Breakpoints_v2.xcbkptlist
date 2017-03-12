@@ -22,17 +22,49 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Sprites/Vehicle.swift"
-            timestampString = "510762610.372184"
+            filePath = "Constants/Direction.swift"
+            timestampString = "511022503.815514"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "update()"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "getNextDirection(_:_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static Drift.Direction.getNextDirection (__C.CGPoint, __C.CGPoint) -&gt; Drift.Direction"
+                  moduleName = "Drift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Mak/Desktop/CS3217%20Assg/Assg/Drift/Drift/Constants/Direction.swift"
+                  timestampString = "511023286.21459"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "87"
+                  endingLineNumber = "87"
+                  offsetFromSymbolStart = "92">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static Drift.Direction.getNextDirection (__C.CGPoint, __C.CGPoint) -&gt; Drift.Direction"
+                  moduleName = "Drift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Mak/Desktop/CS3217%20Assg/Assg/Drift/Drift/Constants/Direction.swift"
+                  timestampString = "511023286.218209"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "87"
+                  endingLineNumber = "87"
+                  offsetFromSymbolStart = "344">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -42,28 +74,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Sprites/Vehicle.swift"
-            timestampString = "510762049.576517"
+            timestampString = "511023268.689316"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "initVehicle(name:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Sprites/Vehicle.swift"
-            timestampString = "510762610.372184"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "update()"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "turn(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

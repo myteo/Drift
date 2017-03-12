@@ -80,4 +80,20 @@ enum Direction: Int {
         let index = nextIndex % list.count < 0 ? list.count - 1 : nextIndex
         self = list[index]
     }
+    
+    public static func getNextDirection(_ prev: CGPoint, _ next: CGPoint) -> Direction {
+        let angle = Double(atan2(next.y - prev.y, next.x - prev.x) * 180) / M_PI
+        switch angle {
+        case 15.0 ..< 60: return .NE
+        case 60 ..< 120: return .N
+        case 120 ..< 165: return .NW
+        case 165 ..< 180: return .W
+        case -180 ..< -165: return .W
+        case -165 ..< -120: return .SW
+        case -120 ..< -60: return .S
+        case -60 ..< -15.0: return .SE
+        case -15.0 ..< 15.0: return .E
+        default: return .NE
+        }
+    }
 }
