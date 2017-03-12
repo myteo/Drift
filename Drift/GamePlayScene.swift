@@ -111,11 +111,14 @@ class GameScene: SKScene {
     }
 
     func setupAIRacers() {
-        // Use node in GamePlayScene.sks to get position
-        let vehicleSpriteNode = self.childNode(withName: "AI-1") as! Vehicle
-        vehicleSpriteNode.initVehicle(name: Sprites.Car.Colors.Blue)
-        AI = AIRacer(spriteNode: vehicleSpriteNode)
-        entities.append(AI)
+        if let vehicles = self.childNode(withName: "AIs")?.children {
+            for vehicle in vehicles {
+                let vehicleSpriteNode = vehicle as! Vehicle
+                vehicleSpriteNode.initVehicle(name: Sprites.Car.Colors.Blue)
+                AI = AIRacer(spriteNode: vehicleSpriteNode, entityManager: entityManager)
+                entityManager.add(AI)
+            }
+        }
     }
     
     func setupObstacles() {
@@ -195,9 +198,7 @@ class GameScene: SKScene {
         let dt = currentTime - self.lastUpdateTime
         
         // Update entities
-        for entity in self.entities {
-            entity.update(deltaTime: dt)
-        }
+        entityManager.update(deltaTime: dt)
         
         self.lastUpdateTime = currentTime
     }

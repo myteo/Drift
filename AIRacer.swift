@@ -12,7 +12,7 @@ import GameplayKit
 
 class AIRacer: GKEntity {
 
-    init(spriteNode: SKSpriteNode) {
+    init(spriteNode: SKSpriteNode, entityManager: EntityManager) {
 
         super.init()
         let spriteComponent = SpriteComponent(entity: self,
@@ -22,7 +22,8 @@ class AIRacer: GKEntity {
                                           maxAcceleration: 170,
                                           radius: Float(spriteNode.size.width / 2),
                                           mass: 0.7,
-                                          node: spriteNode)
+                                          node: spriteNode,
+                                          entityManager: entityManager)
         addComponent(moveComponent)
     }
 

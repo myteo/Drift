@@ -15,7 +15,8 @@ class MoveBehavior: GKBehavior {
     init(targetSpeed: Float, avoid: [GKAgent], permanentObstacles: [SKNode], waypoints: [CGPoint]) {
         super.init()
         setWeight(0.1, for: GKGoal(toReachTargetSpeed: targetSpeed))
-        setWeight(1.0, for: GKGoal(toAvoid: avoid, maxPredictionTime: 1.0))
+        setWeight(0.1, for: GKGoal(toAvoid: avoid, maxPredictionTime: 10))
+        setWeight(0.1, for: GKGoal(toSeparateFrom: avoid, maxDistance: 100, maxAngle: 1.5 * .pi))
         
         let obstacles = SKNode.obstacles(fromNodeBounds: permanentObstacles)
         addMovementPath(obstacles: obstacles, rawWaypoints: waypoints)
@@ -43,9 +44,9 @@ class MoveBehavior: GKBehavior {
         }
         
         // TODO: shift radius, max prediction time & other constants to constants file
-        let path = GKPath(graphNodes: pathNodes, radius: 5)
+        let path = GKPath(graphNodes: pathNodes, radius: 50)
         setWeight(1.0, for: GKGoal(toFollow: path, maxPredictionTime: 1, forward: true))
-        setWeight(1.0, for: GKGoal(toStayOn: path, maxPredictionTime: 1))
+        setWeight(1.0, for: GKGoal(toStayOn: path, maxPredictionTime: 0.5))
         setWeight(1, for: GKGoal(toAvoid: obstacles, maxPredictionTime: 1))
     }
 }

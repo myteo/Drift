@@ -1,4 +1,3 @@
-//
 //  EntityManager.swift
 //  Drift
 //
@@ -33,7 +32,9 @@ class EntityManager {
         for componentSystem in componentSystems {
             componentSystem.addComponent(foundIn: entity)
         }
-        if let spriteNode = entity.component(ofType: SpriteComponent.self)?.node {
+        
+        if let spriteNode = entity.component(ofType: SpriteComponent.self)?.node,
+            spriteNode.parent == nil {
             scene.addChild(spriteNode)
         }
     }
@@ -46,4 +47,26 @@ class EntityManager {
         entities.remove(entity)
     }
 
+    func getAllVehicleAgents() -> [GKAgent2D] {
+        var agents: [GKAgent2D] = []
+        for entity in entities {
+            if let agent = entity.component(ofType: MoveComponent.self) {
+                agents.append(agent)
+            }
+        }
+        return agents
+    }
+    
+    func update(deltaTime: TimeInterval) {
+        for componentSystem in componentSystems {
+            componentSystem.update(deltaTime: deltaTime)
+        }
+        
+        for remove in toRemove {
+            for componentSystem in componentSystems {
+                componentSystem.removeComponent(foundIn: remove)
+            }
+        }
+        toRemove.removeAll()
+    }
 }

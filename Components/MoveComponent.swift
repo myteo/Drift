@@ -10,25 +10,20 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
+// TODO: rename to something better?
 class MoveComponent: GKAgent2D, GKAgentDelegate {
     
-    init(maxSpeed: Float, maxAcceleration: Float, radius: Float, mass: Float, node: SKNode) {
+    private let entityManager: EntityManager
+    
+    init(maxSpeed: Float, maxAcceleration: Float, radius: Float, mass: Float,
+         node: SKNode, entityManager: EntityManager) {
+        self.entityManager = entityManager
         super.init()
         delegate = self
         self.maxSpeed = maxSpeed
         self.maxAcceleration = maxAcceleration
         self.radius = radius
         self.mass = mass
-        
-        guard let gameScene = node.scene as? GameScene else {
-            return
-        }
-        behavior = MoveBehavior(
-                targetSpeed: maxSpeed,
-                avoid: [],
-                permanentObstacles: gameScene.aiMovementBoundaries,
-                waypoints: gameScene.aiMovementWaypoints
-        )
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -53,6 +48,18 @@ class MoveComponent: GKAgent2D, GKAgentDelegate {
     
     override func update(deltaTime seconds: TimeInterval) {
         super.update(deltaTime: seconds)
+        
+        guard let spriteComponent = entity?.component(ofType: SpriteComponent.self),
+            let gameScene = spriteComponent.node.scene as? GameScene else {
+            return
+        }
+        
+        behavior = MoveBehavior(
+                targetSpeed: maxSpeed,
+                avoid: entityManager.getAllVehicleAgents(),
+                permanentObstacles: gameScene.aiMovementBoundaries,
+                waypoints: gameScene.aiMovementWaypoints
+        )
     }
     
 }
