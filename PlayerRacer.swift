@@ -1,8 +1,8 @@
 //
-//  AIRacer.swift
+//  PlayerRacer.swift
 //  Drift
 //
-//  Created by Teo Ming Yi on 11/3/17.
+//  Created by Alex on 12/3/17.
 //  Copyright © 2017 nus.cs3217.drift. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
-class AIRacer: GKEntity {
+class PlayerRacer: GKEntity {
 
     init(spriteNode: SKSpriteNode, entityManager: EntityManager) {
 
@@ -18,7 +18,7 @@ class AIRacer: GKEntity {
         let spriteComponent = SpriteComponent(entity: self,
                                               spriteNode: spriteNode)
         addComponent(spriteComponent)
-        let moveComponent = MoveComponent(type: .AIRacer, node: spriteNode, entityManager: entityManager)
+        let moveComponent = MoveComponent(type: .PlayerRacer, node: spriteNode, entityManager: entityManager)
         addComponent(moveComponent)
     }
 

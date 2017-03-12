@@ -34,7 +34,9 @@
 		ABDF490B1E730F77004EEC4C /* AIRacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF490A1E730F77004EEC4C /* AIRacer.swift */; };
 		ABDF490D1E73262D004EEC4C /* CGPoint+Constructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF490C1E73262D004EEC4C /* CGPoint+Constructor.swift */; };
 		ABDF490F1E73268A004EEC4C /* float2+Constructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF490E1E73268A004EEC4C /* float2+Constructor.swift */; };
-		ABDF49111E732745004EEC4C /* MoveBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF49101E732745004EEC4C /* MoveBehavior.swift */; };
+		ABDF49111E732745004EEC4C /* AIRacerMoveBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF49101E732745004EEC4C /* AIRacerMoveBehavior.swift */; };
+		FA5776381E74FFDC00853225 /* PlayerRacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5776371E74FFDC00853225 /* PlayerRacer.swift */; };
+		FA57763A1E750B9C00853225 /* MoveType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5776391E750B9C00853225 /* MoveType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,7 +90,9 @@
 		ABDF490A1E730F77004EEC4C /* AIRacer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIRacer.swift; sourceTree = "<group>"; };
 		ABDF490C1E73262D004EEC4C /* CGPoint+Constructor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Constructor.swift"; sourceTree = "<group>"; };
 		ABDF490E1E73268A004EEC4C /* float2+Constructor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "float2+Constructor.swift"; sourceTree = "<group>"; };
-		ABDF49101E732745004EEC4C /* MoveBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveBehavior.swift; sourceTree = "<group>"; };
+		ABDF49101E732745004EEC4C /* AIRacerMoveBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIRacerMoveBehavior.swift; sourceTree = "<group>"; };
+		FA5776371E74FFDC00853225 /* PlayerRacer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerRacer.swift; sourceTree = "<group>"; };
+		FA5776391E750B9C00853225 /* MoveType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +200,7 @@
 			children = (
 				248667AD1E70FC7400B8CE7D /* EntityManager.swift */,
 				ABDF490A1E730F77004EEC4C /* AIRacer.swift */,
+				FA5776371E74FFDC00853225 /* PlayerRacer.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -270,7 +275,8 @@
 			isa = PBXGroup;
 			children = (
 				248667B11E70FCEB00B8CE7D /* MoveComponent.swift */,
-				ABDF49101E732745004EEC4C /* MoveBehavior.swift */,
+				FA5776391E750B9C00853225 /* MoveType.swift */,
+				ABDF49101E732745004EEC4C /* AIRacerMoveBehavior.swift */,
 				248667B31E70FCF900B8CE7D /* SpriteComponent.swift */,
 			);
 			name = Components;
@@ -423,6 +429,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA57763A1E750B9C00853225 /* MoveType.swift in Sources */,
 				2422A1D31E7052F600CE2B84 /* GamePlayScene.swift in Sources */,
 				2422A1D51E7052F600CE2B84 /* GameViewController.swift in Sources */,
 				ABDF490F1E73268A004EEC4C /* float2+Constructor.swift in Sources */,
@@ -433,9 +440,10 @@
 				248667B21E70FCEB00B8CE7D /* MoveComponent.swift in Sources */,
 				248667B41E70FCF900B8CE7D /* SpriteComponent.swift in Sources */,
 				2422A20A1E7055F100CE2B84 /* Tiles.swift in Sources */,
+				FA5776381E74FFDC00853225 /* PlayerRacer.swift in Sources */,
 				248667B71E7105FB00B8CE7D /* Vehicle.swift in Sources */,
 				ABDF490D1E73262D004EEC4C /* CGPoint+Constructor.swift in Sources */,
-				ABDF49111E732745004EEC4C /* MoveBehavior.swift in Sources */,
+				ABDF49111E732745004EEC4C /* AIRacerMoveBehavior.swift in Sources */,
 				248667AE1E70FC7400B8CE7D /* EntityManager.swift in Sources */,
 				248667AB1E70F47300B8CE7D /* CGFloat+Operations.swift in Sources */,
 				248667B91E7118CD00B8CE7D /* Direction.swift in Sources */,

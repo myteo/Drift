@@ -1,5 +1,5 @@
 //
-//  MoveBehavior.swift
+//  AIRacerMoveBehavior.swift
 //  Drift
 //
 //  Created by Teo Ming Yi on 11/3/17.
@@ -10,22 +10,31 @@ import Foundation
 import GameplayKit
 import SpriteKit
 
-class MoveBehavior: GKBehavior {
+class AIRacerMoveBehavior: GKBehavior {
     
+    // TODO: shift radius, max prediction time & other constants to constants file
     init(targetSpeed: Float, avoid: [GKAgent], permanentObstacles: [SKNode], waypoints: [CGPoint]) {
         super.init()
-        setWeight(0.1, for: GKGoal(toReachTargetSpeed: targetSpeed))
-        setWeight(0.1, for: GKGoal(toAvoid: avoid, maxPredictionTime: 10))
-        setWeight(0.1, for: GKGoal(toSeparateFrom: avoid, maxDistance: 100, maxAngle: 1.5 * .pi))
         
         let obstacles = SKNode.obstacles(fromNodeBounds: permanentObstacles)
-        addMovementPath(obstacles: obstacles, rawWaypoints: waypoints)
+        addMovementGoals(obstacles: obstacles, rawWaypoints: waypoints)
+        addSpeedGoal(speed: targetSpeed)
+        addAvoidAgentGoals(avoid: avoid)
+    }
+    
+    private func addSpeedGoal(speed: Float) {
+        setWeight(0.1, for: GKGoal(toReachTargetSpeed: speed))
+    }
+    
+    private func addAvoidAgentGoals(avoid: [GKAgent]) {
+        setWeight(1.5, for: GKGoal(toAvoid: avoid, maxPredictionTime: 10))
+        setWeight(1.5, for: GKGoal(toSeparateFrom: avoid, maxDistance: 100, maxAngle: 1.5 * .pi))
+        
     }
 
-    private func addMovementPath(obstacles: [GKPolygonObstacle], rawWaypoints: [CGPoint]) {
-        // TODO: change buffer radius into a constant in constants file
+    private func addMovementGoals(obstacles: [GKPolygonObstacle], rawWaypoints: [CGPoint]) {
+        let waypoints = rawWaypoints.map {float2($0)}
         let obstacleGraph = GKObstacleGraph(obstacles: obstacles, bufferRadius: 10)
-        var waypoints = rawWaypoints.map {float2($0)}
         
         var pathNodes: [GKGraphNode] = []
         
@@ -43,11 +52,10 @@ class MoveBehavior: GKBehavior {
             obstacleGraph.remove([startNode, endNode])
         }
         
-        // TODO: shift radius, max prediction time & other constants to constants file
-        let path = GKPath(graphNodes: pathNodes, radius: 50)
+        let path = GKPath(graphNodes: pathNodes, radius: 20)
         setWeight(1.0, for: GKGoal(toFollow: path, maxPredictionTime: 1, forward: true))
         setWeight(1.0, for: GKGoal(toStayOn: path, maxPredictionTime: 0.5))
-        setWeight(1, for: GKGoal(toAvoid: obstacles, maxPredictionTime: 1))
+        setWeight(2.0, for: GKGoal(toAvoid: obstacles, maxPredictionTime: 1))
     }
 }
 

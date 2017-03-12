@@ -10,20 +10,38 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
-// TODO: rename to something better?
 class MoveComponent: GKAgent2D, GKAgentDelegate {
     
     private let entityManager: EntityManager
+    private let type: MoveType
     
-    init(maxSpeed: Float, maxAcceleration: Float, radius: Float, mass: Float,
-         node: SKNode, entityManager: EntityManager) {
+    init(type: MoveType, node: SKSpriteNode, entityManager: EntityManager) {
         self.entityManager = entityManager
+        self.type = type
         super.init()
         delegate = self
-        self.maxSpeed = maxSpeed
-        self.maxAcceleration = maxAcceleration
-        self.radius = radius
-        self.mass = mass
+        self.maxSpeed = type.maxSpeed
+        self.maxAcceleration = type.maxAcceleration
+        self.mass = type.mass
+        self.radius = Float(node.size.width / 2)
+        
+        guard let gameScene = node.scene as? GameScene else {
+            return
+        }
+        
+        switch type {
+        case .AIRacer:
+            behavior = AIRacerMoveBehavior(
+                targetSpeed: maxSpeed,
+                avoid: entityManager.getAllVehicleAgents(),
+                permanentObstacles: gameScene.aiMovementBoundaries,
+                waypoints: gameScene.aiMovementWaypoints
+            )
+            
+        case .PlayerRacer:
+            //nothing to do
+            behavior = nil
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -49,17 +67,22 @@ class MoveComponent: GKAgent2D, GKAgentDelegate {
     override func update(deltaTime seconds: TimeInterval) {
         super.update(deltaTime: seconds)
         
-        guard let spriteComponent = entity?.component(ofType: SpriteComponent.self),
-            let gameScene = spriteComponent.node.scene as? GameScene else {
+        guard let spriteComponent = entity?.component(ofType: SpriteComponent.self) else {
             return
         }
         
-        behavior = MoveBehavior(
-                targetSpeed: maxSpeed,
-                avoid: entityManager.getAllVehicleAgents(),
-                permanentObstacles: gameScene.aiMovementBoundaries,
-                waypoints: gameScene.aiMovementWaypoints
-        )
+        switch type {
+        case .PlayerRacer:
+            // update agent's speed & rotation, might be required for behaviors of other agents
+            if let velocity = spriteComponent.node.physicsBody?.velocity {
+                let speed = sqrt(velocity.dx * velocity.dx + velocity.dy * velocity.dy)
+                self.speed = Float(speed)
+                self.rotation = atan2(Float(velocity.dy), Float(velocity.dx))
+            }
+        default:
+            break
+            // nothing to do 
+        }
     }
     
 }

@@ -10,8 +10,6 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene {
-    
-    var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
 
     // Entity-Component System
@@ -89,6 +87,8 @@ class GameScene: SKScene {
         // Use node in GamePlayScene.sks to get position
         player = self.childNode(withName: "Car") as! Vehicle
         player.initVehicle(name: Sprites.Car.Colors.Black)
+        let playerRacer = PlayerRacer(spriteNode: player, entityManager: entityManager)
+        entityManager.add(playerRacer)
         
         // If want to set position manually
         // player.position = Sprites.StartLane.First
