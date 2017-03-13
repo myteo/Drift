@@ -16,7 +16,7 @@ class Vehicle: SKSpriteNode {
     var isAccelerating = false
     var isDecelerating = false
     
-    let maxSpeed = CGFloat(250)
+    let maxSpeed = GameplayConfiguration.VehiclePhysics.maxSpeed
     let neutralPoint = CGFloat(70)
     var reversePoint = CGFloat(1)
 
@@ -34,7 +34,8 @@ class Vehicle: SKSpriteNode {
         }
         physicsBody = SKPhysicsBody(polygonFrom: direction.path)
         physicsBody?.velocity = previousVelocity
-        physicsBody?.mass = 0.01 // Affects velocity due to different body path
+        // Affects velocity due to different body path
+        physicsBody?.mass = GameplayConfiguration.VehiclePhysics.mass
         physicsBody?.allowsRotation = false // Can enable for out of bound fallout animation
         physicsBody?.categoryBitMask = ColliderType.Vehicles
         physicsBody?.collisionBitMask = ColliderType.Vehicles | ColliderType.Obstacles

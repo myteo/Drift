@@ -27,14 +27,20 @@ class AIRacerMoveBehavior: GKBehavior {
     }
     
     private func addAvoidAgentGoals(avoid: [GKAgent]) {
-        setWeight(1.5, for: GKGoal(toAvoid: avoid, maxPredictionTime: 10))
-        setWeight(1.5, for: GKGoal(toSeparateFrom: avoid, maxDistance: 100, maxAngle: 1.5 * .pi))
+        setWeight(GameplayConfiguration.AIRacer.avoidAgentWeight,
+                for: GKGoal(toAvoid: avoid,
+                        maxPredictionTime: GameplayConfiguration.AIRacer.avoidAgentPredictionTime))
+        setWeight(GameplayConfiguration.AIRacer.avoidAgentWeight,
+                for: GKGoal(toSeparateFrom: avoid,
+                        maxDistance: GameplayConfiguration.AIRacer.separationDistance,
+                        maxAngle: GameplayConfiguration.AIRacer.separationAngle))
         
     }
 
     private func addMovementGoals(obstacles: [GKPolygonObstacle], rawWaypoints: [CGPoint]) {
         let waypoints = rawWaypoints.map {float2($0)}
-        let obstacleGraph = GKObstacleGraph(obstacles: obstacles, bufferRadius: 10)
+        let obstacleGraph = GKObstacleGraph(obstacles: obstacles, 
+                bufferRadius: GameplayConfiguration.AIRacer.obstacleBufferRadius)
         
         var pathNodes: [GKGraphNode] = []
         
@@ -51,11 +57,20 @@ class AIRacerMoveBehavior: GKBehavior {
             pathNodes.append(contentsOf: obstaclePath)
             obstacleGraph.remove([startNode, endNode])
         }
+
+        let path = GKPath(graphNodes: pathNodes,
+                          radius: GameplayConfiguration.AIRacer.pathRadius)
         
-        let path = GKPath(graphNodes: pathNodes, radius: 20)
-        setWeight(1.0, for: GKGoal(toFollow: path, maxPredictionTime: 1, forward: true))
-        setWeight(1.0, for: GKGoal(toStayOn: path, maxPredictionTime: 0.5))
-        setWeight(2.0, for: GKGoal(toAvoid: obstacles, maxPredictionTime: 1))
+        setWeight(GameplayConfiguration.AIRacer.followPathWeight,
+                  for: GKGoal(toFollow: path,
+                              maxPredictionTime: GameplayConfiguration.AIRacer.followPathPredictionTime,
+                              forward: true))
+        setWeight(GameplayConfiguration.AIRacer.stayOnPathWeight,
+                  for: GKGoal(toStayOn: path,
+                              maxPredictionTime: GameplayConfiguration.AIRacer.stayOnPathPredictionTime))
+        setWeight(GameplayConfiguration.AIRacer.avoidObstaclesWeight,
+                  for: GKGoal(toAvoid: obstacles,
+                              maxPredictionTime: GameplayConfiguration.AIRacer.avoidObstaclesPredictionTime))
     }
 }
 

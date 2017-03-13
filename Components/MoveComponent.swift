@@ -13,10 +13,10 @@ import GameplayKit
 class MoveComponent: GKAgent2D, GKAgentDelegate {
     
     private let entityManager: EntityManager
-    private let type: MoveType
+    private let type: AgentMoveType
     private var previousPoint: CGPoint
     
-    init(type: MoveType, node: SKSpriteNode, entityManager: EntityManager) {
+    init(type: AgentMoveType, node: SKSpriteNode, entityManager: EntityManager) {
         self.entityManager = entityManager
         self.type = type
         self.previousPoint = node.position
@@ -91,8 +91,7 @@ class MoveComponent: GKAgent2D, GKAgentDelegate {
         case .PlayerRacer:
             // update agent's speed & rotation, might be required for behaviors of other agents
             if let velocity = spriteComponent.node.physicsBody?.velocity {
-                let speed = sqrt(velocity.dx * velocity.dx + velocity.dy * velocity.dy)
-                self.speed = Float(speed)
+                self.speed = Float(velocity.magnitude)
                 self.rotation = atan2(Float(velocity.dy), Float(velocity.dx))
             }
         default:
