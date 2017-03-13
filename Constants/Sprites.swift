@@ -9,10 +9,13 @@
 import SpriteKit
 
 struct Sprites {
-    static let AcceleratorName = "Accelerator"
-    static let BrakeName = "Brakepad"
-    static let AntiClockwiseName = "AntiClockwise"
-    static let ClockwiseName = "Clockwise"
+    struct Names {
+        static let Accelerator = "Accelerator"
+        static let Brake = "Brakepad"
+        static let AntiClockwise = "AntiClockwise"
+        static let Clockwise = "Clockwise"
+        static let Weapon = "Weapon"
+    }
     
     struct Car {
         struct Colors {

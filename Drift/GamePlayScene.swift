@@ -20,6 +20,7 @@ class GameScene: SKScene {
     
     // Scene Nodes
     var player: Vehicle!
+    var playerRacer: PlayerRacer!
     var AI: AIRacer!
     var aiMovementBoundaries: [SKNode]!
     var aiMovementWaypoints: [CGPoint]!
@@ -87,7 +88,7 @@ class GameScene: SKScene {
         // Use node in GamePlayScene.sks to get position
         player = self.childNode(withName: "Car") as! Vehicle
         player.initVehicle(name: Sprites.Car.Colors.Black)
-        let playerRacer = PlayerRacer(spriteNode: player, entityManager: entityManager)
+        playerRacer = PlayerRacer(spriteNode: player, entityManager: entityManager)
         entityManager.add(playerRacer)
         
         // If want to set position manually
@@ -160,10 +161,11 @@ class GameScene: SKScene {
                 return
             }
             switch spriteName {
-            case Sprites.AcceleratorName: player.accelerate()
-            case Sprites.BrakeName: player.decelerate()
-            case Sprites.AntiClockwiseName: player.turn(SpinDirection.AntiClockwise)
-            case Sprites.ClockwiseName: player.turn(SpinDirection.Clockwise)
+            case Sprites.Names.Accelerator: player.accelerate()
+            case Sprites.Names.Brake: player.decelerate()
+            case Sprites.Names.Weapon: playerRacer.fireWeapon()
+            case Sprites.Names.AntiClockwise: player.turn(SpinDirection.AntiClockwise)
+            case Sprites.Names.Clockwise: player.turn(SpinDirection.Clockwise)
             default: break
             }
         }
@@ -173,7 +175,7 @@ class GameScene: SKScene {
         for touch in touches {
             let location = touch.location(in: self)
             if let spriteName = nodes(at: location)[0].name
-                , spriteName == Sprites.BrakeName {
+                , spriteName == Sprites.Names.Brake {
                 player.decelerate()
             }
         }

@@ -18,8 +18,21 @@ class PlayerRacer: GKEntity {
         let spriteComponent = SpriteComponent(entity: self,
                                               spriteNode: spriteNode)
         addComponent(spriteComponent)
-        let moveComponent = MoveComponent(type: .PlayerRacer, node: spriteNode, entityManager: entityManager)
+        
+        let moveComponent = MoveComponent(type: .PlayerRacer,
+                                          node: spriteNode,
+                                          entityManager: entityManager)
         addComponent(moveComponent)
+        
+        let firingComponent = FiringComponent(entityManager: entityManager)
+        addComponent(firingComponent)
+    }
+    
+    func fireWeapon() {
+        guard let firingComponent = self.component(ofType: FiringComponent.self) else{
+            return
+        }
+        firingComponent.fireVehicleLaser()
     }
 
     required init?(coder aDecoder: NSCoder) {

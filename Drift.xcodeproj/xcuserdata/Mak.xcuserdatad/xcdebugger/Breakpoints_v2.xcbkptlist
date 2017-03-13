@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Constants/Direction.swift"
-            timestampString = "511022503.815514"
+            timestampString = "511109532.577206"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
             landmarkName = "getNextDirection(_:_:)"
             landmarkType = "7">
             <Locations>

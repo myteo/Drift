@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24064A131E76C7530006E2D4 /* FiringComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24064A121E76C7530006E2D4 /* FiringComponent.swift */; };
+		24064A151E76C9720006E2D4 /* Laser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24064A141E76C9720006E2D4 /* Laser.swift */; };
+		24064A171E76D9670006E2D4 /* Projectiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24064A161E76D9670006E2D4 /* Projectiles.swift */; };
 		2422A1CD1E7052F600CE2B84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2422A1CC1E7052F600CE2B84 /* AppDelegate.swift */; };
 		2422A1CF1E7052F600CE2B84 /* GamePlayScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2422A1CE1E7052F600CE2B84 /* GamePlayScene.sks */; };
 		2422A1D11E7052F600CE2B84 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2422A1D01E7052F600CE2B84 /* Actions.sks */; };
@@ -58,6 +61,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		24064A121E76C7530006E2D4 /* FiringComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FiringComponent.swift; path = Components/FiringComponent.swift; sourceTree = "<group>"; };
+		24064A141E76C9720006E2D4 /* Laser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Laser.swift; path = Entities/Laser.swift; sourceTree = "<group>"; };
+		24064A161E76D9670006E2D4 /* Projectiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Projectiles.swift; path = Constants/Projectiles.swift; sourceTree = "<group>"; };
 		2422A1C91E7052F600CE2B84 /* Drift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Drift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2422A1CC1E7052F600CE2B84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2422A1CE1E7052F600CE2B84 /* GamePlayScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = GamePlayScene.sks; path = Drift/GamePlayScene.sks; sourceTree = "<group>"; };
@@ -203,6 +209,7 @@
 				248667AD1E70FC7400B8CE7D /* EntityManager.swift */,
 				ABDF490A1E730F77004EEC4C /* AIRacer.swift */,
 				FA5776371E74FFDC00853225 /* PlayerRacer.swift */,
+				24064A141E76C9720006E2D4 /* Laser.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -241,6 +248,7 @@
 				248667B81E7118CD00B8CE7D /* Direction.swift */,
 				248667BE1E712E7100B8CE7D /* ColliderType.swift */,
 				FAA99D6B1E763F2400F45192 /* Movement.swift */,
+				24064A161E76D9670006E2D4 /* Projectiles.swift */,
 			);
 			name = Constants;
 			sourceTree = "<group>";
@@ -281,6 +289,7 @@
 				FA5776391E750B9C00853225 /* AgentMoveType.swift */,
 				ABDF49101E732745004EEC4C /* AIRacerMoveBehavior.swift */,
 				248667B31E70FCF900B8CE7D /* SpriteComponent.swift */,
+				24064A121E76C7530006E2D4 /* FiringComponent.swift */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -361,7 +370,7 @@
 				TargetAttributes = {
 					2422A1C81E7052F600CE2B84 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = X2G877QF8D;
+						DevelopmentTeam = W76H98A34A;
 						ProvisioningStyle = Automatic;
 					};
 					2422A1E21E7052F700CE2B84 = {
@@ -436,7 +445,9 @@
 				2422A1D31E7052F600CE2B84 /* GamePlayScene.swift in Sources */,
 				2422A1D51E7052F600CE2B84 /* GameViewController.swift in Sources */,
 				ABDF490F1E73268A004EEC4C /* float2+Constructor.swift in Sources */,
+				24064A131E76C7530006E2D4 /* FiringComponent.swift in Sources */,
 				248667C11E71584B00B8CE7D /* CGVector+Operations.swift in Sources */,
+				24064A171E76D9670006E2D4 /* Projectiles.swift in Sources */,
 				248667A61E707A4A00B8CE7D /* Sprites.swift in Sources */,
 				2422A1CD1E7052F600CE2B84 /* AppDelegate.swift in Sources */,
 				248667A91E70E0F100B8CE7D /* Int+Random.swift in Sources */,
@@ -445,6 +456,7 @@
 				FAA99D6C1E763F2400F45192 /* Movement.swift in Sources */,
 				2422A20A1E7055F100CE2B84 /* Tiles.swift in Sources */,
 				FA5776381E74FFDC00853225 /* PlayerRacer.swift in Sources */,
+				24064A151E76C9720006E2D4 /* Laser.swift in Sources */,
 				248667B71E7105FB00B8CE7D /* Vehicle.swift in Sources */,
 				ABDF490D1E73262D004EEC4C /* CGPoint+Constructor.swift in Sources */,
 				ABDF49111E732745004EEC4C /* AIRacerMoveBehavior.swift in Sources */,
@@ -605,7 +617,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = X2G877QF8D;
+				DEVELOPMENT_TEAM = W76H98A34A;
 				INFOPLIST_FILE = Drift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -619,7 +631,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = X2G877QF8D;
+				DEVELOPMENT_TEAM = W76H98A34A;
 				INFOPLIST_FILE = Drift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

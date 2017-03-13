@@ -16,8 +16,10 @@ enum SpinDirection: String {
 enum Direction: Int {
     case N = 0, NE, E, SE, S, SW, W, NW
     
-    static let xOffset = cos(M_PI / 6)
-    static let yOffset = sin(M_PI / 6)
+    // Assets use 27 degrees even though 30 is used if true 2:1 ratio
+    static let radianOffset = CGFloat(27 * M_PI / 180)
+    static let xOffset = cos(radianOffset)
+    static let yOffset = sin(radianOffset)
     
     var name: String {
         get {
@@ -45,6 +47,22 @@ enum Direction: Int {
             case .NE: return CGVector(dx: Direction.xOffset, dy: Direction.yOffset)
             case .SW: return CGVector(dx: -Direction.xOffset, dy: -Direction.yOffset)
             case .SE: return CGVector(dx: Direction.xOffset, dy: -Direction.yOffset)
+            }
+        }
+    }
+    
+    // Angle in radians, using atan2
+    var angle: CGFloat {
+        get {
+            switch self {
+            case .N: return CGFloat.π / 2
+            case .S: return -CGFloat.π / 2
+            case .E: return 0
+            case .W: return CGFloat.π
+            case .NE: return CGFloat(Direction.radianOffset)
+            case .SE: return -CGFloat(Direction.radianOffset)
+            case .NW: return CGFloat.π - (Direction.radianOffset)
+            case .SW: return -CGFloat.π + (Direction.radianOffset)
             }
         }
     }
