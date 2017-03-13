@@ -68,6 +68,7 @@ class GameServiceManager: NSObject {
         }
         
         let message = PlayerPositionUpdateMessage(counter: outgoingCounter, position: position)
+        outgoingCounter += 1
         try? self.session.send(Data.init(from: message), toPeers: session.connectedPeers, with: .unreliable)
     }
     
@@ -142,21 +143,28 @@ extension GameServiceManager: MCSessionDelegate {
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        NSLog("%@", "didReceiveData: \(data)")
         
-        let message = data.to(type: PlayerPositionUpdateMessage.self)
-        
-        guard message.counter >= incomingCounter || message.counter == 0 else {
-            print("ignoring outdated message")
-            return
+        DispatchQueue.main.sync {
+            //NSLog("%@", "didReceiveData: \(data)")
+            
+            let message = data.to(type: PlayerPositionUpdateMessage.self)
+            
+            // TODO: Remove this shit
+            guard message.counter >= self.incomingCounter || message.counter == 0 else {
+                print("ignoring outdated message")
+                return
+            }
+            
+            if (message.counter - self.incomingCounter > 1) {
+                print("packets were lost")
+            }
+            
+            self.incomingCounter = message.counter
+            self.delegate?.positionChanged(for: peerID, to: message.position, manager: self)
+            
+            //let str = String(data: data, encoding: .utf8)!
+            //self.delegate?.colorChanged(manager: self, colorString: str)
         }
-        
-        print("updating opponent")
-        incomingCounter = message.counter
-        self.delegate?.positionChanged(for: peerID, to: message.position, manager: self)
-        
-        //let str = String(data: data, encoding: .utf8)!
-        //self.delegate?.colorChanged(manager: self, colorString: str)
     }
     
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {

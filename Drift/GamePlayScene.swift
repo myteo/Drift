@@ -161,13 +161,11 @@ class GameScene: SKScene {
     }
     
     override func update(_ currentTime: TimeInterval) {
-        print("updating world")
         player.update()
         mainCamera.position = player.position
         
         // Send position and direction updates
         gameService.update(position: player.position)
-        //gameService.update(direction: player.direction)
         
         // Default GameKit boilerplate
         // Initialize _lastUpdateTime if it has not already been
@@ -200,10 +198,7 @@ extension GameScene: GameServiceManagerDelegate {
         }
         
         
-        DispatchQueue.main.sync {
-            otherPlayer.position = position
-        }
- 
+        otherPlayer.position = position
     }
     
     func directionChanged(for peerID: MCPeerID, to direction: Direction, manager: GameServiceManager) {
