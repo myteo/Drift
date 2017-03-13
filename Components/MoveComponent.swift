@@ -71,7 +71,7 @@ class MoveComponent: GKAgent2D, GKAgentDelegate {
         let nextPosition = CGPoint(position)
         let newDirection = Direction.getNextDirection(previousPoint, nextPosition)
         spriteComponent.node.position = nextPosition
-        if let vehicle = spriteComponent.node as? Vehicle {
+        if let vehicle = spriteComponent.node as? Vehicle, vehicle.direction != newDirection {
             let texture = vehicle.getTexture(prefix: vehicle.imagePrefix, direction: newDirection)
             vehicle.texture = texture
             vehicle.size = texture.size()
