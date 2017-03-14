@@ -9,7 +9,7 @@
 import Foundation
 
 struct ColliderType {
-    static let Vehicles: UInt32 = 1
-    static let Obstacles: UInt32 = 2
-    static let PowerUp: UInt32 = 3
+    static let Vehicles: UInt32 = 1 >> 0
+    static let Obstacles: UInt32 = 1 >> 1
+    static let PowerUp: UInt32 = 1 >> 2 
 }
