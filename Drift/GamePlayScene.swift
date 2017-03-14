@@ -33,6 +33,7 @@ class GameScene: SKScene {
     
     // Temporary sprite listing
     var otherPlayers = [MCPeerID : Vehicle]()
+    var numPlayers = 1
     
     private var lastUpdateTime: TimeInterval = 0
     
@@ -216,7 +217,8 @@ extension GameScene: GameServiceManagerDelegate {
         
         
         // Hard code for 2 players first
-        let otherPlayer = self.childNode(withName: "Car2") as! Vehicle
+        numPlayers += 1
+        let otherPlayer = self.childNode(withName: "Car" + String(numPlayers)) as! Vehicle
         otherPlayer.initVehicle(name: Sprites.Car.Colors.Blue)
         otherPlayer.position = Sprites.StartLane.First
         otherPlayer.zPosition = 10

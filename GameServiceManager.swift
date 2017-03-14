@@ -144,12 +144,13 @@ extension GameServiceManager: MCSessionDelegate {
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         
-        DispatchQueue.main.sync {
+        DispatchQueue.main.async {
             //NSLog("%@", "didReceiveData: \(data)")
             
             let message = data.to(type: PlayerPositionUpdateMessage.self)
             
             // TODO: Remove this shit
+            /*
             guard message.counter >= self.incomingCounter || message.counter == 0 else {
                 print("ignoring outdated message")
                 return
@@ -158,7 +159,7 @@ extension GameServiceManager: MCSessionDelegate {
             if (message.counter - self.incomingCounter > 1) {
                 print("packets were lost")
             }
-            
+            */
             self.incomingCounter = message.counter
             self.delegate?.positionChanged(for: peerID, to: message.position, manager: self)
             
