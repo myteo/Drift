@@ -30,7 +30,7 @@
 		248667AE1E70FC7400B8CE7D /* EntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248667AD1E70FC7400B8CE7D /* EntityManager.swift */; };
 		248667B21E70FCEB00B8CE7D /* MoveComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248667B11E70FCEB00B8CE7D /* MoveComponent.swift */; };
 		248667B41E70FCF900B8CE7D /* SpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248667B31E70FCF900B8CE7D /* SpriteComponent.swift */; };
-		248667B71E7105FB00B8CE7D /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248667B61E7105FA00B8CE7D /* Vehicle.swift */; };
+		248667B71E7105FB00B8CE7D /* VehicleSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248667B61E7105FA00B8CE7D /* VehicleSprite.swift */; };
 		248667B91E7118CD00B8CE7D /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248667B81E7118CD00B8CE7D /* Direction.swift */; };
 		248667BB1E711FF900B8CE7D /* CGPath+Constructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248667BA1E711FF800B8CE7D /* CGPath+Constructor.swift */; };
 		248667BF1E712E7100B8CE7D /* ColliderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248667BE1E712E7100B8CE7D /* ColliderType.swift */; };
@@ -92,7 +92,7 @@
 		248667AD1E70FC7400B8CE7D /* EntityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EntityManager.swift; path = Entities/EntityManager.swift; sourceTree = "<group>"; };
 		248667B11E70FCEB00B8CE7D /* MoveComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveComponent.swift; sourceTree = "<group>"; };
 		248667B31E70FCF900B8CE7D /* SpriteComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteComponent.swift; sourceTree = "<group>"; };
-		248667B61E7105FA00B8CE7D /* Vehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Vehicle.swift; path = Sprites/Vehicle.swift; sourceTree = "<group>"; };
+		248667B61E7105FA00B8CE7D /* VehicleSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VehicleSprite.swift; path = Sprites/VehicleSprite.swift; sourceTree = "<group>"; };
 		248667B81E7118CD00B8CE7D /* Direction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Direction.swift; path = Constants/Direction.swift; sourceTree = "<group>"; };
 		248667BA1E711FF800B8CE7D /* CGPath+Constructor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGPath+Constructor.swift"; path = "Extensions/CGPath+Constructor.swift"; sourceTree = "<group>"; };
 		248667BE1E712E7100B8CE7D /* ColliderType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColliderType.swift; path = Constants/ColliderType.swift; sourceTree = "<group>"; };
@@ -172,7 +172,6 @@
 				2422A2011E70536700CE2B84 /* Game Classes */,
 				248667A71E70E0D200B8CE7D /* Extensions */,
 				2422A2081E7055B100CE2B84 /* Constants */,
-				2422A20B1E70583600CE2B84 /* Assets */,
 				2422A1CB1E7052F600CE2B84 /* Drift */,
 				2422A1E61E7052F700CE2B84 /* DriftTests */,
 				2422A1F11E7052F700CE2B84 /* DriftUITests */,
@@ -293,13 +292,6 @@
 			name = Constants;
 			sourceTree = "<group>";
 		};
-		2422A20B1E70583600CE2B84 /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Assets;
-			sourceTree = "<group>";
-		};
 		2422A2121E7059B200CE2B84 /* Tiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -337,7 +329,7 @@
 		248667B51E7105E800B8CE7D /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
-				248667B61E7105FA00B8CE7D /* Vehicle.swift */,
+				248667B61E7105FA00B8CE7D /* VehicleSprite.swift */,
 			);
 			name = Sprites;
 			sourceTree = "<group>";
@@ -659,7 +651,7 @@
 				2422A20A1E7055F100CE2B84 /* Tiles.swift in Sources */,
 				FA5776381E74FFDC00853225 /* PlayerRacer.swift in Sources */,
 				24064A151E76C9720006E2D4 /* Laser.swift in Sources */,
-				248667B71E7105FB00B8CE7D /* Vehicle.swift in Sources */,
+				248667B71E7105FB00B8CE7D /* VehicleSprite.swift in Sources */,
 				ABDF490D1E73262D004EEC4C /* CGPoint+Constructor.swift in Sources */,
 				ABDF49111E732745004EEC4C /* AIRacerMoveBehavior.swift in Sources */,
 				248667AE1E70FC7400B8CE7D /* EntityManager.swift in Sources */,

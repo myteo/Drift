@@ -18,4 +18,10 @@ extension CGFloat {
     }
 
     static let π = CGFloat.pi
+    static let π_2 = CGFloat(M_PI_2)
+    static let π_4 = CGFloat(M_PI_4)
+
+    func getVector() -> CGVector {
+        return CGVector(dx: cos(self + CGFloat.π_2), dy: sin(self + CGFloat.π_2))
+    }
 }

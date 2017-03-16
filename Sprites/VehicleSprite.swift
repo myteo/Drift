@@ -8,9 +8,8 @@
 
 import SpriteKit
 
-class Vehicle: SKSpriteNode {
+class VehicleSprite: SKSpriteNode {
 
-    var direction = Direction.NW
     var isMoving = true
     var imagePrefix = Sprites.Car.Colors.Black
     var isAccelerating = false
@@ -20,57 +19,51 @@ class Vehicle: SKSpriteNode {
     let neutralPoint = CGFloat(70)
     var reversePoint = CGFloat(1)
 
-    func initVehicle(name: String) {
+    func initVehicle(name: String, number: Int = 1) {
         imagePrefix = name
-        texture = getTexture(prefix: name, direction: direction)
-
-        resetPhysicsBody(direction: direction)
+        texture = getTexture(prefix: name, number: number)
+        zRotation = CGFloat() // set euler angle to point to North
+        setPhysicsBody()
     }
 
-    func resetPhysicsBody(direction: Direction) {
+    func setPhysicsBody() {
         var previousVelocity = CGVector()
         if let v = physicsBody?.velocity {
             previousVelocity = v
         }
-        physicsBody = SKPhysicsBody(polygonFrom: direction.path)
+        physicsBody = SKPhysicsBody(texture: texture!, size: texture!.size())
         physicsBody?.velocity = previousVelocity
-        // Affects velocity due to different body path
         physicsBody?.mass = GameplayConfiguration.VehiclePhysics.mass
-        physicsBody?.allowsRotation = false // Can enable for out of bound fallout animation
         physicsBody?.categoryBitMask = ColliderType.Vehicles
         physicsBody?.collisionBitMask = ColliderType.Vehicles | ColliderType.Obstacles
         physicsBody?.contactTestBitMask = ColliderType.PowerUp | ColliderType.Vehicles | ColliderType.Obstacles
     }
 
-    func turn(_ spinDirection: SpinDirection) {
-        switch spinDirection {
-        case .Clockwise: direction.turnClockwise()
-        case .AntiClockwise: direction.turnAntiClockwise()
+    func turn(direction: SpinDirection) {
+        switch direction {
+        case .AntiClockwise: zRotation += CGFloat.π_4
+        case .Clockwise: zRotation -= CGFloat.π_4
         }
-        texture = getTexture(prefix: imagePrefix, direction: direction)
-        size = texture!.size()
-        resetPhysicsBody(direction: direction)
     }
 
     func accelerate() {
         isAccelerating = true
         isDecelerating = false
-        reversePoint = CGFloat(1)
     }
 
     func decelerate() {
-        isDecelerating = true
+        isAccelerating = true
     }
 
-    func getTexture(prefix: String, direction: Direction) -> SKTexture {
-        return SKTexture(imageNamed: "\(prefix)\(direction.name)")
+    func getTexture(prefix: String, number: Int) -> SKTexture {
+        return SKTexture(imageNamed: "\(prefix)\(number)")
     }
 
     func update() {
+        var dampingFactor = 0.7 // friction
         // NSLog("\(physicsBody?.velocity.magnitude)")
-        var dampingFactor = 0.982 // friction
         if isAccelerating, physicsBody!.velocity.magnitude < maxSpeed {
-            physicsBody?.applyForce(Sprites.Car.Mass * direction.vector)
+            physicsBody?.applyForce(zRotation.getVector() * Sprites.Car.Mass * 2)
         }
         if isDecelerating {
             dampingFactor = 0.93 // increase brake
@@ -79,7 +72,7 @@ class Vehicle: SKSpriteNode {
                 // increase reverse force frequency
                 reversePoint = neutralPoint
                 // increase reverse force magnitude
-                physicsBody?.applyForce(Sprites.Car.Mass * direction.vector.reversed)
+                physicsBody?.applyForce(zRotation.getVector() * -Sprites.Car.Mass * 2)
                 dampingFactor = 0.97
             } else if physicsBody!.velocity.magnitude < neutralPoint {
                 isAccelerating = false

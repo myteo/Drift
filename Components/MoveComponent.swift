@@ -68,16 +68,11 @@ class MoveComponent: GKAgent2D, GKAgentDelegate {
         guard let spriteComponent = entity?.component(ofType: SpriteComponent.self) else {
             return
         }
-        let nextPosition = CGPoint(position)
-        let newDirection = Direction.getNextDirection(previousPoint, nextPosition)
-        spriteComponent.node.position = nextPosition
-        if let vehicle = spriteComponent.node as? Vehicle, vehicle.direction != newDirection {
-            let texture = vehicle.getTexture(prefix: vehicle.imagePrefix, direction: newDirection)
-            vehicle.texture = texture
-            vehicle.size = texture.size()
-            vehicle.resetPhysicsBody(direction: newDirection)
-        }
-        previousPoint = nextPosition
+        let nextPoint = CGPoint(position)
+        let angle = CGFloat(atan2(nextPoint.y - previousPoint.y, nextPoint.x - previousPoint.x))
+        spriteComponent.node.zRotation = angle - CGFloat.π_2
+        spriteComponent.node.position = nextPoint
+        previousPoint = nextPoint
     }
 
     override func update(deltaTime seconds: TimeInterval) {

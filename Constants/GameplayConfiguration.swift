@@ -11,7 +11,7 @@ import SpriteKit
 struct GameplayConfiguration {
 
     struct VehiclePhysics {
-        static let maxSpeed: CGFloat = 250
+        static let maxSpeed: CGFloat = 2500
         static let mass: CGFloat = 0.01
     }
 

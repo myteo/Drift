@@ -11,7 +11,7 @@ import SpriteKit
 struct Sprites {
     struct Names {
         static let Accelerator = "Accelerator"
-        static let Brake = "Brakepad"
+        static let Brake = "Brake"
         static let AntiClockwise = "AntiClockwise"
         static let Clockwise = "Clockwise"
         static let Weapon = "Weapon"
@@ -19,10 +19,10 @@ struct Sprites {
 
     struct Car {
         struct Colors {
-            static let Blue = "carBlue3_"
-            static let Black = "carBlack2_"
+            static let Blue = "car_blue_"
+            static let Black = "car_black_"
         }
-        static let Mass = CGFloat(3)
+        static let Mass = CGFloat(30)
     }
 
     struct StartLane {
@@ -32,6 +32,6 @@ struct Sprites {
     }
 
     struct Trees {
-        static let Names = ["treeTall", "treeShort", "treeConiferTall", "treeTall_autumn", "treeShort_autumn", "treeConiferShort"]
+        static let Names = ["tree_large", "tree_small"]
     }
 }

@@ -19,15 +19,14 @@ class GameScene: SKScene {
     var mainCamera: SKCameraNode!
 
     // Scene Nodes
-    var player: Vehicle!
+    var playerSprite: VehicleSprite!
     var playerRacer: PlayerRacer!
     var aiMovementBoundaries: [SKNode]!
     var aiMovementWaypoints: [CGPoint]!
 
     // Tile Map Nodes
-    var waterBGs = [SKTileMapNode]()
-    var grassBGs = [SKTileMapNode]()
-    var roadBGs = [SKTileMapNode]()
+    var grassBG: SKTileMapNode!
+    var roadBG: SKTileMapNode!
     var obstacleBG: SKTileMapNode!
 
     private var lastUpdateTime: TimeInterval = 0
@@ -45,31 +44,16 @@ class GameScene: SKScene {
 
     func loadSceneNodes() {
         // Grass Tiles
-        Tiles.Grass.NodeNames.forEach { grassName in
-            guard let grassBG = childNode(withName: grassName) as? SKTileMapNode else {
-                fatalError("\(grassName) node not loaded")
-            }
-            grassBGs.append(grassBG)
-            grassBG.tileSize.height = Tiles.Height
-            grassBG.physicsBody?.friction = Tiles.Grass.Friction
+        guard let grassBG = childNode(withName: "Grass") as? SKTileMapNode else {
+            fatalError("Grass Tile set node not loaded")
         }
-
-        // Water Tiles
-        guard let waterBG = childNode(withName: "Water") as? SKTileMapNode else {
-            fatalError("water node not loaded")
-        }
-        waterBGs.append(waterBG)
-        waterBG.tileSize.height = Tiles.Height
+        self.grassBG = grassBG
 
         // Road Tiles
-        Tiles.Road.NodeNames.forEach { roadName in
-            guard let roadBG = childNode(withName: roadName) as? SKTileMapNode else {
-                fatalError("\(roadName) node not loaded")
-            }
-            roadBGs.append(roadBG)
-            roadBG.tileSize.height = Tiles.Height
-            roadBG.physicsBody?.friction = Tiles.Road.Friction
+        guard let roadBG = childNode(withName: "Road") as? SKTileMapNode else {
+            fatalError("Road Tile set node not loaded")
         }
+        self.roadBG = roadBG
     }
 
     func setupEntities() {
@@ -85,13 +69,14 @@ class GameScene: SKScene {
 
     func setupPlayer() {
         // Use node in GamePlayScene.sks to get position
-        player = self.childNode(withName: "Car") as! Vehicle
-        player.initVehicle(name: Sprites.Car.Colors.Black)
-        playerRacer = PlayerRacer(spriteNode: player, entityManager: entityManager)
+        // Specify class of node as "VehicleSprite"
+        playerSprite = self.childNode(withName: "Car") as! VehicleSprite
+        playerSprite.initVehicle(name: Sprites.Car.Colors.Black)
+        playerRacer = PlayerRacer(spriteNode: playerSprite, entityManager: entityManager)
         entityManager.add(playerRacer)
 
         // If want to set position manually
-        // player.position = Sprites.StartLane.First
+        // playerSprite.position = Sprites.StartLane.First
         // addChild(player)
     }
 
@@ -112,9 +97,9 @@ class GameScene: SKScene {
 
     func setupAIRacers() {
         if let vehicles = self.childNode(withName: "AIs")?.children {
-            for vehicle in vehicles {
-                let vehicleSpriteNode = vehicle as! Vehicle
-                vehicleSpriteNode.initVehicle(name: Sprites.Car.Colors.Blue)
+            for i in 1...vehicles.count {
+                let vehicleSpriteNode = vehicles[i-1] as! VehicleSprite
+                vehicleSpriteNode.initVehicle(name: Sprites.Car.Colors.Blue, number: i)
                 let aiRacer = AIRacer(spriteNode: vehicleSpriteNode, entityManager: entityManager)
                 entityManager.add(aiRacer)
             }
@@ -122,19 +107,16 @@ class GameScene: SKScene {
     }
 
     func setupObstacles() {
-        let numberOfObjects = 300
-        let collisionRadius = CGFloat(2.1)
+        let numberOfObjects = 100
         for _ in 1...numberOfObjects {
             let column = Int.random(Tiles.Columns)
             let row = Int.random(Tiles.Rows)
-            let grassBG = grassBGs[Int.random(grassBGs.count)]
             if let _ = grassBG.tileDefinition(atColumn: column, row: row) {
-                let treeSprite = SKSpriteNode(imageNamed: Sprites.Trees.Names[Int.random(Sprites.Trees.Names.count)])
-                let centerOfMass = CGPoint(x: treeSprite.position.x,
-                                           y: treeSprite.position.y - treeSprite.size.height/2 + collisionRadius*2)
-                treeSprite.physicsBody = SKPhysicsBody(circleOfRadius: collisionRadius, center: centerOfMass)
+                let treeSprite = SKSpriteNode(imageNamed: Sprites.Trees.Names[1])
+                treeSprite.physicsBody = SKPhysicsBody(texture: treeSprite.texture!, size: treeSprite.texture!.size())
                 treeSprite.physicsBody?.categoryBitMask = ColliderType.Obstacles
-                treeSprite.physicsBody?.collisionBitMask = ColliderType.Vehicles
+                treeSprite.physicsBody?.collisionBitMask = ColliderType.Vehicles | ColliderType.Obstacles
+                treeSprite.physicsBody?.mass = 0.01
                 var grassTileCenter = grassBG.centerOfTile(atColumn: column, row: row)
                 let displacement = Int.random(9)
                 grassTileCenter.x += CGFloat(displacement)
@@ -160,11 +142,11 @@ class GameScene: SKScene {
                 return
             }
             switch spriteName {
-            case Sprites.Names.Accelerator: player.accelerate()
-            case Sprites.Names.Brake: player.decelerate()
+            case Sprites.Names.Accelerator: playerSprite.accelerate()
+            case Sprites.Names.Brake: playerSprite.decelerate()
             case Sprites.Names.Weapon: playerRacer.fireWeapon()
-            case Sprites.Names.AntiClockwise: player.turn(SpinDirection.AntiClockwise)
-            case Sprites.Names.Clockwise: player.turn(SpinDirection.Clockwise)
+            case Sprites.Names.AntiClockwise: playerSprite.turn(direction: SpinDirection.AntiClockwise)
+            case Sprites.Names.Clockwise: playerSprite.turn(direction: SpinDirection.Clockwise)
             default: break
             }
         }
@@ -174,19 +156,17 @@ class GameScene: SKScene {
         for touch in touches {
             let location = touch.location(in: self)
             if let spriteName = nodes(at: location)[0].name, spriteName == Sprites.Names.Brake {
-                player.decelerate()
+                playerSprite.decelerate()
             }
         }
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        // Only braking depends is ended on release, foot is still on accelerator
-        player.isDecelerating = false
     }
 
     override func update(_ currentTime: TimeInterval) {
-        player.update()
-        mainCamera.position = player.position
+        playerSprite.update()
+        mainCamera.position = playerSprite.position
 
         // Default GameKit boilerplate
         // Initialize _lastUpdateTime if it has not already been

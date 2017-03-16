@@ -11,7 +11,7 @@ import Foundation
 struct Projectiles {
 
     struct Laser {
-        static let Name = "LaserBlue1"
+        static let Name = "bulletBeigeSilver"
     }
 
 }
