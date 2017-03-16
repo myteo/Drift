@@ -36,4 +36,5 @@ public extension CGVector {
     var magnitude: CGFloat {
         return sqrt(self.dx * self.dx + self.dy * self.dy)
     }
+    
 }

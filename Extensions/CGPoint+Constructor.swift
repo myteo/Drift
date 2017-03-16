@@ -15,4 +15,8 @@ extension CGPoint {
         x = CGFloat(point.x)
         y = CGFloat(point.y)
     }
+
+    var magnitudeSquared: CGFloat {
+        return self.x * self.x + self.y * self.y
+    }
 }

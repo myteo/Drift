@@ -24,6 +24,7 @@
 		2422A1E81E7052F700CE2B84 /* DriftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2422A1E71E7052F700CE2B84 /* DriftTests.swift */; };
 		2422A1F31E7052F700CE2B84 /* DriftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2422A1F21E7052F700CE2B84 /* DriftUITests.swift */; };
 		2422A20A1E7055F100CE2B84 /* Tiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2422A2091E7055F100CE2B84 /* Tiles.swift */; };
+		248407DC1E7AB80F00ED2C85 /* AnalogStick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248407DB1E7AB80F00ED2C85 /* AnalogStick.swift */; };
 		248667A61E707A4A00B8CE7D /* Sprites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248667A51E707A4A00B8CE7D /* Sprites.swift */; };
 		248667A91E70E0F100B8CE7D /* Int+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248667A81E70E0F100B8CE7D /* Int+Random.swift */; };
 		248667AB1E70F47300B8CE7D /* CGFloat+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248667AA1E70F47300B8CE7D /* CGFloat+Operations.swift */; };
@@ -86,6 +87,7 @@
 		2422A1F21E7052F700CE2B84 /* DriftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriftUITests.swift; sourceTree = "<group>"; };
 		2422A1F41E7052F700CE2B84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2422A2091E7055F100CE2B84 /* Tiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tiles.swift; path = Constants/Tiles.swift; sourceTree = "<group>"; };
+		248407DB1E7AB80F00ED2C85 /* AnalogStick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnalogStick.swift; path = Sprites/AnalogStick.swift; sourceTree = "<group>"; };
 		248667A51E707A4A00B8CE7D /* Sprites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sprites.swift; path = Constants/Sprites.swift; sourceTree = "<group>"; };
 		248667A81E70E0F100B8CE7D /* Int+Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Int+Random.swift"; path = "Extensions/Int+Random.swift"; sourceTree = "<group>"; };
 		248667AA1E70F47300B8CE7D /* CGFloat+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGFloat+Operations.swift"; path = "Extensions/CGFloat+Operations.swift"; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 			isa = PBXGroup;
 			children = (
 				248667B61E7105FA00B8CE7D /* VehicleSprite.swift */,
+				248407DB1E7AB80F00ED2C85 /* AnalogStick.swift */,
 			);
 			name = Sprites;
 			sourceTree = "<group>";
@@ -645,6 +648,7 @@
 				248667A61E707A4A00B8CE7D /* Sprites.swift in Sources */,
 				2422A1CD1E7052F600CE2B84 /* AppDelegate.swift in Sources */,
 				248667A91E70E0F100B8CE7D /* Int+Random.swift in Sources */,
+				248407DC1E7AB80F00ED2C85 /* AnalogStick.swift in Sources */,
 				2414DBAD1E7A5EF0004592DE /* GameScene.swift in Sources */,
 				248667B21E70FCEB00B8CE7D /* MoveComponent.swift in Sources */,
 				248667B41E70FCF900B8CE7D /* SpriteComponent.swift in Sources */,

@@ -16,7 +16,7 @@ class VehicleSprite: SKSpriteNode {
     var isDecelerating = false
 
     let maxSpeed = GameplayConfiguration.VehiclePhysics.maxSpeed
-    let neutralPoint = CGFloat(70)
+    let neutralPoint = CGFloat(100)
     var reversePoint = CGFloat(1)
 
     func initVehicle(name: String, number: Int = 1) {
@@ -37,12 +37,15 @@ class VehicleSprite: SKSpriteNode {
         physicsBody?.categoryBitMask = ColliderType.Vehicles
         physicsBody?.collisionBitMask = ColliderType.Vehicles | ColliderType.Obstacles
         physicsBody?.contactTestBitMask = ColliderType.PowerUp | ColliderType.Vehicles | ColliderType.Obstacles
+        physicsBody?.angularDamping = 1 // Minimize spinning from collision
     }
 
-    func turn(direction: SpinDirection) {
+    func turn(_ direction: SpinDirection, _ percent: CGFloat) {
+        // Turn magniture is from 1 to 6 degrees
+        let turnMagnitude = min(SpinDirection.degree * percent / 10 * 6, 6 * SpinDirection.degree)
         switch direction {
-        case .AntiClockwise: zRotation += CGFloat.π_4
-        case .Clockwise: zRotation -= CGFloat.π_4
+        case .AntiClockwise: zRotation += turnMagnitude
+        case .Clockwise: zRotation -= turnMagnitude
         }
     }
 
@@ -52,7 +55,7 @@ class VehicleSprite: SKSpriteNode {
     }
 
     func decelerate() {
-        isAccelerating = true
+        isDecelerating = true
     }
 
     func getTexture(prefix: String, number: Int) -> SKTexture {
@@ -60,24 +63,18 @@ class VehicleSprite: SKSpriteNode {
     }
 
     func update() {
-        var dampingFactor = 0.7 // friction
         // NSLog("\(physicsBody?.velocity.magnitude)")
         if isAccelerating, physicsBody!.velocity.magnitude < maxSpeed {
-            physicsBody?.applyForce(zRotation.getVector() * Sprites.Car.Mass * 2)
+            physicsBody?.applyForce(zRotation.getVector() * Sprites.Car.Mass * 10)
         }
         if isDecelerating {
-            dampingFactor = 0.93 // increase brake
             // trigger reverse gear when close stopping
             if physicsBody!.velocity.magnitude < reversePoint {
-                // increase reverse force frequency
                 reversePoint = neutralPoint
-                // increase reverse force magnitude
-                physicsBody?.applyForce(zRotation.getVector() * -Sprites.Car.Mass * 2)
-                dampingFactor = 0.97
+                physicsBody?.applyForce(zRotation.getVector() * -Sprites.Car.Mass * 10)
             } else if physicsBody!.velocity.magnitude < neutralPoint {
                 isAccelerating = false
             }
         }
-        physicsBody?.velocity *= dampingFactor
     }
 }

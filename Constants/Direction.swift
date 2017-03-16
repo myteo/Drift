@@ -11,6 +11,7 @@ import Foundation
 
 enum SpinDirection: String {
     case Clockwise, AntiClockwise
+    static let degree = CGFloat(M_PI / 180)
 }
 
 enum Direction: Int {

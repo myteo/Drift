@@ -12,6 +12,12 @@ import GameplayKit
 class GameScene: SKScene {
     var graphs = [String: GKGraph]()
 
+    // Analog Joystick
+    var steeringStick: AnalogJoystick!
+    var steeringSprite: SKSpriteNode!
+    var acceleratorSprite: SKSpriteNode!
+    var brakeSprite: SKSpriteNode!
+
     // Entity-Component System
     var entityManager: EntityManager!
 
@@ -36,6 +42,7 @@ class GameScene: SKScene {
         setupEntities()
         setupObjects()
         setupCamera()
+        setupUI()
     }
 
     override func sceneDidLoad() {
@@ -67,10 +74,51 @@ class GameScene: SKScene {
         setupObstacles()
     }
 
+    func setupUI() {
+        steeringSprite = mainCamera.childNode(withName: Sprites.Names.Steering) as! SKSpriteNode
+        acceleratorSprite = mainCamera.childNode(withName: Sprites.Names.Accelerator) as! SKSpriteNode
+        brakeSprite = mainCamera.childNode(withName: Sprites.Names.Brake) as! SKSpriteNode
+        setupSteering()
+    }
+
+    func setupSteering() {
+        steeringStick = AnalogJoystick(diameters: (200, 100), colors: (UIColor.gray, UIColor.white))
+        steeringStick.position = steeringSprite.position
+        mainCamera.addChild(steeringStick)
+        steeringStick.trackingHandler = { (jData: AnalogJoystickData) in
+            
+            // Angular: From top, counter-clockwise: 0 to π, clockwise: 0 to -π
+            // NSLog("\(jData.angular), \(jData.velocity.magnitudeSquared)")
+            let zRotation = self.playerSprite.zRotation
+            let stickRotation = jData.angular
+            let magnitudePercent = jData.velocity.magnitudeSquared / 100
+            
+            // Only turn when: 25% analog stick displacement & difference greater than 6 degrees
+            // to prevent flickering turning
+            if magnitudePercent > 25, abs(stickRotation - zRotation) > 6 * SpinDirection.degree {
+                if stickRotation > 0 {
+                    let opposite = stickRotation - CGFloat.pi
+                    if zRotation > opposite, zRotation < stickRotation {
+                        self.playerSprite.turn(SpinDirection.AntiClockwise, magnitudePercent)
+                    } else {
+                        self.playerSprite.turn(SpinDirection.Clockwise, magnitudePercent)
+                    }
+                } else { // Towards right
+                    let opposite = stickRotation + CGFloat.pi
+                    if zRotation < opposite, zRotation > stickRotation {
+                        self.playerSprite.turn(SpinDirection.Clockwise, magnitudePercent)
+                    } else {
+                        self.playerSprite.turn(SpinDirection.AntiClockwise, magnitudePercent)
+                    }
+                }
+            }
+        }
+    }
+
     func setupPlayer() {
         // Use node in GamePlayScene.sks to get position
         // Specify class of node as "VehicleSprite"
-        playerSprite = self.childNode(withName: "Car") as! VehicleSprite
+        playerSprite = childNode(withName: "Car") as! VehicleSprite
         playerSprite.initVehicle(name: Sprites.Car.Colors.Black)
         playerRacer = PlayerRacer(spriteNode: playerSprite, entityManager: entityManager)
         entityManager.add(playerRacer)
@@ -145,8 +193,6 @@ class GameScene: SKScene {
             case Sprites.Names.Accelerator: playerSprite.accelerate()
             case Sprites.Names.Brake: playerSprite.decelerate()
             case Sprites.Names.Weapon: playerRacer.fireWeapon()
-            case Sprites.Names.AntiClockwise: playerSprite.turn(direction: SpinDirection.AntiClockwise)
-            case Sprites.Names.Clockwise: playerSprite.turn(direction: SpinDirection.Clockwise)
             default: break
             }
         }
