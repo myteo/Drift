@@ -11,7 +11,7 @@ import SpriteKit
 class VehicleSprite: SKSpriteNode {
 
     var isMoving = true
-    var imagePrefix = Sprites.Car.Colors.Black
+    var imagePrefix = Sprites.Car.Colors.black
     var isAccelerating = false
     var isDecelerating = false
 
@@ -51,7 +51,6 @@ class VehicleSprite: SKSpriteNode {
 
     func accelerate() {
         isAccelerating = true
-        isDecelerating = false
     }
 
     func decelerate() {
@@ -63,17 +62,13 @@ class VehicleSprite: SKSpriteNode {
     }
 
     func update() {
-        // NSLog("\(physicsBody?.velocity.magnitude)")
-        if isAccelerating, physicsBody!.velocity.magnitude < maxSpeed {
-            physicsBody?.applyForce(zRotation.getVector() * Sprites.Car.Mass * 10)
-        }
-        if isDecelerating {
-            // trigger reverse gear when close stopping
-            if physicsBody!.velocity.magnitude < reversePoint {
-                reversePoint = neutralPoint
-                physicsBody?.applyForce(zRotation.getVector() * -Sprites.Car.Mass * 10)
-            } else if physicsBody!.velocity.magnitude < neutralPoint {
-                isAccelerating = false
+        let force = zRotation.getVector() * Sprites.Car.mass
+        if isAccelerating {
+            physicsBody?.applyForce(force)
+        } else if isDecelerating {
+            physicsBody?.velocity *= 0.95
+            if physicsBody!.velocity.magnitude < neutralPoint {
+                physicsBody?.applyForce(force.reversed)
             }
         }
     }

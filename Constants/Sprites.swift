@@ -9,27 +9,24 @@
 import SpriteKit
 
 struct Sprites {
+    static let alphaPressed = CGFloat(0.5)
+    static let alphaUnpressed = CGFloat(0.75)
+
     struct Names {
-        static let Accelerator = "Accelerator"
-        static let Brake = "Brake"
-        static let AntiClockwise = "AntiClockwise"
-        static let Clockwise = "Clockwise"
-        static let Weapon = "Weapon"
-        static let Steering = "SteeringSprite"
+        static let accelerator = "Accelerator"
+        static let brake = "Brake"
+        static let antiClockwise = "AntiClockwise"
+        static let clockwise = "Clockwise"
+        static let weapon = "WeaponSprite"
+        static let steering = "SteeringSprite"
     }
 
     struct Car {
         struct Colors {
-            static let Blue = "car_blue_"
-            static let Black = "car_black_"
+            static let blue = "car_blue_"
+            static let black = "car_black_"
         }
-        static let Mass = CGFloat(30)
-    }
-
-    struct StartLane {
-        static let First = CGPoint(x: -500, y: -6)
-        static let Second = CGPoint(x: -450, y: -16)
-        static let Thrid = CGPoint(x: -400, y: -40)
+        static let mass = CGFloat(21)
     }
 
     struct Trees {

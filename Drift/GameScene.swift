@@ -15,8 +15,9 @@ class GameScene: SKScene {
     // Analog Joystick
     var steeringStick: AnalogJoystick!
     var steeringSprite: SKSpriteNode!
-    var acceleratorSprite: SKSpriteNode!
     var brakeSprite: SKSpriteNode!
+    var acceleratorSprite: SKSpriteNode!
+    var weaponSprite: SKSpriteNode!
 
     // Entity-Component System
     var entityManager: EntityManager!
@@ -30,15 +31,15 @@ class GameScene: SKScene {
     var aiMovementBoundaries: [SKNode]!
     var aiMovementWaypoints: [CGPoint]!
 
-    // Tile Map Nodes
+    // BG Nodes
     var grassBG: SKTileMapNode!
     var roadBG: SKTileMapNode!
-    var obstacleBG: SKTileMapNode!
+    var treesBG: SKNode!
 
     private var lastUpdateTime: TimeInterval = 0
 
     override func didMove(to view: SKView) {
-        loadSceneNodes()
+        loadBGNodes()
         setupEntities()
         setupObjects()
         setupCamera()
@@ -49,7 +50,7 @@ class GameScene: SKScene {
         self.lastUpdateTime = 0
     }
 
-    func loadSceneNodes() {
+    func loadBGNodes() {
         // Grass Tiles
         guard let grassBG = childNode(withName: "Grass") as? SKTileMapNode else {
             fatalError("Grass Tile set node not loaded")
@@ -61,6 +62,7 @@ class GameScene: SKScene {
             fatalError("Road Tile set node not loaded")
         }
         self.roadBG = roadBG
+        treesBG = childNode(withName: "Trees")
     }
 
     func setupEntities() {
@@ -75,24 +77,35 @@ class GameScene: SKScene {
     }
 
     func setupUI() {
-        steeringSprite = mainCamera.childNode(withName: Sprites.Names.Steering) as! SKSpriteNode
-        acceleratorSprite = mainCamera.childNode(withName: Sprites.Names.Accelerator) as! SKSpriteNode
-        brakeSprite = mainCamera.childNode(withName: Sprites.Names.Brake) as! SKSpriteNode
+        weaponSprite = mainCamera.childNode(withName: Sprites.Names.weapon) as! SKSpriteNode
+        setupPedals()
         setupSteering()
     }
 
+    func setupPedals() {
+        acceleratorSprite = mainCamera.childNode(withName: Sprites.Names.accelerator) as! SKSpriteNode
+        let accelerator = PedalSprite(playerSprite: playerSprite, name: Sprites.Names.accelerator)
+        accelerator.position = acceleratorSprite.position
+        mainCamera.addChild(accelerator)
+
+        brakeSprite = mainCamera.childNode(withName: Sprites.Names.brake) as! SKSpriteNode
+        let brake = PedalSprite(playerSprite: playerSprite, name: Sprites.Names.brake)
+        brake.position = brakeSprite.position
+        mainCamera.addChild(brake)
+    }
+
     func setupSteering() {
+        steeringSprite = mainCamera.childNode(withName: Sprites.Names.steering) as! SKSpriteNode
         steeringStick = AnalogJoystick(diameters: (200, 100), colors: (UIColor.gray, UIColor.white))
         steeringStick.position = steeringSprite.position
         mainCamera.addChild(steeringStick)
         steeringStick.trackingHandler = { (jData: AnalogJoystickData) in
-            
             // Angular: From top, counter-clockwise: 0 to π, clockwise: 0 to -π
             // NSLog("\(jData.angular), \(jData.velocity.magnitudeSquared)")
             let zRotation = self.playerSprite.zRotation
             let stickRotation = jData.angular
             let magnitudePercent = jData.velocity.magnitudeSquared / 100
-            
+
             // Only turn when: 25% analog stick displacement & difference greater than 6 degrees
             // to prevent flickering turning
             if magnitudePercent > 25, abs(stickRotation - zRotation) > 6 * SpinDirection.degree {
@@ -119,7 +132,7 @@ class GameScene: SKScene {
         // Use node in GamePlayScene.sks to get position
         // Specify class of node as "VehicleSprite"
         playerSprite = childNode(withName: "Car") as! VehicleSprite
-        playerSprite.initVehicle(name: Sprites.Car.Colors.Black)
+        playerSprite.initVehicle(name: Sprites.Car.Colors.black)
         playerRacer = PlayerRacer(spriteNode: playerSprite, entityManager: entityManager)
         entityManager.add(playerRacer)
 
@@ -147,7 +160,7 @@ class GameScene: SKScene {
         if let vehicles = self.childNode(withName: "AIs")?.children {
             for i in 1...vehicles.count {
                 let vehicleSpriteNode = vehicles[i-1] as! VehicleSprite
-                vehicleSpriteNode.initVehicle(name: Sprites.Car.Colors.Blue, number: i)
+                vehicleSpriteNode.initVehicle(name: Sprites.Car.Colors.blue, number: i)
                 let aiRacer = AIRacer(spriteNode: vehicleSpriteNode, entityManager: entityManager)
                 entityManager.add(aiRacer)
             }
@@ -171,7 +184,7 @@ class GameScene: SKScene {
                 grassTileCenter.y += CGFloat(displacement)
                 treeSprite.position = grassTileCenter
                 treeSprite.zPosition = 10
-                addChild(treeSprite)
+                treesBG.addChild(treeSprite)
             }
         }
     }
@@ -184,27 +197,15 @@ class GameScene: SKScene {
 
     // MARK: Touches
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in touches {
-            let location = touch.location(in: self)
-            guard let spriteName = nodes(at: location)[0].name else {
-                return
-            }
-            switch spriteName {
-            case Sprites.Names.Accelerator: playerSprite.accelerate()
-            case Sprites.Names.Brake: playerSprite.decelerate()
-            case Sprites.Names.Weapon: playerRacer.fireWeapon()
-            default: break
-            }
+        if let touch = touches.first, weaponSprite == atPoint(touch.location(in: self)) {
+            playerRacer.fireWeapon()
         }
     }
 
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in touches {
-            let location = touch.location(in: self)
-            if let spriteName = nodes(at: location)[0].name, spriteName == Sprites.Names.Brake {
-                playerSprite.decelerate()
-            }
-        }
+    }
+
+    func handleTouches(_ touches: Set<UITouch>) {
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
