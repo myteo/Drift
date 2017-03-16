@@ -196,17 +196,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     func setupPowerUps() {
-        if let powerUps = self.childNode(withName: "PowerUps")?.children {
-            for powerUp in powerUps {
-                if powerUp.name == "SpeedBoost" {
-                    guard let speedBoostSprite = powerUp as? PowerUpSprite else {
-                        continue
-                    }
-                    speedBoostSprite.initPowerUp()
-                    let speedBoostEntity = PowerUp(spriteNode: speedBoostSprite,
+        guard let powerUps = self.childNode(withName: "PowerUps")?.children else {
+            return
+        }
+        for powerUp in powerUps {
+            guard let powerUpSprite = powerUp as? PowerUpSprite else {
+                continue
+            }
+            powerUpSprite.initPowerUp()
+            if powerUp.name == "SpeedBoost" {
+                let speedBoostEntity = PowerUp(powerUpType: .speedBoost,
+                                               spriteNode: powerUpSprite,
+                                               entityManager: entityManager)
+                entityManager.add(speedBoostEntity)
+            } else if powerUp.name == "SpeedReduction" {
+                let speedReductionEntity = PowerUp(powerUpType: .speedReduction,
+                                                   spriteNode: powerUpSprite,
                                                    entityManager: entityManager)
-                    entityManager.add(speedBoostEntity)
-                }
+                entityManager.add(speedReductionEntity)
             }
         }
     }
@@ -262,10 +269,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         // Calculate time since last update
         let dt = currentTime - self.lastUpdateTime
-        
+
         // Update entities
         entityManager.update(deltaTime: dt)
-        
+
         self.lastUpdateTime = currentTime
     }
 }

@@ -15,7 +15,7 @@ class VehicleSprite: SKSpriteNode {
     var isAccelerating = false
     var isDecelerating = false
 
-    let maxSpeed = GameplayConfiguration.VehiclePhysics.maxSpeed
+    var maxSpeed = GameplayConfiguration.VehiclePhysics.maxSpeed
     let neutralPoint = CGFloat(100)
     var reversePoint = CGFloat(1)
 

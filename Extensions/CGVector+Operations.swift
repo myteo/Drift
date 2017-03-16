@@ -29,6 +29,18 @@ public extension CGVector {
         left *= CGFloat(scalar)
     }
 
+    static func / (left: CGVector, scalar: CGFloat) -> CGVector {
+        return CGVector(dx: left.dx / scalar, dy: left.dy / scalar)
+    }
+
+    static func /= (left: inout CGVector, scalar: CGFloat) {
+        left = left / scalar
+    }
+
+    static func /= (left: inout CGVector, scalar: Double) {
+        left /= CGFloat(scalar)
+    }
+
     var reversed: CGVector {
         return CGVector(dx: self.dx * -1, dy: self.dy * -1)
     }

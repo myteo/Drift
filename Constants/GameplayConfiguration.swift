@@ -46,4 +46,17 @@ struct GameplayConfiguration {
         static let avoidObstaclesWeight: Float = 2.0
         static let avoidObstaclesPredictionTime: TimeInterval = 1
     }
+
+    struct SpeedBoost {
+        static let speedBoostDuration: Double = 5.0
+        static let maxSpeedBoost: CGFloat = 2.0
+        static let currentSpeedBoost: CGFloat = 2.0
+    }
+
+    struct SpeedReduction {
+        static let speedReductionDuration: Double = 5.0
+        static let maxSpeedReduction: CGFloat = 2.0
+        static let currentSpeedReduction: CGFloat = 2.0
+
+    }
 }

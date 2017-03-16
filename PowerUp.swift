@@ -12,11 +12,14 @@ import SpriteKit
 
 class PowerUp: GKEntity, ContactNotifiableType {
 
+    let powerUpType: PowerUpType
+
     private let entityManager: EntityManager
 
-    init(spriteNode: SKSpriteNode, entityManager: EntityManager) {
+    init(powerUpType: PowerUpType, spriteNode: SKSpriteNode, entityManager: EntityManager) {
 
         self.entityManager = entityManager
+        self.powerUpType = powerUpType
 
         super.init()
         let spriteComponent = SpriteComponent(entity: self,
@@ -29,12 +32,29 @@ class PowerUp: GKEntity, ContactNotifiableType {
     }
 
     func contactWithEntityDidBegin(_ entity: GKEntity) {
-        if let playerRacer = entity as? PlayerRacer,
-            let playerRacerSprite = playerRacer.component(ofType: SpriteComponent.self),
-            let vehicleSprite = playerRacerSprite.node as? VehicleSprite {
-            vehicleSprite.physicsBody?.velocity *= 2.0
+        guard let racerSprite = entity.component(ofType: SpriteComponent.self),
+            let vehicleSprite = racerSprite.node as? VehicleSprite else {
+                return
         }
-        // remove power up
+        switch powerUpType {
+        case .speedBoost:
+            vehicleSprite.physicsBody?.velocity *= GameplayConfiguration.SpeedBoost.currentSpeedBoost
+            vehicleSprite.maxSpeed *= GameplayConfiguration.SpeedBoost.maxSpeedBoost
+            DispatchQueue.main.asyncAfter(deadline: .now() +
+                GameplayConfiguration.SpeedBoost.speedBoostDuration, execute: {
+                    vehicleSprite.physicsBody?.velocity /= GameplayConfiguration.SpeedBoost.currentSpeedBoost
+                    vehicleSprite.maxSpeed /= GameplayConfiguration.SpeedBoost.maxSpeedBoost
+            })
+        case .speedReduction:
+            vehicleSprite.physicsBody?.velocity /= GameplayConfiguration.SpeedReduction.currentSpeedReduction
+            vehicleSprite.maxSpeed /= GameplayConfiguration.SpeedReduction.maxSpeedReduction
+            DispatchQueue.main.asyncAfter(deadline: .now() +
+                GameplayConfiguration.SpeedReduction.speedReductionDuration, execute: {
+                    vehicleSprite.physicsBody?.velocity *= GameplayConfiguration.SpeedReduction.currentSpeedReduction
+                    vehicleSprite.maxSpeed *= GameplayConfiguration.SpeedReduction.maxSpeedReduction
+            })
+        }
+        // Remove power up
         guard let spriteComponent = self.component(ofType: SpriteComponent.self) else {
             return
         }
