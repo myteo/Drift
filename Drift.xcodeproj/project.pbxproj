@@ -38,6 +38,9 @@
 		248667BF1E712E7100B8CE7D /* ColliderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248667BE1E712E7100B8CE7D /* ColliderType.swift */; };
 		248667C11E71584B00B8CE7D /* CGVector+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248667C01E71584B00B8CE7D /* CGVector+Operations.swift */; };
 		3F60C7B0C3E98EF66C611039 /* Pods_DriftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4924B7CAC47825295C284F0 /* Pods_DriftTests.framework */; };
+		AB7065D71E7B0E2300E8DFEA /* PowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7065D61E7B0E2300E8DFEA /* PowerUp.swift */; };
+		AB7065D91E7B0ECD00E8DFEA /* PowerUpSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7065D81E7B0ECD00E8DFEA /* PowerUpSprite.swift */; };
+		AB7065DB1E7B11DF00E8DFEA /* ContactNotifiableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7065DA1E7B11DF00E8DFEA /* ContactNotifiableType.swift */; };
 		ABDF490B1E730F77004EEC4C /* AIRacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF490A1E730F77004EEC4C /* AIRacer.swift */; };
 		ABDF490D1E73262D004EEC4C /* CGPoint+Constructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF490C1E73262D004EEC4C /* CGPoint+Constructor.swift */; };
 		ABDF490F1E73268A004EEC4C /* float2+Constructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF490E1E73268A004EEC4C /* float2+Constructor.swift */; };
@@ -106,6 +109,9 @@
 		9497208AE3A551B47C1B79F7 /* Pods-DriftUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriftUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DriftUITests/Pods-DriftUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9D8620FBB6A9799C2B9B346A /* Pods-DriftTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriftTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DriftTests/Pods-DriftTests.release.xcconfig"; sourceTree = "<group>"; };
 		A4924B7CAC47825295C284F0 /* Pods_DriftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DriftTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB7065D61E7B0E2300E8DFEA /* PowerUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerUp.swift; sourceTree = "<group>"; };
+		AB7065D81E7B0ECD00E8DFEA /* PowerUpSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerUpSprite.swift; sourceTree = "<group>"; };
+		AB7065DA1E7B11DF00E8DFEA /* ContactNotifiableType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactNotifiableType.swift; sourceTree = "<group>"; };
 		ABDF490A1E730F77004EEC4C /* AIRacer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AIRacer.swift; path = Entities/AIRacer.swift; sourceTree = "<group>"; };
 		ABDF490C1E73262D004EEC4C /* CGPoint+Constructor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGPoint+Constructor.swift"; path = "Extensions/CGPoint+Constructor.swift"; sourceTree = "<group>"; };
 		ABDF490E1E73268A004EEC4C /* float2+Constructor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "float2+Constructor.swift"; path = "Extensions/float2+Constructor.swift"; sourceTree = "<group>"; };
@@ -251,6 +257,7 @@
 			children = (
 				248667AD1E70FC7400B8CE7D /* EntityManager.swift */,
 				ABDF490A1E730F77004EEC4C /* AIRacer.swift */,
+				AB7065D61E7B0E2300E8DFEA /* PowerUp.swift */,
 				FA5776371E74FFDC00853225 /* PlayerRacer.swift */,
 				24064A141E76C9720006E2D4 /* Laser.swift */,
 			);
@@ -288,6 +295,7 @@
 			children = (
 				FA00AAD91E776FB300664EF4 /* GameplayConfiguration.swift */,
 				2422A2091E7055F100CE2B84 /* Tiles.swift */,
+				AB7065DA1E7B11DF00E8DFEA /* ContactNotifiableType.swift */,
 				248667A51E707A4A00B8CE7D /* Sprites.swift */,
 				248667B81E7118CD00B8CE7D /* Direction.swift */,
 				248667BE1E712E7100B8CE7D /* ColliderType.swift */,
@@ -335,6 +343,7 @@
 			children = (
 				248667B61E7105FA00B8CE7D /* VehicleSprite.swift */,
 				248407DB1E7AB80F00ED2C85 /* AnalogStick.swift */,
+				AB7065D81E7B0ECD00E8DFEA /* PowerUpSprite.swift */,
 				245E829C1E7AEFBB00B1EC81 /* PedalSprite.swift */,
 			);
 			name = Sprites;
@@ -650,6 +659,7 @@
 				24064A171E76D9670006E2D4 /* Projectiles.swift in Sources */,
 				248667A61E707A4A00B8CE7D /* Sprites.swift in Sources */,
 				2422A1CD1E7052F600CE2B84 /* AppDelegate.swift in Sources */,
+				AB7065DB1E7B11DF00E8DFEA /* ContactNotifiableType.swift in Sources */,
 				248667A91E70E0F100B8CE7D /* Int+Random.swift in Sources */,
 				248407DC1E7AB80F00ED2C85 /* AnalogStick.swift in Sources */,
 				2414DBAD1E7A5EF0004592DE /* GameScene.swift in Sources */,
@@ -657,12 +667,14 @@
 				248667B41E70FCF900B8CE7D /* SpriteComponent.swift in Sources */,
 				2422A20A1E7055F100CE2B84 /* Tiles.swift in Sources */,
 				FA5776381E74FFDC00853225 /* PlayerRacer.swift in Sources */,
+				AB7065D91E7B0ECD00E8DFEA /* PowerUpSprite.swift in Sources */,
 				24064A151E76C9720006E2D4 /* Laser.swift in Sources */,
 				248667B71E7105FB00B8CE7D /* VehicleSprite.swift in Sources */,
 				ABDF490D1E73262D004EEC4C /* CGPoint+Constructor.swift in Sources */,
 				ABDF49111E732745004EEC4C /* AIRacerMoveBehavior.swift in Sources */,
 				248667AE1E70FC7400B8CE7D /* EntityManager.swift in Sources */,
 				248667AB1E70F47300B8CE7D /* CGFloat+Operations.swift in Sources */,
+				AB7065D71E7B0E2300E8DFEA /* PowerUp.swift in Sources */,
 				248667B91E7118CD00B8CE7D /* Direction.swift in Sources */,
 				248667BB1E711FF900B8CE7D /* CGPath+Constructor.swift in Sources */,
 				248667BF1E712E7100B8CE7D /* ColliderType.swift in Sources */,

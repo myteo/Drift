@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     var graphs = [String: GKGraph]()
 
     // Analog Joystick
@@ -40,6 +40,7 @@ class GameScene: SKScene {
 
     override func didMove(to view: SKView) {
         loadBGNodes()
+        setupPhysicsWorld()
         setupEntities()
         setupObjects()
         setupCamera()
@@ -65,6 +66,10 @@ class GameScene: SKScene {
         treesBG = childNode(withName: "Trees")
     }
 
+    func setupPhysicsWorld() {
+        physicsWorld.contactDelegate = self
+    }
+
     func setupEntities() {
         entityManager = EntityManager(scene: self)
     }
@@ -74,6 +79,7 @@ class GameScene: SKScene {
         setupAIMovement()
         setupAIRacers()
         setupObstacles()
+        setupPowerUps()
     }
 
     func setupUI() {
@@ -189,10 +195,43 @@ class GameScene: SKScene {
         }
     }
 
+    func setupPowerUps() {
+        if let powerUps = self.childNode(withName: "PowerUps")?.children {
+            for powerUp in powerUps {
+                if powerUp.name == "SpeedBoost" {
+                    guard let speedBoostSprite = powerUp as? PowerUpSprite else {
+                        continue
+                    }
+                    speedBoostSprite.initPowerUp()
+                    let speedBoostEntity = PowerUp(spriteNode: speedBoostSprite,
+                                                   entityManager: entityManager)
+                    entityManager.add(speedBoostEntity)
+                }
+            }
+        }
+    }
+
     func setupCamera() {
         mainCamera = self.childNode(withName: "MainCamera") as! SKCameraNode
         mainCamera.zPosition = 10
         self.camera = mainCamera
+    }
+
+    func didBegin(_ contact: SKPhysicsContact) {
+        guard contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask ==
+            ColliderType.Vehicles | ColliderType.PowerUp else {
+                return
+        }
+        guard let entityA = contact.bodyA.node?.entity,
+            let entityB = contact.bodyB.node?.entity else {
+                return
+        }
+        if let notifiableA = entityA as? ContactNotifiableType {
+            notifiableA.contactWithEntityDidBegin(entityB)
+        }
+        if let notifiableB = entityB as? ContactNotifiableType {
+            notifiableB.contactWithEntityDidBegin(entityA)
+        }
     }
 
     // MARK: Touches
@@ -223,10 +262,10 @@ class GameScene: SKScene {
 
         // Calculate time since last update
         let dt = currentTime - self.lastUpdateTime
-
+        
         // Update entities
         entityManager.update(deltaTime: dt)
-
+        
         self.lastUpdateTime = currentTime
     }
 }
