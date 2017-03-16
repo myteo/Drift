@@ -10,18 +10,17 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene {
-    var graphs = [String : GKGraph]()
+    var graphs = [String: GKGraph]()
 
     // Entity-Component System
     var entityManager: EntityManager!
-    
+
     // Camera
     var mainCamera: SKCameraNode!
-    
+
     // Scene Nodes
     var player: Vehicle!
     var playerRacer: PlayerRacer!
-    var AI: AIRacer!
     var aiMovementBoundaries: [SKNode]!
     var aiMovementWaypoints: [CGPoint]!
 
@@ -30,20 +29,20 @@ class GameScene: SKScene {
     var grassBGs = [SKTileMapNode]()
     var roadBGs = [SKTileMapNode]()
     var obstacleBG: SKTileMapNode!
-    
-    private var lastUpdateTime : TimeInterval = 0
-    
+
+    private var lastUpdateTime: TimeInterval = 0
+
     override func didMove(to view: SKView) {
         loadSceneNodes()
         setupEntities()
         setupObjects()
         setupCamera()
     }
-    
+
     override func sceneDidLoad() {
         self.lastUpdateTime = 0
     }
-    
+
     func loadSceneNodes() {
         // Grass Tiles
         Tiles.Grass.NodeNames.forEach { grassName in
@@ -61,7 +60,7 @@ class GameScene: SKScene {
         }
         waterBGs.append(waterBG)
         waterBG.tileSize.height = Tiles.Height
-        
+
         // Road Tiles
         Tiles.Road.NodeNames.forEach { roadName in
             guard let roadBG = childNode(withName: roadName) as? SKTileMapNode else {
@@ -72,30 +71,30 @@ class GameScene: SKScene {
             roadBG.physicsBody?.friction = Tiles.Road.Friction
         }
     }
-    
+
     func setupEntities() {
         entityManager = EntityManager(scene: self)
     }
-    
+
     func setupObjects() {
         setupPlayer()
         setupAIMovement()
         setupAIRacers()
         setupObstacles()
     }
-    
+
     func setupPlayer() {
         // Use node in GamePlayScene.sks to get position
         player = self.childNode(withName: "Car") as! Vehicle
         player.initVehicle(name: Sprites.Car.Colors.Black)
         playerRacer = PlayerRacer(spriteNode: player, entityManager: entityManager)
         entityManager.add(playerRacer)
-        
+
         // If want to set position manually
         // player.position = Sprites.StartLane.First
         // addChild(player)
     }
-    
+
     func setupAIMovement() {
         aiMovementBoundaries = []
         let aiMovementContainer = self.childNode(withName: "Boundaries")!
@@ -116,12 +115,12 @@ class GameScene: SKScene {
             for vehicle in vehicles {
                 let vehicleSpriteNode = vehicle as! Vehicle
                 vehicleSpriteNode.initVehicle(name: Sprites.Car.Colors.Blue)
-                AI = AIRacer(spriteNode: vehicleSpriteNode, entityManager: entityManager)
-                entityManager.add(AI)
+                let aiRacer = AIRacer(spriteNode: vehicleSpriteNode, entityManager: entityManager)
+                entityManager.add(aiRacer)
             }
         }
     }
-    
+
     func setupObstacles() {
         let numberOfObjects = 300
         let collisionRadius = CGFloat(2.1)
@@ -146,13 +145,13 @@ class GameScene: SKScene {
             }
         }
     }
-    
+
     func setupCamera() {
         mainCamera = self.childNode(withName: "MainCamera") as! SKCameraNode
         mainCamera.zPosition = 10
         self.camera = mainCamera
     }
-    
+
     // MARK: Touches
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
@@ -170,38 +169,37 @@ class GameScene: SKScene {
             }
         }
     }
-    
+
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
-            if let spriteName = nodes(at: location)[0].name
-                , spriteName == Sprites.Names.Brake {
+            if let spriteName = nodes(at: location)[0].name, spriteName == Sprites.Names.Brake {
                 player.decelerate()
             }
         }
     }
-    
+
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         // Only braking depends is ended on release, foot is still on accelerator
         player.isDecelerating = false
     }
-    
+
     override func update(_ currentTime: TimeInterval) {
         player.update()
         mainCamera.position = player.position
-        
+
         // Default GameKit boilerplate
         // Initialize _lastUpdateTime if it has not already been
-        if (self.lastUpdateTime == 0) {
+        if self.lastUpdateTime == 0 {
             self.lastUpdateTime = currentTime
         }
-        
+
         // Calculate time since last update
         let dt = currentTime - self.lastUpdateTime
-        
+
         // Update entities
         entityManager.update(deltaTime: dt)
-        
+
         self.lastUpdateTime = currentTime
     }
 }

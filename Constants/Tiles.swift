@@ -25,6 +25,5 @@ struct Tiles {
         static let NodeNames = ["RoadNorthBack1", "RoadEastFront1", "RoadNorth1", "RoadEast1", "RoadNorthBack2", "RoadEastFront2", "RoadNorth2", "RoadEast2", "RoadNorthBack3", "RoadEastFront3", "RoadNorth3", "RoadEast3", "RoadTurn1", "RoadTurn2", "RoadTurn3", "RoadTurn4", "RoadTurn5", "RoadTurn6"]
         static let Friction = CGFloat(0.1)
     }
-    
-    
+
 }

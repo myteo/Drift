@@ -10,21 +10,21 @@ import SpriteKit
 
 enum AgentMoveType {
     case AIRacer, PlayerRacer
-    
+
     var maxSpeed: Float {
         switch self {
         case .AIRacer: return GameplayConfiguration.AIRacer.agentMaxSpeed
         case .PlayerRacer: return GameplayConfiguration.PlayerRacer.agentMaxSpeed
         }
     }
-    
+
     var maxAcceleration: Float {
         switch self {
         case .AIRacer: return GameplayConfiguration.AIRacer.agentMaxAcceleration
         case .PlayerRacer: return GameplayConfiguration.PlayerRacer.agentMaxAcceleration
         }
     }
-    
+
     var mass: Float {
         switch self {
         case .AIRacer: return GameplayConfiguration.AIRacer.agentMass

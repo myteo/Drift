@@ -9,9 +9,9 @@
 import Foundation
 
 struct Projectiles {
-    
+
     struct Laser {
         static let Name = "LaserBlue1"
     }
-    
+
 }

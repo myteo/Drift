@@ -16,7 +16,7 @@ struct Sprites {
         static let Clockwise = "Clockwise"
         static let Weapon = "Weapon"
     }
-    
+
     struct Car {
         struct Colors {
             static let Blue = "carBlue3_"
@@ -24,13 +24,13 @@ struct Sprites {
         }
         static let Mass = CGFloat(3)
     }
-    
+
     struct StartLane {
         static let First = CGPoint(x: -500, y: -6)
         static let Second = CGPoint(x: -450, y: -16)
         static let Thrid = CGPoint(x: -400, y: -40)
     }
-    
+
     struct Trees {
         static let Names = ["treeTall", "treeShort", "treeConiferTall", "treeTall_autumn", "treeShort_autumn", "treeConiferShort"]
     }

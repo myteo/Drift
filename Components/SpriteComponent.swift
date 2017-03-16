@@ -11,7 +11,7 @@ import GameplayKit
 
 class SpriteComponent: GKComponent {
     let node: SKSpriteNode
-    
+
     init(entity: GKEntity, texture: SKTexture, size: CGSize) {
         node = SKSpriteNode(texture: texture,
                             color: SKColor.white,
@@ -19,15 +19,14 @@ class SpriteComponent: GKComponent {
         node.entity = entity
         super.init()
     }
-    
+
     init(entity: GKEntity, spriteNode: SKSpriteNode) {
         node = spriteNode
         node.entity = entity
         super.init()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
-

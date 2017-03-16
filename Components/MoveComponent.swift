@@ -11,11 +11,11 @@ import SpriteKit
 import GameplayKit
 
 class MoveComponent: GKAgent2D, GKAgentDelegate {
-    
+
     private let entityManager: EntityManager
     private let type: AgentMoveType
     private var previousPoint: CGPoint
-    
+
     init(type: AgentMoveType, node: SKSpriteNode, entityManager: EntityManager) {
         self.entityManager = entityManager
         self.type = type
@@ -26,11 +26,11 @@ class MoveComponent: GKAgent2D, GKAgentDelegate {
         self.maxAcceleration = type.maxAcceleration
         self.mass = type.mass
         self.radius = Float(node.size.width / 2)
-        
+
         guard let gameScene = node.scene as? GameScene else {
             return
         }
-        
+
         switch type {
         case .AIRacer:
             behavior = AIRacerMoveBehavior(
@@ -39,17 +39,17 @@ class MoveComponent: GKAgent2D, GKAgentDelegate {
                 permanentObstacles: gameScene.aiMovementBoundaries,
                 waypoints: gameScene.aiMovementWaypoints
             )
-            
+
         case .PlayerRacer:
             //nothing to do
             behavior = nil
         }
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     func agentWillUpdate(_ agent: GKAgent) {
         if type == .PlayerRacer {
             return
@@ -60,7 +60,7 @@ class MoveComponent: GKAgent2D, GKAgentDelegate {
         position = float2(spriteComponent.node.position)
         previousPoint = spriteComponent.node.position
     }
-    
+
     func agentDidUpdate(_ agent: GKAgent) {
         if type == .PlayerRacer {
             return
@@ -79,14 +79,14 @@ class MoveComponent: GKAgent2D, GKAgentDelegate {
         }
         previousPoint = nextPosition
     }
-    
+
     override func update(deltaTime seconds: TimeInterval) {
         super.update(deltaTime: seconds)
-        
+
         guard let spriteComponent = entity?.component(ofType: SpriteComponent.self) else {
             return
         }
-        
+
         switch type {
         case .PlayerRacer:
             // update agent's speed & rotation, might be required for behaviors of other agents
@@ -99,5 +99,5 @@ class MoveComponent: GKAgent2D, GKAgentDelegate {
             // nothing to do 
         }
     }
-    
+
 }
