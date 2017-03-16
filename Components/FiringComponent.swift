@@ -23,7 +23,7 @@ class FiringComponent: GKComponent {
     }
 
     // Fires linear laser based on 
-    func fireVehicleLaser() {
+    func fireStraightBullet() {
         let laser = Laser(entityManager: entityManager)
 
         guard let spriteComponent = entity?.component(ofType: SpriteComponent.self),
@@ -32,9 +32,14 @@ class FiringComponent: GKComponent {
             return
         }
 
-        laserSpriteComponent.node.position = vehicle.position
         let zRotation = vehicle.zRotation
-        let laserPointsPerSecond = CGFloat(300)
+        laserSpriteComponent.node.position = vehicle.position
+
+        laserSpriteComponent.node.position.x += zRotation.getVector().dx * vehicle.size.height / 2
+        laserSpriteComponent.node.position.y += zRotation.getVector().dy * vehicle.size.height / 2
+        laserSpriteComponent.node.physicsBody = SKPhysicsBody(rectangleOf: laserSpriteComponent.node.size)
+        laserSpriteComponent.node.physicsBody?.allowsRotation = false
+        let laserPointsPerSecond = CGFloat(500)
         let laserDistance = CGFloat(1000)
 
         let target = zRotation.getVector() * laserDistance

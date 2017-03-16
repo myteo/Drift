@@ -177,7 +177,7 @@ class GameScene: SKScene {
                 treeSprite.physicsBody = SKPhysicsBody(texture: treeSprite.texture!, size: treeSprite.texture!.size())
                 treeSprite.physicsBody?.categoryBitMask = ColliderType.Obstacles
                 treeSprite.physicsBody?.collisionBitMask = ColliderType.Vehicles | ColliderType.Obstacles
-                treeSprite.physicsBody?.mass = 0.01
+                treeSprite.physicsBody?.mass = 0.1
                 var grassTileCenter = grassBG.centerOfTile(atColumn: column, row: row)
                 let displacement = Int.random(9)
                 grassTileCenter.x += CGFloat(displacement)

@@ -38,6 +38,7 @@ class VehicleSprite: SKSpriteNode {
         physicsBody?.collisionBitMask = ColliderType.Vehicles | ColliderType.Obstacles
         physicsBody?.contactTestBitMask = ColliderType.PowerUp | ColliderType.Vehicles | ColliderType.Obstacles
         physicsBody?.angularDamping = 1 // Minimize spinning from collision
+        physicsBody?.restitution = 0.9
     }
 
     func turn(_ direction: SpinDirection, _ percent: CGFloat) {

@@ -12,7 +12,7 @@ struct GameplayConfiguration {
 
     struct VehiclePhysics {
         static let maxSpeed: CGFloat = 2500
-        static let mass: CGFloat = 0.01
+        static let mass: CGFloat = 0.05
     }
 
     // player agent isn't designed to move. however,

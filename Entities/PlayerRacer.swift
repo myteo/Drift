@@ -32,7 +32,7 @@ class PlayerRacer: GKEntity {
         guard let firingComponent = self.component(ofType: FiringComponent.self) else {
             return
         }
-        firingComponent.fireVehicleLaser()
+        firingComponent.fireStraightBullet()
     }
 
     required init?(coder aDecoder: NSCoder) {

@@ -11,13 +11,15 @@ import SpriteKit
 import GameplayKit
 
 class Laser: GKEntity {
+    var texture: SKTexture!
+    var spriteComponent: SpriteComponent!
 
     init(entityManager: EntityManager) {
 
         super.init()
 
-        let texture = SKTexture(imageNamed: Projectiles.Laser.Name)
-        let spriteComponent = SpriteComponent(entity: self, texture: texture, size: texture.size())
+        texture = SKTexture(imageNamed: Projectiles.Laser.Name)
+        spriteComponent = SpriteComponent(entity: self, texture: texture, size: texture.size())
         addComponent(spriteComponent)
     }
 
