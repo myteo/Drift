@@ -58,6 +58,7 @@ class VehicleSprite: SKSpriteNode {
         isDecelerating = true
     }
 
+    /// Called when vehicle touches speed boost PowerUp
     func boostSpeed() {
         physicsBody?.velocity *= GameplayConfiguration.SpeedBoost.currentSpeedBoost
         maxSpeed *= GameplayConfiguration.SpeedBoost.maxSpeedBoost
@@ -68,6 +69,7 @@ class VehicleSprite: SKSpriteNode {
         })
     }
 
+    /// Called when vehicle touches speed reduction PowerUp
     func reduceSpeed() {
         physicsBody?.velocity /= GameplayConfiguration.SpeedReduction.currentSpeedReduction
         maxSpeed /= GameplayConfiguration.SpeedReduction.maxSpeedReduction

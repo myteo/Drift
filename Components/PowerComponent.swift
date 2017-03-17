@@ -25,7 +25,10 @@ class PowerComponent: GKComponent {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func activatePower(vehicle: VehicleSprite) {
+    func activatePower(racerSprite: SpriteComponent) {
+        guard let vehicle = racerSprite.node as? VehicleSprite else {
+            return
+        }
         switch powerUpType {
         case .speedBoost:
             vehicle.boostSpeed()

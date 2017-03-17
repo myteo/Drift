@@ -29,4 +29,13 @@ class SpriteComponent: GKComponent {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    func removeAndRespawn() {
+        let parentNode = node.parent
+        node.removeFromParent()
+        DispatchQueue.main.asyncAfter(deadline: .now() +
+            5.0, execute: {
+                parentNode?.addChild(self.node)
+        })
+    }
 }

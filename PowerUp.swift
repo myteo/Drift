@@ -30,16 +30,15 @@ class PowerUp: GKEntity, ContactNotifiableType {
     }
 
     func contactWithEntityDidBegin(_ entity: GKEntity) {
-        guard let racerSprite = entity.component(ofType: SpriteComponent.self),
-            let vehicleSprite = racerSprite.node as? VehicleSprite else {
-                return
-        }
-        guard let powerComponent = self.component(ofType: PowerComponent.self) else {
+        guard let racerSprite = entity.component(ofType: SpriteComponent.self) else {
             return
         }
-        powerComponent.activatePower(vehicle: vehicleSprite)
+        guard let spriteComponent = self.component(ofType: SpriteComponent.self),
+            let powerComponent = self.component(ofType: PowerComponent.self) else {
+                return
+        }
+        powerComponent.activatePower(racerSprite: racerSprite)
+        spriteComponent.removeAndRespawn()
 
-        // Remove power up
-        racerSprite.node.removeFromParent()
     }
 }
