@@ -10,11 +10,11 @@ import Foundation
 import MultipeerConnectivity
 
 struct MultipeerConstants {
-    
+
     // make them configuration variables later.
     static let defaultServiceType = "default-multipeer-service"
     static let defaultTimeOut: TimeInterval = 10
     static let defaultSecurityIdentity: [Any]? = nil
     static let defaultEncryptionPreference: MCEncryptionPreference = .none
-    
+
 }
