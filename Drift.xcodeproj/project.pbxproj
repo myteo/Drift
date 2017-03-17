@@ -41,6 +41,11 @@
 		ABDF490F1E73268A004EEC4C /* float2+Constructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF490E1E73268A004EEC4C /* float2+Constructor.swift */; };
 		ABDF49111E732745004EEC4C /* AIRacerMoveBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF49101E732745004EEC4C /* AIRacerMoveBehavior.swift */; };
 		E255B05440CD675103FD08EC /* Pods_DriftUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37F92CA2FEE3142001F7063E /* Pods_DriftUITests.framework */; };
+		F1DBCCCD1E7BACF3004050E9 /* MultipeerServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DBCCCC1E7BACF3004050E9 /* MultipeerServiceManager.swift */; };
+		F1DBCCD11E7BB61A004050E9 /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DBCCD01E7BB61A004050E9 /* Advertiser.swift */; };
+		F1DBCCD31E7BB625004050E9 /* Browser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DBCCD21E7BB625004050E9 /* Browser.swift */; };
+		F1DBCCD51E7BC29E004050E9 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DBCCD41E7BC29E004050E9 /* Session.swift */; };
+		F1DBCCD71E7BC497004050E9 /* MultipeerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DBCCD61E7BC497004050E9 /* MultipeerConstants.swift */; };
 		FA00AADA1E776FB300664EF4 /* GameplayConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA00AAD91E776FB300664EF4 /* GameplayConfiguration.swift */; };
 		FA5776381E74FFDC00853225 /* PlayerRacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5776371E74FFDC00853225 /* PlayerRacer.swift */; };
 		FA57763A1E750B9C00853225 /* AgentMoveType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5776391E750B9C00853225 /* AgentMoveType.swift */; };
@@ -110,6 +115,11 @@
 		BF2C0047DE9F134E1DE4B100 /* Pods-Drift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Drift.release.xcconfig"; path = "Pods/Target Support Files/Pods-Drift/Pods-Drift.release.xcconfig"; sourceTree = "<group>"; };
 		C333C6EFDAF087E9633E04BD /* Pods-DriftTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriftTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DriftTests/Pods-DriftTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E30465F43F032650DF3213F6 /* Pods-Drift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Drift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Drift/Pods-Drift.debug.xcconfig"; sourceTree = "<group>"; };
+		F1DBCCCC1E7BACF3004050E9 /* MultipeerServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultipeerServiceManager.swift; path = Multipeer/MultipeerServiceManager.swift; sourceTree = "<group>"; };
+		F1DBCCD01E7BB61A004050E9 /* Advertiser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Advertiser.swift; path = Multipeer/Advertiser.swift; sourceTree = "<group>"; };
+		F1DBCCD21E7BB625004050E9 /* Browser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Browser.swift; path = Multipeer/Browser.swift; sourceTree = "<group>"; };
+		F1DBCCD41E7BC29E004050E9 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Session.swift; path = Multipeer/Session.swift; sourceTree = "<group>"; };
+		F1DBCCD61E7BC497004050E9 /* MultipeerConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerConstants.swift; sourceTree = "<group>"; };
 		FA00AAD91E776FB300664EF4 /* GameplayConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameplayConfiguration.swift; path = Constants/GameplayConfiguration.swift; sourceTree = "<group>"; };
 		FA5776371E74FFDC00853225 /* PlayerRacer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerRacer.swift; path = Entities/PlayerRacer.swift; sourceTree = "<group>"; };
 		FA5776391E750B9C00853225 /* AgentMoveType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgentMoveType.swift; sourceTree = "<group>"; };
@@ -169,6 +179,7 @@
 		2422A1C01E7052F600CE2B84 = {
 			isa = PBXGroup;
 			children = (
+				F1DBCCCB1E7BAA63004050E9 /* Multipeer */,
 				2422A2011E70536700CE2B84 /* Game Classes */,
 				248667A71E70E0D200B8CE7D /* Extensions */,
 				2422A2081E7055B100CE2B84 /* Constants */,
@@ -332,6 +343,18 @@
 				248667B61E7105FA00B8CE7D /* VehicleSprite.swift */,
 			);
 			name = Sprites;
+			sourceTree = "<group>";
+		};
+		F1DBCCCB1E7BAA63004050E9 /* Multipeer */ = {
+			isa = PBXGroup;
+			children = (
+				F1DBCCCC1E7BACF3004050E9 /* MultipeerServiceManager.swift */,
+				F1DBCCD01E7BB61A004050E9 /* Advertiser.swift */,
+				F1DBCCD21E7BB625004050E9 /* Browser.swift */,
+				F1DBCCD41E7BC29E004050E9 /* Session.swift */,
+				F1DBCCD61E7BC497004050E9 /* MultipeerConstants.swift */,
+			);
+			name = Multipeer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -636,10 +659,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA57763A1E750B9C00853225 /* AgentMoveType.swift in Sources */,
+				F1DBCCD51E7BC29E004050E9 /* Session.swift in Sources */,
 				2422A1D51E7052F600CE2B84 /* GameViewController.swift in Sources */,
+				F1DBCCD11E7BB61A004050E9 /* Advertiser.swift in Sources */,
 				ABDF490F1E73268A004EEC4C /* float2+Constructor.swift in Sources */,
 				24064A131E76C7530006E2D4 /* FiringComponent.swift in Sources */,
 				248667C11E71584B00B8CE7D /* CGVector+Operations.swift in Sources */,
+				F1DBCCCD1E7BACF3004050E9 /* MultipeerServiceManager.swift in Sources */,
 				FA00AADA1E776FB300664EF4 /* GameplayConfiguration.swift in Sources */,
 				24064A171E76D9670006E2D4 /* Projectiles.swift in Sources */,
 				248667A61E707A4A00B8CE7D /* Sprites.swift in Sources */,
@@ -653,6 +679,7 @@
 				24064A151E76C9720006E2D4 /* Laser.swift in Sources */,
 				248667B71E7105FB00B8CE7D /* VehicleSprite.swift in Sources */,
 				ABDF490D1E73262D004EEC4C /* CGPoint+Constructor.swift in Sources */,
+				F1DBCCD31E7BB625004050E9 /* Browser.swift in Sources */,
 				ABDF49111E732745004EEC4C /* AIRacerMoveBehavior.swift in Sources */,
 				248667AE1E70FC7400B8CE7D /* EntityManager.swift in Sources */,
 				248667AB1E70F47300B8CE7D /* CGFloat+Operations.swift in Sources */,
@@ -660,6 +687,7 @@
 				248667BB1E711FF900B8CE7D /* CGPath+Constructor.swift in Sources */,
 				248667BF1E712E7100B8CE7D /* ColliderType.swift in Sources */,
 				ABDF490B1E730F77004EEC4C /* AIRacer.swift in Sources */,
+				F1DBCCD71E7BC497004050E9 /* MultipeerConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -816,7 +844,7 @@
 				INFOPLIST_FILE = Drift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = nus.cs3217.drift.Drifttt;
+				PRODUCT_BUNDLE_IDENTIFIER = nus.cs3217.drift.Drift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -831,7 +859,7 @@
 				INFOPLIST_FILE = Drift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = nus.cs3217.drift.Drifttt;
+				PRODUCT_BUNDLE_IDENTIFIER = nus.cs3217.drift.Drift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
