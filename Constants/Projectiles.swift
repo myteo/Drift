@@ -13,5 +13,8 @@ struct Projectiles {
     struct Laser {
         static let Name = "bulletBeigeSilver"
     }
+    struct SmartMissile {
+        static let Name = "bulletSilver_outline"
+    }
 
 }

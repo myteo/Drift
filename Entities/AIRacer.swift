@@ -18,7 +18,7 @@ class AIRacer: GKEntity {
         let spriteComponent = SpriteComponent(entity: self,
                                               spriteNode: spriteNode)
         addComponent(spriteComponent)
-        let moveComponent = MoveComponent(type: .AIRacer, node: spriteNode, entityManager: entityManager)
+        let moveComponent = MoveComponent.aiMoveComponent(node: spriteNode, entityManager: entityManager)
         addComponent(moveComponent)
     }
 

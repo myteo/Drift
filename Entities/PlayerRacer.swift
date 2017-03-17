@@ -19,7 +19,7 @@ class PlayerRacer: GKEntity {
                                               spriteNode: spriteNode)
         addComponent(spriteComponent)
 
-        let moveComponent = MoveComponent(type: .PlayerRacer,
+        let moveComponent = MoveComponent.playerMoveComponent(
                                           node: spriteNode,
                                           entityManager: entityManager)
         addComponent(moveComponent)
@@ -33,6 +33,9 @@ class PlayerRacer: GKEntity {
             return
         }
         firingComponent.fireStraightBullet()
+
+        // TODO: shift smart missile to fire with powerups only
+        firingComponent.fireSmartMissile()
     }
 
     required init?(coder aDecoder: NSCoder) {

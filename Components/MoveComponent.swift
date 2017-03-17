@@ -12,11 +12,11 @@ import GameplayKit
 
 class MoveComponent: GKAgent2D, GKAgentDelegate {
 
+    let type: AgentMoveType
     private let entityManager: EntityManager
-    private let type: AgentMoveType
     private var previousPoint: CGPoint
 
-    init(type: AgentMoveType, node: SKSpriteNode, entityManager: EntityManager) {
+    private init(type: AgentMoveType, node: SKSpriteNode, entityManager: EntityManager) {
         self.entityManager = entityManager
         self.type = type
         self.previousPoint = node.position
@@ -27,23 +27,43 @@ class MoveComponent: GKAgent2D, GKAgentDelegate {
         self.mass = type.mass
         self.radius = Float(node.size.width / 2)
 
+    }
+
+    static func playerMoveComponent(node: SKSpriteNode, entityManager: EntityManager) -> MoveComponent {
+        // is a static agent, does not need any behavior
+        let moveComponent = MoveComponent(type: .PlayerRacer, node: node, entityManager: entityManager)
+        return moveComponent
+    }
+
+    static func aiMoveComponent(node: SKSpriteNode, entityManager: EntityManager) -> MoveComponent {
+        let moveComponent = MoveComponent(type: .AIRacer, node: node, entityManager: entityManager)
+
         guard let gameScene = node.scene as? GameScene else {
-            return
+            fatalError("Node does not belong to a gamescene. Should not happen")
         }
 
-        switch type {
-        case .AIRacer:
-            behavior = AIRacerMoveBehavior(
-                targetSpeed: maxSpeed,
-                avoid: entityManager.getAllVehicleAgents(),
-                permanentObstacles: gameScene.aiMovementBoundaries,
-                waypoints: gameScene.aiMovementWaypoints
-            )
+        moveComponent.behavior = AIRacerMoveBehavior(
+            targetSpeed: moveComponent.maxSpeed,
+            avoid: entityManager.getAllVehicleAgents(),
+            permanentObstacles: gameScene.aiMovementBoundaries,
+            waypoints: gameScene.aiMovementWaypoints
+        )
 
-        case .PlayerRacer:
-            //nothing to do
-            behavior = nil
+        return moveComponent
+    }
+
+    static func smartMissileMoveComponent(node: SKSpriteNode, entityManager: EntityManager, agentsToExclude: [GKAgent2D]) -> MoveComponent {
+
+        let moveComponent = MoveComponent(type: .SmartMissile, node: node, entityManager: entityManager)
+        guard let closest = entityManager.closestVehicleAgent(point: node.position, excluding: agentsToExclude) else {
+            fatalError("No agent to fire at, should not happen!")
         }
+        moveComponent.behavior = AIProjectileMoveBehavior(
+            targetSpeed: moveComponent.maxSpeed,
+            seek: closest,
+            obstaclesToAvoid: []
+        )
+        return moveComponent
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -85,13 +105,13 @@ class MoveComponent: GKAgent2D, GKAgentDelegate {
         switch type {
         case .PlayerRacer:
             // update agent's speed & rotation, might be required for behaviors of other agents
+            // this behavior is required for PlayerRacer, as it has a static agent
             if let velocity = spriteComponent.node.physicsBody?.velocity {
                 self.speed = Float(velocity.magnitude)
                 self.rotation = atan2(Float(velocity.dy), Float(velocity.dx))
             }
         default:
             break
-            // nothing to do 
         }
     }
 

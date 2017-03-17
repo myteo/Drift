@@ -49,11 +49,34 @@ class EntityManager {
     func getAllVehicleAgents() -> [GKAgent2D] {
         var agents: [GKAgent2D] = []
         for entity in entities {
-            if let agent = entity.component(ofType: MoveComponent.self) {
-                agents.append(agent)
+            if let moveComponent = entity.component(ofType: MoveComponent.self) {
+                switch moveComponent.type {
+                case .AIRacer, .PlayerRacer:
+                    agents.append(moveComponent)
+                default:
+                    break
+                }
             }
         }
         return agents
+    }
+
+    func closestVehicleAgent(point: CGPoint, excluding: [GKAgent2D]) -> GKAgent2D? {
+        return getAllVehicleAgents()
+            .filter { agent in
+                return !excluding.contains(agent)
+            }
+            .reduce(nil) { result, agent in
+                guard let result = result else {
+                    return agent
+                }
+
+                let toResult = point.distance(to: CGPoint(vectorFloat2: result.position))
+                let toNew = point.distance(to: CGPoint(vectorFloat2: agent.position))
+                return toResult < toNew
+                    ? result
+                    : agent
+        }
     }
 
     func update(deltaTime: TimeInterval) {

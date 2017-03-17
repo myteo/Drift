@@ -23,6 +23,14 @@ struct GameplayConfiguration {
         static let agentMass: Float = 0.1
     }
 
+    struct SmartMissile {
+        static let agentMaxSpeed: Float = 200
+        static let agentMaxAcceleration: Float = 50
+        static let agentMass: Float = 0.2
+
+        static let seekAgentWeight: Float = 1.5
+    }
+
     struct AIRacer {
         static let agentMaxSpeed: Float = 300
         static let agentMaxAcceleration: Float = 170

@@ -39,13 +39,15 @@
 		248667C11E71584B00B8CE7D /* CGVector+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248667C01E71584B00B8CE7D /* CGVector+Operations.swift */; };
 		3F60C7B0C3E98EF66C611039 /* Pods_DriftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4924B7CAC47825295C284F0 /* Pods_DriftTests.framework */; };
 		ABDF490B1E730F77004EEC4C /* AIRacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF490A1E730F77004EEC4C /* AIRacer.swift */; };
-		ABDF490D1E73262D004EEC4C /* CGPoint+Constructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF490C1E73262D004EEC4C /* CGPoint+Constructor.swift */; };
+		ABDF490D1E73262D004EEC4C /* CGPoint+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF490C1E73262D004EEC4C /* CGPoint+Operations.swift */; };
 		ABDF490F1E73268A004EEC4C /* float2+Constructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF490E1E73268A004EEC4C /* float2+Constructor.swift */; };
 		ABDF49111E732745004EEC4C /* AIRacerMoveBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF49101E732745004EEC4C /* AIRacerMoveBehavior.swift */; };
 		E255B05440CD675103FD08EC /* Pods_DriftUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37F92CA2FEE3142001F7063E /* Pods_DriftUITests.framework */; };
 		FA00AADA1E776FB300664EF4 /* GameplayConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA00AAD91E776FB300664EF4 /* GameplayConfiguration.swift */; };
 		FA5776381E74FFDC00853225 /* PlayerRacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5776371E74FFDC00853225 /* PlayerRacer.swift */; };
 		FA57763A1E750B9C00853225 /* AgentMoveType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5776391E750B9C00853225 /* AgentMoveType.swift */; };
+		FAACA0CD1E7ADF21007A2FCD /* SmartMissile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAACA0CC1E7ADF21007A2FCD /* SmartMissile.swift */; };
+		FAACA0CF1E7AE447007A2FCD /* AIProjectileMoveBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAACA0CE1E7AE447007A2FCD /* AIProjectileMoveBehavior.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,7 +109,7 @@
 		9D8620FBB6A9799C2B9B346A /* Pods-DriftTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriftTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DriftTests/Pods-DriftTests.release.xcconfig"; sourceTree = "<group>"; };
 		A4924B7CAC47825295C284F0 /* Pods_DriftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DriftTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABDF490A1E730F77004EEC4C /* AIRacer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AIRacer.swift; path = Entities/AIRacer.swift; sourceTree = "<group>"; };
-		ABDF490C1E73262D004EEC4C /* CGPoint+Constructor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGPoint+Constructor.swift"; path = "Extensions/CGPoint+Constructor.swift"; sourceTree = "<group>"; };
+		ABDF490C1E73262D004EEC4C /* CGPoint+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGPoint+Operations.swift"; path = "Extensions/CGPoint+Operations.swift"; sourceTree = "<group>"; };
 		ABDF490E1E73268A004EEC4C /* float2+Constructor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "float2+Constructor.swift"; path = "Extensions/float2+Constructor.swift"; sourceTree = "<group>"; };
 		ABDF49101E732745004EEC4C /* AIRacerMoveBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIRacerMoveBehavior.swift; sourceTree = "<group>"; };
 		BB9E0CF8269D85D08B7F792B /* Pods-DriftUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriftUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DriftUITests/Pods-DriftUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -117,6 +119,8 @@
 		FA00AAD91E776FB300664EF4 /* GameplayConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameplayConfiguration.swift; path = Constants/GameplayConfiguration.swift; sourceTree = "<group>"; };
 		FA5776371E74FFDC00853225 /* PlayerRacer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerRacer.swift; path = Entities/PlayerRacer.swift; sourceTree = "<group>"; };
 		FA5776391E750B9C00853225 /* AgentMoveType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgentMoveType.swift; sourceTree = "<group>"; };
+		FAACA0CC1E7ADF21007A2FCD /* SmartMissile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SmartMissile.swift; path = Entities/SmartMissile.swift; sourceTree = "<group>"; };
+		FAACA0CE1E7AE447007A2FCD /* AIProjectileMoveBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIProjectileMoveBehavior.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,6 +257,7 @@
 				ABDF490A1E730F77004EEC4C /* AIRacer.swift */,
 				FA5776371E74FFDC00853225 /* PlayerRacer.swift */,
 				24064A141E76C9720006E2D4 /* Laser.swift */,
+				FAACA0CC1E7ADF21007A2FCD /* SmartMissile.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -312,7 +317,7 @@
 				248667AA1E70F47300B8CE7D /* CGFloat+Operations.swift */,
 				248667BA1E711FF800B8CE7D /* CGPath+Constructor.swift */,
 				248667C01E71584B00B8CE7D /* CGVector+Operations.swift */,
-				ABDF490C1E73262D004EEC4C /* CGPoint+Constructor.swift */,
+				ABDF490C1E73262D004EEC4C /* CGPoint+Operations.swift */,
 				ABDF490E1E73268A004EEC4C /* float2+Constructor.swift */,
 			);
 			name = Extensions;
@@ -324,6 +329,7 @@
 				248667B11E70FCEB00B8CE7D /* MoveComponent.swift */,
 				FA5776391E750B9C00853225 /* AgentMoveType.swift */,
 				ABDF49101E732745004EEC4C /* AIRacerMoveBehavior.swift */,
+				FAACA0CE1E7AE447007A2FCD /* AIProjectileMoveBehavior.swift */,
 				248667B31E70FCF900B8CE7D /* SpriteComponent.swift */,
 				24064A121E76C7530006E2D4 /* FiringComponent.swift */,
 			);
@@ -645,6 +651,7 @@
 				2422A1D51E7052F600CE2B84 /* GameViewController.swift in Sources */,
 				ABDF490F1E73268A004EEC4C /* float2+Constructor.swift in Sources */,
 				24064A131E76C7530006E2D4 /* FiringComponent.swift in Sources */,
+				FAACA0CD1E7ADF21007A2FCD /* SmartMissile.swift in Sources */,
 				248667C11E71584B00B8CE7D /* CGVector+Operations.swift in Sources */,
 				FA00AADA1E776FB300664EF4 /* GameplayConfiguration.swift in Sources */,
 				24064A171E76D9670006E2D4 /* Projectiles.swift in Sources */,
@@ -659,7 +666,8 @@
 				FA5776381E74FFDC00853225 /* PlayerRacer.swift in Sources */,
 				24064A151E76C9720006E2D4 /* Laser.swift in Sources */,
 				248667B71E7105FB00B8CE7D /* VehicleSprite.swift in Sources */,
-				ABDF490D1E73262D004EEC4C /* CGPoint+Constructor.swift in Sources */,
+				FAACA0CF1E7AE447007A2FCD /* AIProjectileMoveBehavior.swift in Sources */,
+				ABDF490D1E73262D004EEC4C /* CGPoint+Operations.swift in Sources */,
 				ABDF49111E732745004EEC4C /* AIRacerMoveBehavior.swift in Sources */,
 				248667AE1E70FC7400B8CE7D /* EntityManager.swift in Sources */,
 				248667AB1E70F47300B8CE7D /* CGFloat+Operations.swift in Sources */,
