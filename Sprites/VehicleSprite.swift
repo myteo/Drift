@@ -58,6 +58,26 @@ class VehicleSprite: SKSpriteNode {
         isDecelerating = true
     }
 
+    func boostSpeed() {
+        physicsBody?.velocity *= GameplayConfiguration.SpeedBoost.currentSpeedBoost
+        maxSpeed *= GameplayConfiguration.SpeedBoost.maxSpeedBoost
+        DispatchQueue.main.asyncAfter(deadline: .now() +
+            GameplayConfiguration.SpeedBoost.speedBoostDuration, execute: {
+                self.physicsBody?.velocity /= GameplayConfiguration.SpeedBoost.currentSpeedBoost
+                self.maxSpeed /= GameplayConfiguration.SpeedBoost.maxSpeedBoost
+        })
+    }
+
+    func reduceSpeed() {
+        physicsBody?.velocity /= GameplayConfiguration.SpeedReduction.currentSpeedReduction
+        maxSpeed /= GameplayConfiguration.SpeedReduction.maxSpeedReduction
+        DispatchQueue.main.asyncAfter(deadline: .now() +
+            GameplayConfiguration.SpeedReduction.speedReductionDuration, execute: {
+                self.physicsBody?.velocity *= GameplayConfiguration.SpeedReduction.currentSpeedReduction
+                self.maxSpeed *= GameplayConfiguration.SpeedReduction.maxSpeedReduction
+        })
+    }
+
     func getTexture(prefix: String, number: Int) -> SKTexture {
         return SKTexture(imageNamed: "\(prefix)\(number)")
     }

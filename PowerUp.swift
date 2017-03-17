@@ -38,21 +38,9 @@ class PowerUp: GKEntity, ContactNotifiableType {
         }
         switch powerUpType {
         case .speedBoost:
-            vehicleSprite.physicsBody?.velocity *= GameplayConfiguration.SpeedBoost.currentSpeedBoost
-            vehicleSprite.maxSpeed *= GameplayConfiguration.SpeedBoost.maxSpeedBoost
-            DispatchQueue.main.asyncAfter(deadline: .now() +
-                GameplayConfiguration.SpeedBoost.speedBoostDuration, execute: {
-                    vehicleSprite.physicsBody?.velocity /= GameplayConfiguration.SpeedBoost.currentSpeedBoost
-                    vehicleSprite.maxSpeed /= GameplayConfiguration.SpeedBoost.maxSpeedBoost
-            })
+            vehicleSprite.boostSpeed()
         case .speedReduction:
-            vehicleSprite.physicsBody?.velocity /= GameplayConfiguration.SpeedReduction.currentSpeedReduction
-            vehicleSprite.maxSpeed /= GameplayConfiguration.SpeedReduction.maxSpeedReduction
-            DispatchQueue.main.asyncAfter(deadline: .now() +
-                GameplayConfiguration.SpeedReduction.speedReductionDuration, execute: {
-                    vehicleSprite.physicsBody?.velocity *= GameplayConfiguration.SpeedReduction.currentSpeedReduction
-                    vehicleSprite.maxSpeed *= GameplayConfiguration.SpeedReduction.maxSpeedReduction
-            })
+            vehicleSprite.reduceSpeed()
         }
         // Remove power up
         guard let spriteComponent = self.component(ofType: SpriteComponent.self) else {
