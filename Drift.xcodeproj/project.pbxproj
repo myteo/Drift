@@ -48,6 +48,10 @@
 		F1DBCCDD1E7C029B004050E9 /* MultipeerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DBCCDC1E7C029B004050E9 /* MultipeerConstants.swift */; };
 		F1DBCCE11E7C02E2004050E9 /* MultipeerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DBCCE01E7C02E2004050E9 /* MultipeerService.swift */; };
 		F1DBCCE31E7C0302004050E9 /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DBCCE21E7C0302004050E9 /* SessionDelegate.swift */; };
+		F1DBCCE81E7C0534004050E9 /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DBCCE71E7C0534004050E9 /* GameService.swift */; };
+		F1DBCCEA1E7C05B0004050E9 /* GameServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DBCCE91E7C05B0004050E9 /* GameServiceManager.swift */; };
+		F1DBCCEC1E7C061B004050E9 /* Data+Conversions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DBCCEB1E7C061B004050E9 /* Data+Conversions.swift */; };
+		F1DBCCF21E7C06CD004050E9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DBCCF11E7C06CD004050E9 /* Constants.swift */; };
 		FA00AADA1E776FB300664EF4 /* GameplayConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA00AAD91E776FB300664EF4 /* GameplayConfiguration.swift */; };
 		FA5776381E74FFDC00853225 /* PlayerRacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5776371E74FFDC00853225 /* PlayerRacer.swift */; };
 		FA57763A1E750B9C00853225 /* AgentMoveType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5776391E750B9C00853225 /* AgentMoveType.swift */; };
@@ -124,6 +128,10 @@
 		F1DBCCDC1E7C029B004050E9 /* MultipeerConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultipeerConstants.swift; path = Multipeer/MultipeerConstants.swift; sourceTree = "<group>"; };
 		F1DBCCE01E7C02E2004050E9 /* MultipeerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultipeerService.swift; path = Multipeer/MultipeerService.swift; sourceTree = "<group>"; };
 		F1DBCCE21E7C0302004050E9 /* SessionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = Multipeer/SessionDelegate.swift; sourceTree = "<group>"; };
+		F1DBCCE71E7C0534004050E9 /* GameService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameService.swift; path = Multipeer/GameService.swift; sourceTree = "<group>"; };
+		F1DBCCE91E7C05B0004050E9 /* GameServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameServiceManager.swift; path = Multipeer/GameServiceManager.swift; sourceTree = "<group>"; };
+		F1DBCCEB1E7C061B004050E9 /* Data+Conversions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Data+Conversions.swift"; path = "Extensions/Data+Conversions.swift"; sourceTree = "<group>"; };
+		F1DBCCF11E7C06CD004050E9 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Constants/Constants.swift; sourceTree = "<group>"; };
 		FA00AAD91E776FB300664EF4 /* GameplayConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameplayConfiguration.swift; path = Constants/GameplayConfiguration.swift; sourceTree = "<group>"; };
 		FA5776371E74FFDC00853225 /* PlayerRacer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerRacer.swift; path = Entities/PlayerRacer.swift; sourceTree = "<group>"; };
 		FA5776391E750B9C00853225 /* AgentMoveType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgentMoveType.swift; sourceTree = "<group>"; };
@@ -303,6 +311,7 @@
 				248667B81E7118CD00B8CE7D /* Direction.swift */,
 				248667BE1E712E7100B8CE7D /* ColliderType.swift */,
 				24064A161E76D9670006E2D4 /* Projectiles.swift */,
+				F1DBCCF11E7C06CD004050E9 /* Constants.swift */,
 			);
 			name = Constants;
 			sourceTree = "<group>";
@@ -325,6 +334,7 @@
 				248667C01E71584B00B8CE7D /* CGVector+Operations.swift */,
 				ABDF490C1E73262D004EEC4C /* CGPoint+Constructor.swift */,
 				ABDF490E1E73268A004EEC4C /* float2+Constructor.swift */,
+				F1DBCCEB1E7C061B004050E9 /* Data+Conversions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -352,6 +362,15 @@
 		F1DBCCCB1E7BAA63004050E9 /* Multipeer */ = {
 			isa = PBXGroup;
 			children = (
+				F1DBCCE61E7C043E004050E9 /* Game */,
+				F1DBCCE51E7C0434004050E9 /* Service */,
+			);
+			name = Multipeer;
+			sourceTree = "<group>";
+		};
+		F1DBCCE51E7C0434004050E9 /* Service */ = {
+			isa = PBXGroup;
+			children = (
 				F1DBCCCC1E7BACF3004050E9 /* MultipeerServiceManager.swift */,
 				F1DBCCD01E7BB61A004050E9 /* Advertiser.swift */,
 				F1DBCCD21E7BB625004050E9 /* Browser.swift */,
@@ -360,7 +379,16 @@
 				F1DBCCE01E7C02E2004050E9 /* MultipeerService.swift */,
 				F1DBCCE21E7C0302004050E9 /* SessionDelegate.swift */,
 			);
-			name = Multipeer;
+			name = Service;
+			sourceTree = "<group>";
+		};
+		F1DBCCE61E7C043E004050E9 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				F1DBCCE71E7C0534004050E9 /* GameService.swift */,
+				F1DBCCE91E7C05B0004050E9 /* GameServiceManager.swift */,
+			);
+			name = Game;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -664,6 +692,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1DBCCE81E7C0534004050E9 /* GameService.swift in Sources */,
 				FA57763A1E750B9C00853225 /* AgentMoveType.swift in Sources */,
 				F1DBCCD51E7BC29E004050E9 /* Session.swift in Sources */,
 				2422A1D51E7052F600CE2B84 /* GameViewController.swift in Sources */,
@@ -676,8 +705,10 @@
 				24064A171E76D9670006E2D4 /* Projectiles.swift in Sources */,
 				248667A61E707A4A00B8CE7D /* Sprites.swift in Sources */,
 				2422A1CD1E7052F600CE2B84 /* AppDelegate.swift in Sources */,
+				F1DBCCEC1E7C061B004050E9 /* Data+Conversions.swift in Sources */,
 				248667A91E70E0F100B8CE7D /* Int+Random.swift in Sources */,
 				2414DBAD1E7A5EF0004592DE /* GameScene.swift in Sources */,
+				F1DBCCEA1E7C05B0004050E9 /* GameServiceManager.swift in Sources */,
 				248667B21E70FCEB00B8CE7D /* MoveComponent.swift in Sources */,
 				F1DBCCE31E7C0302004050E9 /* SessionDelegate.swift in Sources */,
 				248667B41E70FCF900B8CE7D /* SpriteComponent.swift in Sources */,
@@ -696,6 +727,7 @@
 				248667BF1E712E7100B8CE7D /* ColliderType.swift in Sources */,
 				ABDF490B1E730F77004EEC4C /* AIRacer.swift in Sources */,
 				F1DBCCDD1E7C029B004050E9 /* MultipeerConstants.swift in Sources */,
+				F1DBCCF21E7C06CD004050E9 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
