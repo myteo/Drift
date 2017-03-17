@@ -14,6 +14,7 @@ class VehicleSprite: SKSpriteNode {
     var imagePrefix = Sprites.Car.Colors.black
     var isAccelerating = false
     var isDecelerating = false
+    var isPoweredUp = false
 
     var maxSpeed = GameplayConfiguration.VehiclePhysics.maxSpeed
     let neutralPoint = CGFloat(100)
@@ -60,23 +61,33 @@ class VehicleSprite: SKSpriteNode {
 
     /// Called when vehicle touches speed boost PowerUp
     func boostSpeed() {
+        guard !isPoweredUp else {
+            return
+        }
+        isPoweredUp = true
         physicsBody?.velocity *= GameplayConfiguration.SpeedBoost.currentSpeedBoost
         maxSpeed *= GameplayConfiguration.SpeedBoost.maxSpeedBoost
         DispatchQueue.main.asyncAfter(deadline: .now() +
             GameplayConfiguration.SpeedBoost.speedBoostDuration, execute: {
                 self.physicsBody?.velocity /= GameplayConfiguration.SpeedBoost.currentSpeedBoost
                 self.maxSpeed /= GameplayConfiguration.SpeedBoost.maxSpeedBoost
+                self.isPoweredUp = false
         })
     }
 
     /// Called when vehicle touches speed reduction PowerUp
     func reduceSpeed() {
+        guard !isPoweredUp else {
+            return
+        }
+        isPoweredUp = true
         physicsBody?.velocity /= GameplayConfiguration.SpeedReduction.currentSpeedReduction
         maxSpeed /= GameplayConfiguration.SpeedReduction.maxSpeedReduction
         DispatchQueue.main.asyncAfter(deadline: .now() +
             GameplayConfiguration.SpeedReduction.speedReductionDuration, execute: {
                 self.physicsBody?.velocity *= GameplayConfiguration.SpeedReduction.currentSpeedReduction
                 self.maxSpeed *= GameplayConfiguration.SpeedReduction.maxSpeedReduction
+                self.isPoweredUp = false
         })
     }
 

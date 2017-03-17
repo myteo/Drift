@@ -26,8 +26,9 @@ class PowerComponent: GKComponent {
     }
 
     func activatePower(racerSprite: SpriteComponent) {
-        guard let vehicle = racerSprite.node as? VehicleSprite else {
-            return
+        guard let vehicle = racerSprite.node as? VehicleSprite,
+            !vehicle.isPoweredUp else {
+                return
         }
         switch powerUpType {
         case .speedBoost:
