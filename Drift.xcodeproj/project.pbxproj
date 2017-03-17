@@ -45,7 +45,9 @@
 		F1DBCCD11E7BB61A004050E9 /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DBCCD01E7BB61A004050E9 /* Advertiser.swift */; };
 		F1DBCCD31E7BB625004050E9 /* Browser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DBCCD21E7BB625004050E9 /* Browser.swift */; };
 		F1DBCCD51E7BC29E004050E9 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DBCCD41E7BC29E004050E9 /* Session.swift */; };
-		F1DBCCD71E7BC497004050E9 /* MultipeerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DBCCD61E7BC497004050E9 /* MultipeerConstants.swift */; };
+		F1DBCCDD1E7C029B004050E9 /* MultipeerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DBCCDC1E7C029B004050E9 /* MultipeerConstants.swift */; };
+		F1DBCCE11E7C02E2004050E9 /* MultipeerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DBCCE01E7C02E2004050E9 /* MultipeerService.swift */; };
+		F1DBCCE31E7C0302004050E9 /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DBCCE21E7C0302004050E9 /* SessionDelegate.swift */; };
 		FA00AADA1E776FB300664EF4 /* GameplayConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA00AAD91E776FB300664EF4 /* GameplayConfiguration.swift */; };
 		FA5776381E74FFDC00853225 /* PlayerRacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5776371E74FFDC00853225 /* PlayerRacer.swift */; };
 		FA57763A1E750B9C00853225 /* AgentMoveType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5776391E750B9C00853225 /* AgentMoveType.swift */; };
@@ -119,7 +121,9 @@
 		F1DBCCD01E7BB61A004050E9 /* Advertiser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Advertiser.swift; path = Multipeer/Advertiser.swift; sourceTree = "<group>"; };
 		F1DBCCD21E7BB625004050E9 /* Browser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Browser.swift; path = Multipeer/Browser.swift; sourceTree = "<group>"; };
 		F1DBCCD41E7BC29E004050E9 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Session.swift; path = Multipeer/Session.swift; sourceTree = "<group>"; };
-		F1DBCCD61E7BC497004050E9 /* MultipeerConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerConstants.swift; sourceTree = "<group>"; };
+		F1DBCCDC1E7C029B004050E9 /* MultipeerConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultipeerConstants.swift; path = Multipeer/MultipeerConstants.swift; sourceTree = "<group>"; };
+		F1DBCCE01E7C02E2004050E9 /* MultipeerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultipeerService.swift; path = Multipeer/MultipeerService.swift; sourceTree = "<group>"; };
+		F1DBCCE21E7C0302004050E9 /* SessionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = Multipeer/SessionDelegate.swift; sourceTree = "<group>"; };
 		FA00AAD91E776FB300664EF4 /* GameplayConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameplayConfiguration.swift; path = Constants/GameplayConfiguration.swift; sourceTree = "<group>"; };
 		FA5776371E74FFDC00853225 /* PlayerRacer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerRacer.swift; path = Entities/PlayerRacer.swift; sourceTree = "<group>"; };
 		FA5776391E750B9C00853225 /* AgentMoveType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgentMoveType.swift; sourceTree = "<group>"; };
@@ -352,7 +356,9 @@
 				F1DBCCD01E7BB61A004050E9 /* Advertiser.swift */,
 				F1DBCCD21E7BB625004050E9 /* Browser.swift */,
 				F1DBCCD41E7BC29E004050E9 /* Session.swift */,
-				F1DBCCD61E7BC497004050E9 /* MultipeerConstants.swift */,
+				F1DBCCDC1E7C029B004050E9 /* MultipeerConstants.swift */,
+				F1DBCCE01E7C02E2004050E9 /* MultipeerService.swift */,
+				F1DBCCE21E7C0302004050E9 /* SessionDelegate.swift */,
 			);
 			name = Multipeer;
 			sourceTree = "<group>";
@@ -673,6 +679,7 @@
 				248667A91E70E0F100B8CE7D /* Int+Random.swift in Sources */,
 				2414DBAD1E7A5EF0004592DE /* GameScene.swift in Sources */,
 				248667B21E70FCEB00B8CE7D /* MoveComponent.swift in Sources */,
+				F1DBCCE31E7C0302004050E9 /* SessionDelegate.swift in Sources */,
 				248667B41E70FCF900B8CE7D /* SpriteComponent.swift in Sources */,
 				2422A20A1E7055F100CE2B84 /* Tiles.swift in Sources */,
 				FA5776381E74FFDC00853225 /* PlayerRacer.swift in Sources */,
@@ -681,13 +688,14 @@
 				ABDF490D1E73262D004EEC4C /* CGPoint+Constructor.swift in Sources */,
 				F1DBCCD31E7BB625004050E9 /* Browser.swift in Sources */,
 				ABDF49111E732745004EEC4C /* AIRacerMoveBehavior.swift in Sources */,
+				F1DBCCE11E7C02E2004050E9 /* MultipeerService.swift in Sources */,
 				248667AE1E70FC7400B8CE7D /* EntityManager.swift in Sources */,
 				248667AB1E70F47300B8CE7D /* CGFloat+Operations.swift in Sources */,
 				248667B91E7118CD00B8CE7D /* Direction.swift in Sources */,
 				248667BB1E711FF900B8CE7D /* CGPath+Constructor.swift in Sources */,
 				248667BF1E712E7100B8CE7D /* ColliderType.swift in Sources */,
 				ABDF490B1E730F77004EEC4C /* AIRacer.swift in Sources */,
-				F1DBCCD71E7BC497004050E9 /* MultipeerConstants.swift in Sources */,
+				F1DBCCDD1E7C029B004050E9 /* MultipeerConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

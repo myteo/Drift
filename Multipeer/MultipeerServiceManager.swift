@@ -9,26 +9,6 @@
 import Foundation
 import MultipeerConnectivity
 
-// API for the multipeer service
-// For now, all data is sent through messages. Maybe we can extend the wrapper to
-// support streaming / resources too.
-protocol MultipeerService {
-
-    func searchForPlayers()
-
-    func isConnected() -> Bool
-
-    func getConnectedPeers() -> [MCPeerID]
-
-    func stopSearchingForPlayers()
-
-    func set(sessionDelegate: SessionDelegate)
-
-    // Sends the given data to all connected peers.
-    func send(data: Data, mode: MCSessionSendDataMode)
-
-}
-
 class MultipeerServiceManager: NSObject, MultipeerService {
 
     private let session = Session()
@@ -40,7 +20,7 @@ class MultipeerServiceManager: NSObject, MultipeerService {
         return Browser(session: self.session.session)
     }()
 
-    func searchForPlayers() {
+    func searchForPeers() {
         advertiser.startAdvertising()
         browser.startBrowsing()
     }
@@ -53,7 +33,7 @@ class MultipeerServiceManager: NSObject, MultipeerService {
         return session.getConnectedPeers()
     }
 
-    func stopSearchingForPlayers() {
+    func stopSearchingForPeers() {
         advertiser.stopAdvertising()
         browser.stopBrowsing()
     }
