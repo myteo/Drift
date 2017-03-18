@@ -276,7 +276,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerSprite.update()
         mainCamera.position = playerSprite.position
 
-        gameService.update(position: playerSprite.position, rotation: playerSprite.zRotation)
+        gameService.update(position: playerSprite.position)
+        gameService.update(rotation: playerSprite.zRotation)
         // Default GameKit boilerplate
         // Initialize _lastUpdateTime if it has not already been
         if self.lastUpdateTime == 0 {
@@ -297,6 +298,7 @@ extension GameScene: GameServiceManagerDelegate {
 
     func connecting(to peerID: MCPeerID) {
         // post announcement on screen of new player
+        // TODO: fix this
 
         let playerConnectingMessage = SKLabelNode(fontNamed: "Futura-Medium")
         playerConnectingMessage.text = "\(peerID) is connecting to the game!"
@@ -331,9 +333,11 @@ extension GameScene: GameServiceManagerDelegate {
         otherPlayers[peerID] = nil
     }
     
-    func playerChanged(for peerID: MCPeerID, to position: CGPoint, with rotation: CGFloat) {
+    func positionChanged(for peerID: MCPeerID, to position: CGPoint) {
         otherPlayers[peerID]?.position = position
-        otherPlayers[peerID]?.zRotation = rotation
     }
 
+    func rotationChanged(for peerID: MCPeerID, to rotation: CGFloat) {
+        otherPlayers[peerID]?.zRotation = rotation
+    }
 }

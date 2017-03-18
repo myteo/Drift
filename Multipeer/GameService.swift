@@ -13,5 +13,7 @@ protocol GameService {
 
     func set(delegate: GameServiceManagerDelegate)
 
-    func update(position: CGPoint, rotation: CGFloat)
+    func update(position: CGPoint)
+    
+    func update(rotation: CGFloat)
 }
