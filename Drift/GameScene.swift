@@ -18,6 +18,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var brakeSprite: SKSpriteNode!
     var acceleratorSprite: SKSpriteNode!
     var weaponSprite: SKSpriteNode!
+    var useItemSprite: SKSpriteNode!
 
     // Entity-Component System
     var entityManager: EntityManager!
@@ -84,6 +85,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     func setupUI() {
         weaponSprite = mainCamera.childNode(withName: Sprites.Names.weapon) as! SKSpriteNode
+        useItemSprite = mainCamera.childNode(withName: Sprites.Names.item) as! SKSpriteNode
         setupPedals()
         setupSteering()
     }
@@ -245,6 +247,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first, weaponSprite == atPoint(touch.location(in: self)) {
             playerRacer.fireWeapon()
+        }
+        if let touch = touches.first, useItemSprite == atPoint(touch.location(in: self)) {
+            playerRacer.useItem()
         }
     }
 

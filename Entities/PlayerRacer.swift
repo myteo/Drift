@@ -34,7 +34,13 @@ class PlayerRacer: GKEntity {
         }
         firingComponent.fireStraightBullet()
 
-        // TODO: shift smart missile to fire with powerups only
+    }
+    
+    func useItem() {
+        // TODO: change this out when inventory system is implemented
+        guard let firingComponent = self.component(ofType: FiringComponent.self) else {
+            return
+        }
         firingComponent.fireSmartMissile()
     }
 
