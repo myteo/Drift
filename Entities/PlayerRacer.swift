@@ -35,7 +35,7 @@ class PlayerRacer: GKEntity {
         firingComponent.fireStraightBullet()
 
     }
-    
+
     func useItem() {
         // TODO: change this out when inventory system is implemented
         guard let firingComponent = self.component(ofType: FiringComponent.self) else {
