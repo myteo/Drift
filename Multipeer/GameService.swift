@@ -13,6 +13,6 @@ protocol GameService {
     
     func update(position: CGPoint)
     
-    func update(direction: CGPoint)
+    // func update(direction: CGPoint)
     
 }

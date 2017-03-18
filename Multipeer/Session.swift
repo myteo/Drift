@@ -21,7 +21,7 @@ class Session: NSObject {
         return session
     }()
 
-    weak var sessionDelegate: SessionDelegate?
+    weak var delegate: SessionDelegate?
 
     func isConnected() -> Bool {
         return session.connectedPeers.count > 0
@@ -42,16 +42,16 @@ extension Session: MCSessionDelegate {
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         DispatchQueue.main.async {
             switch state {
-            case .connected: self.sessionDelegate?.connected(to: peerID)
-            case .connecting: self.sessionDelegate?.connecting(to: peerID)
-            case .notConnected: self.sessionDelegate?.disconnected(from: peerID)
+            case .connected: self.delegate?.connected(to: peerID)
+            case .connecting: self.delegate?.connecting(to: peerID)
+            case .notConnected: self.delegate?.disconnected(from: peerID)
             }
         }
     }
 
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         DispatchQueue.main.async {
-            self.sessionDelegate?.received(data: data, from: peerID)
+            self.delegate?.received(data: data, from: peerID)
         }
     }
 
