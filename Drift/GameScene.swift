@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     var graphs = [String: GKGraph]()
 
     // Analog Joystick
@@ -40,6 +40,7 @@ class GameScene: SKScene {
 
     override func didMove(to view: SKView) {
         loadBGNodes()
+        setupPhysicsWorld()
         setupEntities()
         setupObjects()
         setupCamera()
@@ -65,6 +66,10 @@ class GameScene: SKScene {
         treesBG = childNode(withName: "Trees")
     }
 
+    func setupPhysicsWorld() {
+        physicsWorld.contactDelegate = self
+    }
+
     func setupEntities() {
         entityManager = EntityManager(scene: self)
     }
@@ -74,6 +79,7 @@ class GameScene: SKScene {
         setupAIMovement()
         setupAIRacers()
         setupObstacles()
+        setupPowerUps()
     }
 
     func setupUI() {
@@ -189,10 +195,50 @@ class GameScene: SKScene {
         }
     }
 
+    func setupPowerUps() {
+        guard let powerUps = self.childNode(withName: "PowerUps")?.children else {
+            return
+        }
+        for powerUp in powerUps {
+            guard let powerUpSprite = powerUp as? PowerUpSprite else {
+                continue
+            }
+            powerUpSprite.initPowerUp()
+            if powerUp.name == "SpeedBoost" {
+                let speedBoostEntity = PowerUp(powerUpType: .speedBoost,
+                                               spriteNode: powerUpSprite,
+                                               entityManager: entityManager)
+                entityManager.add(speedBoostEntity)
+            } else if powerUp.name == "SpeedReduction" {
+                let speedReductionEntity = PowerUp(powerUpType: .speedReduction,
+                                                   spriteNode: powerUpSprite,
+                                                   entityManager: entityManager)
+                entityManager.add(speedReductionEntity)
+            }
+        }
+    }
+
     func setupCamera() {
         mainCamera = self.childNode(withName: "MainCamera") as! SKCameraNode
         mainCamera.zPosition = 10
         self.camera = mainCamera
+    }
+
+    func didBegin(_ contact: SKPhysicsContact) {
+        guard contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask ==
+            ColliderType.Vehicles | ColliderType.PowerUp else {
+                return
+        }
+        guard let entityA = contact.bodyA.node?.entity,
+            let entityB = contact.bodyB.node?.entity else {
+                return
+        }
+        if let notifiableA = entityA as? ContactNotifiableType {
+            notifiableA.contactWithEntityDidBegin(entityB)
+        }
+        if let notifiableB = entityB as? ContactNotifiableType {
+            notifiableB.contactWithEntityDidBegin(entityA)
+        }
     }
 
     // MARK: Touches
