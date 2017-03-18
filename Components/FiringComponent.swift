@@ -71,11 +71,11 @@ class FiringComponent: GKComponent {
             return
         }
 
+        // shift the missile to the head of the vehicle
         let zRotation = vehicle.zRotation
         missileSpriteComponent.node.position.x += zRotation.getVector().dx * vehicle.size.height / 2
         missileSpriteComponent.node.position.y += zRotation.getVector().dy * vehicle.size.height / 2
         missileSpriteComponent.node.zRotation = zRotation
-
         missileSpriteComponent.node.zPosition = 1
 
         // TODO: add physics body after powerup collection is added & make missile disappear properly

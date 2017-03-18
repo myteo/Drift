@@ -18,6 +18,7 @@ struct Sprites {
         static let antiClockwise = "AntiClockwise"
         static let clockwise = "Clockwise"
         static let weapon = "WeaponSprite"
+        static let item = "ItemSprite"
         static let steering = "SteeringSprite"
     }
 

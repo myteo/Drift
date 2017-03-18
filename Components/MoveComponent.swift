@@ -63,6 +63,7 @@ class MoveComponent: GKAgent2D, GKAgentDelegate {
             seek: closest,
             obstaclesToAvoid: []
         )
+
         return moveComponent
     }
 
@@ -79,6 +80,7 @@ class MoveComponent: GKAgent2D, GKAgentDelegate {
         }
         position = float2(spriteComponent.node.position)
         previousPoint = spriteComponent.node.position
+        rotation = Float(spriteComponent.node.zRotation.adding(CGFloat.π_2))
     }
 
     func agentDidUpdate(_ agent: GKAgent) {
