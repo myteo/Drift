@@ -12,6 +12,9 @@ import GameplayKit
 
 class FiringComponent: GKComponent {
     let entityManager: EntityManager
+    let straightBulletRange = CGFloat(1000)
+    private(set) var straightBulletInCooldown = false
+    let straightBulletCooldownDuration: TimeInterval = 0.3
 
     init(entityManager: EntityManager) {
         self.entityManager = entityManager
@@ -24,6 +27,10 @@ class FiringComponent: GKComponent {
 
     // Fires linear laser based on 
     func fireStraightBullet() {
+        guard !straightBulletInCooldown else {
+            return
+        }
+        
         let laser = Laser(entityManager: entityManager)
 
         guard let spriteComponent = entity?.component(ofType: SpriteComponent.self),
@@ -40,10 +47,9 @@ class FiringComponent: GKComponent {
         laserSpriteComponent.node.physicsBody = SKPhysicsBody(rectangleOf: laserSpriteComponent.node.size)
         laserSpriteComponent.node.physicsBody?.allowsRotation = false
         let laserPointsPerSecond = CGFloat(500)
-        let laserDistance = CGFloat(1000)
 
-        let target = zRotation.getVector() * laserDistance
-        let duration = laserDistance / laserPointsPerSecond
+        let target = zRotation.getVector() * straightBulletRange
+        let duration = straightBulletRange / laserPointsPerSecond
 
         laserSpriteComponent.node.zRotation = zRotation
         laserSpriteComponent.node.zPosition = 1
@@ -55,6 +61,12 @@ class FiringComponent: GKComponent {
         )
 
         entityManager.add(laser)
+        
+        straightBulletInCooldown = true
+        let when = DispatchTime.now() + straightBulletCooldownDuration
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            self.straightBulletInCooldown = false
+        }
 
     }
 

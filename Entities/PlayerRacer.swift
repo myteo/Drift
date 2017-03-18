@@ -26,6 +26,10 @@ class PlayerRacer: GKEntity {
 
         let firingComponent = FiringComponent(entityManager: entityManager)
         addComponent(firingComponent)
+        
+        // TODO: Remove later
+        let autofire = AutomaticFiringComponent(entityManager: entityManager)
+        addComponent(autofire)
     }
 
     func fireWeapon() {

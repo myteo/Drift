@@ -19,7 +19,8 @@ class EntityManager {
 
     lazy var componentSystems: [GKComponentSystem] = {
         let moveSystem = GKComponentSystem(componentClass: MoveComponent.self)
-        return [moveSystem]
+        let automaticFiringSystem = GKComponentSystem(componentClass: AutomaticFiringComponent.self)
+        return [moveSystem, automaticFiringSystem]
     }()
 
     init(scene: SKScene) {

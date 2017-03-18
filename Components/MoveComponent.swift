@@ -26,7 +26,7 @@ class MoveComponent: GKAgent2D, GKAgentDelegate {
         self.maxAcceleration = type.maxAcceleration
         self.mass = type.mass
         self.radius = Float(node.size.width / 2)
-
+        updateAgentPositionUsingSprite()
     }
 
     static func playerMoveComponent(node: SKSpriteNode, entityManager: EntityManager) -> MoveComponent {
@@ -42,12 +42,14 @@ class MoveComponent: GKAgent2D, GKAgentDelegate {
             fatalError("Node does not belong to a gamescene. Should not happen")
         }
 
+        /*
         moveComponent.behavior = AIRacerMoveBehavior(
             targetSpeed: moveComponent.maxSpeed,
             avoid: entityManager.getAllVehicleAgents(),
             permanentObstacles: gameScene.aiMovementBoundaries,
             waypoints: gameScene.aiMovementWaypoints
         )
+ */
 
         return moveComponent
     }
@@ -75,12 +77,17 @@ class MoveComponent: GKAgent2D, GKAgentDelegate {
         if type == .PlayerRacer {
             return
         }
+        updateAgentPositionUsingSprite()
+    }
+    
+    private func updateAgentPositionUsingSprite() {
         guard let spriteComponent = entity?.component(ofType: SpriteComponent.self) else {
             return
         }
         position = float2(spriteComponent.node.position)
         previousPoint = spriteComponent.node.position
         rotation = Float(spriteComponent.node.zRotation.adding(CGFloat.π_2))
+        
     }
 
     func agentDidUpdate(_ agent: GKAgent) {
