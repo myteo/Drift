@@ -8,6 +8,7 @@
 
 import SpriteKit
 import GameplayKit
+import MultipeerConnectivity
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     var graphs = [String: GKGraph]()
@@ -35,6 +36,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var grassBG: SKTileMapNode!
     var roadBG: SKTileMapNode!
     var treesBG: SKNode!
+    
+    // Temporary multiplayer stuff
+    let gameService: GameService = GameServiceManager()
+    var otherPlayers = [MCPeerID: VehicleSprite]()
 
     private var lastUpdateTime: TimeInterval = 0
 
@@ -45,10 +50,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         setupObjects()
         setupCamera()
         setupUI()
+        setupMultiplayer()
     }
 
     override func sceneDidLoad() {
         self.lastUpdateTime = 0
+    }
+    
+    func setupMultiplayer() {
+        gameService.set(delegate: self)
     }
 
     func loadBGNodes() {
@@ -261,6 +271,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerSprite.update()
         mainCamera.position = playerSprite.position
 
+        gameService.update(position: playerSprite.position, rotation: playerSprite.zRotation)
         // Default GameKit boilerplate
         // Initialize _lastUpdateTime if it has not already been
         if self.lastUpdateTime == 0 {
@@ -275,4 +286,49 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         self.lastUpdateTime = currentTime
     }
+}
+
+extension GameScene: GameServiceManagerDelegate {
+
+    func connecting(to peerID: MCPeerID) {
+        // post announcement on screen of new player
+
+        let playerConnectingMessage = SKLabelNode(fontNamed: "Futura-Medium")
+        playerConnectingMessage.text = "\(peerID) is connecting to the game!"
+        playerConnectingMessage.fontSize = 20
+        playerConnectingMessage.position = self.view!.center
+        self.addChild(playerConnectingMessage)
+
+        UIView.animate(withDuration: 2, animations: {
+            playerConnectingMessage.alpha = 0
+        }) { _ in
+            playerConnectingMessage.removeFromParent()
+        }
+    }
+
+    func connected(to peerID: MCPeerID) {
+        // add player sprite to game
+
+        let otherPlayer = VehicleSprite(imageNamed: Sprites.Car.Colors.blue)
+        self.addChild(otherPlayer)
+
+        // reconsider this force unwrap..
+        otherPlayer.initVehicle(name: Sprites.Car.Colors.blue)
+        otherPlayer.size = playerSprite.size
+        otherPlayer.position = childNode(withName: "PlaceholderCar")!.position
+
+        otherPlayers[peerID] = otherPlayer
+    }
+
+    func disconnected(from peerID: MCPeerID) {
+        // remove player sprite from game
+        otherPlayers[peerID]?.removeFromParent()
+        otherPlayers[peerID] = nil
+    }
+    
+    func playerChanged(for peerID: MCPeerID, to position: CGPoint, with rotation: CGFloat) {
+        otherPlayers[peerID]?.position = position
+        otherPlayers[peerID]?.zRotation = rotation
+    }
+
 }

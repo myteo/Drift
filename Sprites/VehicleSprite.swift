@@ -92,6 +92,7 @@ class VehicleSprite: SKSpriteNode {
     }
 
     func getTexture(prefix: String, number: Int) -> SKTexture {
+        print("Getting \(prefix) and \(number)")
         return SKTexture(imageNamed: "\(prefix)\(number)")
     }
 
