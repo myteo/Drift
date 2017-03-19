@@ -42,7 +42,7 @@
 		AB7065D91E7B0ECD00E8DFEA /* PowerUpSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7065D81E7B0ECD00E8DFEA /* PowerUpSprite.swift */; };
 		AB7065DB1E7B11DF00E8DFEA /* ContactNotifiableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7065DA1E7B11DF00E8DFEA /* ContactNotifiableType.swift */; };
 		AB7065DD1E7B1F9500E8DFEA /* PowerUpType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7065DC1E7B1F9500E8DFEA /* PowerUpType.swift */; };
-		AB7A85701E7C68180086535B /* PowerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7A856F1E7C68180086535B /* PowerComponent.swift */; };
+		AB7A85701E7C68180086535B /* PowerUpComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7A856F1E7C68180086535B /* PowerUpComponent.swift */; };
 		ABDF490B1E730F77004EEC4C /* AIRacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF490A1E730F77004EEC4C /* AIRacer.swift */; };
 		ABDF490F1E73268A004EEC4C /* float2+Constructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF490E1E73268A004EEC4C /* float2+Constructor.swift */; };
 		ABDF49111E732745004EEC4C /* AIRacerMoveBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF49101E732745004EEC4C /* AIRacerMoveBehavior.swift */; };
@@ -128,7 +128,7 @@
 		AB7065D81E7B0ECD00E8DFEA /* PowerUpSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerUpSprite.swift; sourceTree = "<group>"; };
 		AB7065DA1E7B11DF00E8DFEA /* ContactNotifiableType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactNotifiableType.swift; sourceTree = "<group>"; };
 		AB7065DC1E7B1F9500E8DFEA /* PowerUpType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerUpType.swift; sourceTree = "<group>"; };
-		AB7A856F1E7C68180086535B /* PowerComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerComponent.swift; sourceTree = "<group>"; };
+		AB7A856F1E7C68180086535B /* PowerUpComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerUpComponent.swift; sourceTree = "<group>"; };
 		ABDF490A1E730F77004EEC4C /* AIRacer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AIRacer.swift; path = Entities/AIRacer.swift; sourceTree = "<group>"; };
 		ABDF490C1E73262D004EEC4C /* CGPoint+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGPoint+Operations.swift"; path = "Extensions/CGPoint+Operations.swift"; sourceTree = "<group>"; };
 		ABDF490E1E73268A004EEC4C /* float2+Constructor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "float2+Constructor.swift"; path = "Extensions/float2+Constructor.swift"; sourceTree = "<group>"; };
@@ -368,7 +368,7 @@
 				FA5776391E750B9C00853225 /* AgentMoveType.swift */,
 				ABDF49101E732745004EEC4C /* AIRacerMoveBehavior.swift */,
 				FAACA0CE1E7AE447007A2FCD /* AIProjectileMoveBehavior.swift */,
-				AB7A856F1E7C68180086535B /* PowerComponent.swift */,
+				AB7A856F1E7C68180086535B /* PowerUpComponent.swift */,
 				248667B31E70FCF900B8CE7D /* SpriteComponent.swift */,
 				24064A121E76C7530006E2D4 /* FiringComponent.swift */,
 			);
@@ -496,7 +496,7 @@
 				TargetAttributes = {
 					2422A1C81E7052F600CE2B84 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 93J5N959FE;
+						DevelopmentTeam = W76H98A34A;
 						ProvisioningStyle = Automatic;
 					};
 					2422A1E21E7052F700CE2B84 = {
@@ -743,7 +743,7 @@
 				248667B21E70FCEB00B8CE7D /* MoveComponent.swift in Sources */,
 				F1DBCCE31E7C0302004050E9 /* SessionDelegate.swift in Sources */,
 				248667B41E70FCF900B8CE7D /* SpriteComponent.swift in Sources */,
-				AB7A85701E7C68180086535B /* PowerComponent.swift in Sources */,
+				AB7A85701E7C68180086535B /* PowerUpComponent.swift in Sources */,
 				2422A20A1E7055F100CE2B84 /* Tiles.swift in Sources */,
 				FA5776381E74FFDC00853225 /* PlayerRacer.swift in Sources */,
 				AB7065D91E7B0ECD00E8DFEA /* PowerUpSprite.swift in Sources */,
@@ -916,7 +916,7 @@
 			baseConfigurationReference = E30465F43F032650DF3213F6 /* Pods-Drift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 93J5N959FE;
+				DEVELOPMENT_TEAM = W76H98A34A;
 				INFOPLIST_FILE = Drift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -931,7 +931,7 @@
 			baseConfigurationReference = BF2C0047DE9F134E1DE4B100 /* Pods-Drift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 93J5N959FE;
+				DEVELOPMENT_TEAM = W76H98A34A;
 				INFOPLIST_FILE = Drift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

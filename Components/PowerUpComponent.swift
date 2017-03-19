@@ -1,5 +1,5 @@
 //
-//  PowerComponent.swift
+//  PowerUpComponent.swift
 //  Drift
 //
 //  Created by Teo Ming Yi on 18/3/17.
@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
-class PowerComponent: GKComponent {
+class PowerUpComponent: GKComponent {
 
     private let entityManager: EntityManager
     private let powerUpType: PowerUpType

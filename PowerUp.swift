@@ -20,7 +20,7 @@ class PowerUp: GKEntity, ContactNotifiableType {
                                               spriteNode: spriteNode)
         addComponent(spriteComponent)
 
-        let powerComponent = PowerComponent(entityManager: entityManager,
+        let powerComponent = PowerUpComponent(entityManager: entityManager,
                                             powerUpType: powerUpType)
         addComponent(powerComponent)
     }
@@ -29,16 +29,16 @@ class PowerUp: GKEntity, ContactNotifiableType {
         fatalError("init(coder:) has not been implemented")
     }
 
+    /// Called when `PowerUp` comes into contact with `PlayerRacer` or `AIRacer`
     func contactWithEntityDidBegin(_ entity: GKEntity) {
-        guard let racerSprite = entity.component(ofType: SpriteComponent.self) else {
-            return
-        }
+        assert(entity is AIRacer || entity is PlayerRacer)
+
         guard let spriteComponent = self.component(ofType: SpriteComponent.self),
-            let powerComponent = self.component(ofType: PowerComponent.self) else {
+            let powerComponent = self.component(ofType: PowerUpComponent.self) else {
                 return
         }
-        powerComponent.activatePower(racerSprite: racerSprite)
+        /// Add powerComponent to PlayerRacer or AIRacer entity
+        entity.addComponent(powerComponent)
         spriteComponent.removeAndRespawn()
-
     }
 }
