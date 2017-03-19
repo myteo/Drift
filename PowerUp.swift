@@ -37,8 +37,10 @@ class PowerUp: GKEntity, ContactNotifiableType {
             let powerComponent = self.component(ofType: PowerUpComponent.self) else {
                 return
         }
-        /// Add powerComponent to PlayerRacer or AIRacer entity
-        entity.addComponent(powerComponent)
+        /// Add powerComponent to entity if it does not already have a PowerUpComponent
+        if entity.component(ofType: PowerUpComponent.self) == nil {
+            entity.addComponent(powerComponent)
+        }
         spriteComponent.removeAndRespawn()
     }
 }
