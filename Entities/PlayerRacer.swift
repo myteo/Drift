@@ -36,12 +36,15 @@ class PlayerRacer: GKEntity {
 
     }
 
-    func useItem() {
-        // TODO: change this out when inventory system is implemented
-        guard let firingComponent = self.component(ofType: FiringComponent.self) else {
+    func activatePowerUp() {
+        guard let powerUpComponent = self.component(ofType: PowerUpComponent.self) else {
             return
         }
-        firingComponent.fireSmartMissile()
+        powerUpComponent.activatePower()
+        /*guard let firingComponent = self.component(ofType: FiringComponent.self) else {
+            return
+        }
+        firingComponent.fireSmartMissile()*/
     }
 
     required init?(coder aDecoder: NSCoder) {

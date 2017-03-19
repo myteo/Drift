@@ -94,7 +94,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     func setupUI() {
-        weaponSprite = mainCamera.childNode(withName: Sprites.Names.weapon) as! SKSpriteNode
         useItemSprite = mainCamera.childNode(withName: Sprites.Names.item) as! SKSpriteNode
         setupPedals()
         setupSteering()
@@ -255,11 +254,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     // MARK: Touches
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touch = touches.first, weaponSprite == atPoint(touch.location(in: self)) {
-            playerRacer.fireWeapon()
-        }
         if let touch = touches.first, useItemSprite == atPoint(touch.location(in: self)) {
-            playerRacer.useItem()
+            playerRacer.activatePowerUp()
         }
     }
 

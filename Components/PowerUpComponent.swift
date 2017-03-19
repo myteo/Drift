@@ -25,16 +25,16 @@ class PowerUpComponent: GKComponent {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func activatePower(racerSprite: SpriteComponent) {
-        guard let vehicle = racerSprite.node as? VehicleSprite,
-            !vehicle.isPoweredUp else {
-                return
+    func activatePower() {
+        guard let spriteComponent = entity?.component(ofType: SpriteComponent.self),
+        let vehicleSprite = spriteComponent.node as? VehicleSprite else {
+            return
         }
         switch powerUpType {
         case .speedBoost:
-            vehicle.boostSpeed()
+            vehicleSprite.boostSpeed()
         case .speedReduction:
-            vehicle.reduceSpeed()
+            vehicleSprite.reduceSpeed()
         }
     }
 }
