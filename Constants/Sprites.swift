@@ -19,6 +19,7 @@ struct Sprites {
         static let car4Name = "menu-car4"
         static let car1Y = CGFloat(1000)
         static let car2Y = CGFloat(1400)
+        static let car3Y = CGFloat(500)
         static let duration = Double(0.5)
         static let wait = Double(0.6)
     }
