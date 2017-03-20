@@ -12,6 +12,17 @@ struct Sprites {
     static let alphaPressed = CGFloat(0.5)
     static let alphaUnpressed = CGFloat(0.75)
 
+    struct Menu {
+        static let car1Name = "menu-car1"
+        static let car2Name = "menu-car2"
+        static let car3Name = "menu-car3"
+        static let car4Name = "menu-car4"
+        static let car1Y = CGFloat(1000)
+        static let car2Y = CGFloat(1400)
+        static let duration = Double(0.5)
+        static let wait = Double(0.6)
+    }
+
     struct Names {
         static let accelerator = "Accelerator"
         static let brake = "Brake"

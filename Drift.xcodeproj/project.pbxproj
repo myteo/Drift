@@ -24,6 +24,8 @@
 		2422A1E81E7052F700CE2B84 /* DriftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2422A1E71E7052F700CE2B84 /* DriftTests.swift */; };
 		2422A1F31E7052F700CE2B84 /* DriftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2422A1F21E7052F700CE2B84 /* DriftUITests.swift */; };
 		2422A20A1E7055F100CE2B84 /* Tiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2422A2091E7055F100CE2B84 /* Tiles.swift */; };
+		243C61351E7FA5F400AD3E32 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243C61341E7FA5F400AD3E32 /* MainMenuScene.swift */; };
+		243C61391E7FA61C00AD3E32 /* MainMenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 243C61381E7FA61C00AD3E32 /* MainMenuScene.sks */; };
 		245E829D1E7AEFBB00B1EC81 /* PedalSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245E829C1E7AEFBB00B1EC81 /* PedalSprite.swift */; };
 		248407DC1E7AB80F00ED2C85 /* AnalogStick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248407DB1E7AB80F00ED2C85 /* AnalogStick.swift */; };
 		248667A61E707A4A00B8CE7D /* Sprites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248667A51E707A4A00B8CE7D /* Sprites.swift */; };
@@ -88,6 +90,8 @@
 		2422A1F21E7052F700CE2B84 /* DriftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriftUITests.swift; sourceTree = "<group>"; };
 		2422A1F41E7052F700CE2B84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2422A2091E7055F100CE2B84 /* Tiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tiles.swift; path = Constants/Tiles.swift; sourceTree = "<group>"; };
+		243C61341E7FA5F400AD3E32 /* MainMenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainMenuScene.swift; path = Drift/MainMenuScene.swift; sourceTree = "<group>"; };
+		243C61381E7FA61C00AD3E32 /* MainMenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = MainMenuScene.sks; path = Drift/MainMenuScene.sks; sourceTree = "<group>"; };
 		245E829C1E7AEFBB00B1EC81 /* PedalSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PedalSprite.swift; path = Sprites/PedalSprite.swift; sourceTree = "<group>"; };
 		248407DB1E7AB80F00ED2C85 /* AnalogStick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnalogStick.swift; path = Sprites/AnalogStick.swift; sourceTree = "<group>"; };
 		248667A51E707A4A00B8CE7D /* Sprites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sprites.swift; path = Constants/Sprites.swift; sourceTree = "<group>"; };
@@ -277,8 +281,8 @@
 		2422A2061E7053EF00CE2B84 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				2414DBAA1E7A5EF0004592DE /* GameScene.sks */,
-				2414DBAB1E7A5EF0004592DE /* GameScene.swift */,
+				243C61331E7FA5B300AD3E32 /* MainMenuScene */,
+				243C61321E7FA5A200AD3E32 /* GameScene */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -303,6 +307,24 @@
 				2414DBA31E7A5E09004592DE /* Tiles.xcassets */,
 			);
 			name = Tiles;
+			sourceTree = "<group>";
+		};
+		243C61321E7FA5A200AD3E32 /* GameScene */ = {
+			isa = PBXGroup;
+			children = (
+				2414DBAA1E7A5EF0004592DE /* GameScene.sks */,
+				2414DBAB1E7A5EF0004592DE /* GameScene.swift */,
+			);
+			name = GameScene;
+			sourceTree = "<group>";
+		};
+		243C61331E7FA5B300AD3E32 /* MainMenuScene */ = {
+			isa = PBXGroup;
+			children = (
+				243C61341E7FA5F400AD3E32 /* MainMenuScene.swift */,
+				243C61381E7FA61C00AD3E32 /* MainMenuScene.sks */,
+			);
+			name = MainMenuScene;
 			sourceTree = "<group>";
 		};
 		248667A71E70E0D200B8CE7D /* Extensions */ = {
@@ -458,6 +480,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				243C61391E7FA61C00AD3E32 /* MainMenuScene.sks in Resources */,
 				2422A1D81E7052F600CE2B84 /* Main.storyboard in Resources */,
 				2414DBA51E7A5E09004592DE /* Tiles.xcassets in Resources */,
 				2422A1DD1E7052F600CE2B84 /* LaunchScreen.storyboard in Resources */,
@@ -667,6 +690,7 @@
 				248667BB1E711FF900B8CE7D /* CGPath+Constructor.swift in Sources */,
 				248667BF1E712E7100B8CE7D /* ColliderType.swift in Sources */,
 				245E829D1E7AEFBB00B1EC81 /* PedalSprite.swift in Sources */,
+				243C61351E7FA5F400AD3E32 /* MainMenuScene.swift in Sources */,
 				ABDF490B1E730F77004EEC4C /* AIRacer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
