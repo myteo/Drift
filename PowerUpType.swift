@@ -13,7 +13,7 @@ enum PowerUpType: Int {
     case speedBoost
     case trap
     case immunity
-    case slowBullet
+    case frostBullet
     case homingMissile
     case globalDownSize
 
@@ -30,12 +30,12 @@ enum PowerUpType: Int {
             return #imageLiteral(resourceName: "trap")
         case .immunity:
             return #imageLiteral(resourceName: "immunity")
-        case .slowBullet:
-            return #imageLiteral(resourceName: "bulletBlueSilver_outline")
+        case .frostBullet:
+            return #imageLiteral(resourceName: "frostBullet")
         case .homingMissile:
-            return #imageLiteral(resourceName: "bulletRedSilver_outline")
+            return #imageLiteral(resourceName: "homingMissile")
         case .globalDownSize:
-            return #imageLiteral(resourceName: "barrel_blue")
+            return #imageLiteral(resourceName: "globalDownsize")
         }
     }
 }

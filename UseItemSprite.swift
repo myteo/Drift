@@ -15,6 +15,6 @@ class UseItemSprite: SKSpriteNode {
     }
 
     func useItem() {
-        texture = nil
+        texture = SKTexture(image: #imageLiteral(resourceName: "empty"))
     }
 }

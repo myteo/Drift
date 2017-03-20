@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "speedBoost.png",
+      "filename" : "boost.png",
       "scale" : "1x"
     },
     {

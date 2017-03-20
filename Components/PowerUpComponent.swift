@@ -34,9 +34,16 @@ class PowerUpComponent: GKComponent {
         case .speedBoost:
             vehicleSprite.boostSpeed()
         case .trap:
-            vehicleSprite.reduceSpeed()
-        default:
-            return
+            vehicleSprite.setTrap()
+        case .immunity:
+            print("gain immunity!")
+        case .frostBullet:
+            print("fire slow bullet!")
+        case .homingMissile:
+            print("fire homing missile!")
+        case .globalDownSize:
+            print("global downsize!")
+
         }
     }
 

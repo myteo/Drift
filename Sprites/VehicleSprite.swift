@@ -59,36 +59,34 @@ class VehicleSprite: SKSpriteNode {
         isDecelerating = true
     }
 
-    /// Called when vehicle touches speed boost PowerUp
+    /// Called when Racer activates speed boost PowerUp
     func boostSpeed() {
-        guard !isPoweredUp else {
-            return
-        }
-        isPoweredUp = true
         physicsBody?.velocity *= GameplayConfiguration.SpeedBoost.currentSpeedBoost
         maxSpeed *= GameplayConfiguration.SpeedBoost.maxSpeedBoost
         DispatchQueue.main.asyncAfter(deadline: .now() +
             GameplayConfiguration.SpeedBoost.speedBoostDuration, execute: {
                 self.physicsBody?.velocity /= GameplayConfiguration.SpeedBoost.currentSpeedBoost
                 self.maxSpeed /= GameplayConfiguration.SpeedBoost.maxSpeedBoost
-                self.isPoweredUp = false
         })
+    }
+
+    /// Called when Racer sets trap
+    func setTrap() {
+        let trapTexture = SKTexture(image: #imageLiteral(resourceName: "trap"))
+        let trapNode = SKSpriteNode(texture: trapTexture)
+        trapNode.position = position
+        scene?.addChild(trapNode)
     }
 
     /// Called when vehicle touches speed reduction PowerUp
     func reduceSpeed() {
-        guard !isPoweredUp else {
-            return
-        }
-        isPoweredUp = true
-        physicsBody?.velocity /= GameplayConfiguration.SpeedReduction.currentSpeedReduction
+        /*physicsBody?.velocity /= GameplayConfiguration.SpeedReduction.currentSpeedReduction
         maxSpeed /= GameplayConfiguration.SpeedReduction.maxSpeedReduction
         DispatchQueue.main.asyncAfter(deadline: .now() +
             GameplayConfiguration.SpeedReduction.speedReductionDuration, execute: {
                 self.physicsBody?.velocity *= GameplayConfiguration.SpeedReduction.currentSpeedReduction
                 self.maxSpeed *= GameplayConfiguration.SpeedReduction.maxSpeedReduction
-                self.isPoweredUp = false
-        })
+        })*/
     }
 
     func getTexture(prefix: String, number: Int) -> SKTexture {
