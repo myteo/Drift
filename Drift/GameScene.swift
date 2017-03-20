@@ -24,6 +24,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // Entity-Component System
     var entityManager: EntityManager!
 
+    // Game States
+    lazy var stateMachine: GKStateMachine = GKStateMachine(states: [
+        RaceBeforeStartState(gameScene: self),
+        RaceEndedState(gameScene: self),
+        RaceOngoingState(gameScene: self)
+    ])
+
     // Camera
     var mainCamera: SKCameraNode!
 
@@ -37,7 +44,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var grassBG: SKTileMapNode!
     var roadBG: SKTileMapNode!
     var treesBG: SKNode!
-    
+
     // Temporary multiplayer stuff
     let gameService: GameService = GameServiceManager()
     var otherPlayers = [MCPeerID: VehicleSprite]()
@@ -52,12 +59,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         setupCamera()
         setupUI()
         setupMultiplayer()
+        stateMachine.enter(RaceBeforeStartState.self)
     }
 
     override func sceneDidLoad() {
         self.lastUpdateTime = 0
     }
-    
+
     func setupMultiplayer() {
         gameService.set(delegate: self)
     }
@@ -330,7 +338,7 @@ extension GameScene: GameServiceManagerDelegate {
         otherPlayers[peerID]?.removeFromParent()
         otherPlayers[peerID] = nil
     }
-    
+
     func playerChanged(for peerID: MCPeerID, to position: CGPoint, with rotation: CGFloat) {
         otherPlayers[peerID]?.position = position
         otherPlayers[peerID]?.zRotation = rotation

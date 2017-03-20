@@ -60,6 +60,10 @@
 		F1DBCCF21E7C06CD004050E9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DBCCF11E7C06CD004050E9 /* Constants.swift */; };
 		F1DBCCF31E7CDFE0004050E9 /* CGPoint+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF490C1E73262D004EEC4C /* CGPoint+Operations.swift */; };
 		FA00AADA1E776FB300664EF4 /* GameplayConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA00AAD91E776FB300664EF4 /* GameplayConfiguration.swift */; };
+		FA20E4A41E800659003DC387 /* RaceBeforeStartState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA20E4A31E800659003DC387 /* RaceBeforeStartState.swift */; };
+		FA20E4AB1E80073F003DC387 /* RaceEndedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA20E4A91E80073F003DC387 /* RaceEndedState.swift */; };
+		FA20E4AC1E80073F003DC387 /* RaceOngoingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA20E4AA1E80073F003DC387 /* RaceOngoingState.swift */; };
+		FA20E4AE1E800758003DC387 /* GameSceneOverlayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA20E4AD1E800758003DC387 /* GameSceneOverlayState.swift */; };
 		FA5776381E74FFDC00853225 /* PlayerRacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5776371E74FFDC00853225 /* PlayerRacer.swift */; };
 		FA57763A1E750B9C00853225 /* AgentMoveType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5776391E750B9C00853225 /* AgentMoveType.swift */; };
 		FAACA0CD1E7ADF21007A2FCD /* SmartMissile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAACA0CC1E7ADF21007A2FCD /* SmartMissile.swift */; };
@@ -149,6 +153,10 @@
 		F1DBCCEB1E7C061B004050E9 /* Data+Conversions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Data+Conversions.swift"; path = "Extensions/Data+Conversions.swift"; sourceTree = "<group>"; };
 		F1DBCCF11E7C06CD004050E9 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Constants/Constants.swift; sourceTree = "<group>"; };
 		FA00AAD91E776FB300664EF4 /* GameplayConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameplayConfiguration.swift; path = Constants/GameplayConfiguration.swift; sourceTree = "<group>"; };
+		FA20E4A31E800659003DC387 /* RaceBeforeStartState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RaceBeforeStartState.swift; path = RaceStates/RaceBeforeStartState.swift; sourceTree = "<group>"; };
+		FA20E4A91E80073F003DC387 /* RaceEndedState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RaceEndedState.swift; path = RaceStates/RaceEndedState.swift; sourceTree = "<group>"; };
+		FA20E4AA1E80073F003DC387 /* RaceOngoingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RaceOngoingState.swift; path = RaceStates/RaceOngoingState.swift; sourceTree = "<group>"; };
+		FA20E4AD1E800758003DC387 /* GameSceneOverlayState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameSceneOverlayState.swift; path = RaceStates/GameSceneOverlayState.swift; sourceTree = "<group>"; };
 		FA5776371E74FFDC00853225 /* PlayerRacer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerRacer.swift; path = Entities/PlayerRacer.swift; sourceTree = "<group>"; };
 		FA5776391E750B9C00853225 /* AgentMoveType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgentMoveType.swift; sourceTree = "<group>"; };
 		FAACA0CC1E7ADF21007A2FCD /* SmartMissile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SmartMissile.swift; path = Entities/SmartMissile.swift; sourceTree = "<group>"; };
@@ -274,6 +282,7 @@
 		2422A2011E70536700CE2B84 /* Game Classes */ = {
 			isa = PBXGroup;
 			children = (
+				FA20E4A21E800542003DC387 /* Race States */,
 				248667AC1E70FBF100B8CE7D /* Components */,
 				2422A2021E70537100CE2B84 /* Entities */,
 				2422A2041E7053B500CE2B84 /* View */,
@@ -418,6 +427,17 @@
 			name = Game;
 			sourceTree = "<group>";
 		};
+		FA20E4A21E800542003DC387 /* Race States */ = {
+			isa = PBXGroup;
+			children = (
+				FA20E4A31E800659003DC387 /* RaceBeforeStartState.swift */,
+				FA20E4A91E80073F003DC387 /* RaceEndedState.swift */,
+				FA20E4AA1E80073F003DC387 /* RaceOngoingState.swift */,
+				FA20E4AD1E800758003DC387 /* GameSceneOverlayState.swift */,
+			);
+			name = "Race States";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -496,7 +516,7 @@
 				TargetAttributes = {
 					2422A1C81E7052F600CE2B84 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 93J5N959FE;
+						DevelopmentTeam = W76H98A34A;
 						ProvisioningStyle = Automatic;
 					};
 					2422A1E21E7052F700CE2B84 = {
@@ -737,6 +757,7 @@
 				AB7065DB1E7B11DF00E8DFEA /* ContactNotifiableType.swift in Sources */,
 				F1DBCCEC1E7C061B004050E9 /* Data+Conversions.swift in Sources */,
 				248667A91E70E0F100B8CE7D /* Int+Random.swift in Sources */,
+				FA20E4AB1E80073F003DC387 /* RaceEndedState.swift in Sources */,
 				248407DC1E7AB80F00ED2C85 /* AnalogStick.swift in Sources */,
 				2414DBAD1E7A5EF0004592DE /* GameScene.swift in Sources */,
 				F1DBCCEA1E7C05B0004050E9 /* GameServiceManager.swift in Sources */,
@@ -748,6 +769,7 @@
 				FA5776381E74FFDC00853225 /* PlayerRacer.swift in Sources */,
 				AB7065D91E7B0ECD00E8DFEA /* PowerUpSprite.swift in Sources */,
 				24064A151E76C9720006E2D4 /* Laser.swift in Sources */,
+				FA20E4A41E800659003DC387 /* RaceBeforeStartState.swift in Sources */,
 				248667B71E7105FB00B8CE7D /* VehicleSprite.swift in Sources */,
 				FAACA0CF1E7AE447007A2FCD /* AIProjectileMoveBehavior.swift in Sources */,
 				F1DBCCD31E7BB625004050E9 /* Browser.swift in Sources */,
@@ -763,7 +785,9 @@
 				245E829D1E7AEFBB00B1EC81 /* PedalSprite.swift in Sources */,
 				ABDF490B1E730F77004EEC4C /* AIRacer.swift in Sources */,
 				F1DBCCDD1E7C029B004050E9 /* MultipeerConstants.swift in Sources */,
+				FA20E4AC1E80073F003DC387 /* RaceOngoingState.swift in Sources */,
 				F1DBCCF21E7C06CD004050E9 /* Constants.swift in Sources */,
+				FA20E4AE1E800758003DC387 /* GameSceneOverlayState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -916,7 +940,7 @@
 			baseConfigurationReference = E30465F43F032650DF3213F6 /* Pods-Drift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 93J5N959FE;
+				DEVELOPMENT_TEAM = W76H98A34A;
 				INFOPLIST_FILE = Drift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -931,7 +955,7 @@
 			baseConfigurationReference = BF2C0047DE9F134E1DE4B100 /* Pods-Drift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 93J5N959FE;
+				DEVELOPMENT_TEAM = W76H98A34A;
 				INFOPLIST_FILE = Drift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
