@@ -12,8 +12,8 @@ import Foundation
 enum SpinDirection: String {
     case Clockwise, AntiClockwise
     static let degree = CGFloat(M_PI / 180)
-    static let degreeLimit = 6 * degree
-    static let degreeTiltLimit = 36 * degree
+    static let turnDegree = 2 * degree
+    static let degreeLimit = 3 * degree
     static let radianLimit = Double(degreeLimit.toRadian())
 }
 

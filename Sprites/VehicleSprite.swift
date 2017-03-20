@@ -42,12 +42,16 @@ class VehicleSprite: SKSpriteNode {
     }
 
     func turn(_ direction: SpinDirection, _ percent: CGFloat = 100) {
-        // Turn magniture is from 1 to 6 degrees
-        let turnMagnitude = min(SpinDirection.degree * percent / 10 * 6, 6 * SpinDirection.degree)
+        guard physicsBody!.velocity.magnitudeSquared > Sprites.Car.minimumTurningSpeed else {
+            return
+        }
+        // Turn magniture is from 0 to 2º, 3º is jittery
+        let turnMagnitude = min(SpinDirection.turnDegree * percent / 100, SpinDirection.turnDegree)
         switch direction {
         case .AntiClockwise: zRotation += turnMagnitude
         case .Clockwise: zRotation -= turnMagnitude
         }
+        applyDrag()
     }
 
     func accelerate() {
@@ -63,14 +67,18 @@ class VehicleSprite: SKSpriteNode {
     }
 
     func update() {
-        let force = zRotation.getVector() * Sprites.Car.mass
+        let force = zRotation.getVector() * Sprites.Car.forceMultiplier
         if isAccelerating {
             physicsBody?.applyForce(force)
         } else if isDecelerating {
-            physicsBody?.velocity *= 0.95
+            applyDrag()
             if physicsBody!.velocity.magnitude < neutralPoint {
                 physicsBody?.applyForce(force.reversed)
             }
         }
+    }
+
+    private func applyDrag(_ drag: CGFloat = Sprites.Car.brake) {
+        physicsBody?.velocity *= drag
     }
 }

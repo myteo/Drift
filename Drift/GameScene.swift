@@ -22,6 +22,7 @@ class GameScene: SKScene {
     var acceleratorSprite: SKSpriteNode!
     var weaponSprite: SKSpriteNode!
     var isUsingJoyStick = true
+    var isCameraRotationFixed = true
 
     // Entity-Component System
     var entityManager: EntityManager!
@@ -110,11 +111,19 @@ class GameScene: SKScene {
             // NSLog("\(jData.angular), \(jData.velocity.magnitudeSquared)")
             let stickRotation = jData.angular
             let magnitudePercent = jData.velocity.magnitudeSquared / 100
-            self.turnPlayer(stickRotation, magnitudePercent)
+            self.turnPlayer(stickRotation, magnitudePercent, !self.isCameraRotationFixed)
         }
     }
 
-    private func turnPlayer(_ stickRotation: CGFloat, _ magnitudePercent: CGFloat = 100) {
+    private func turnPlayer(_ stickRotation: CGFloat, _ magnitudePercent: CGFloat = 100, _ relative: Bool = false) {
+        if relative {
+            if stickRotation > 0 {
+                self.playerSprite.turn(SpinDirection.Clockwise)
+            } else {
+                self.playerSprite.turn(SpinDirection.AntiClockwise)
+            }
+            return
+        }
         // Only turn when: 25% analog stick displacement & difference greater than 6 degrees
         // to prevent flickering turning
         let zRotation = playerSprite.zRotation
@@ -144,10 +153,6 @@ class GameScene: SKScene {
         playerSprite.initVehicle(name: Sprites.Car.Colors.black)
         playerRacer = PlayerRacer(spriteNode: playerSprite, entityManager: entityManager)
         entityManager.add(playerRacer)
-
-        // If want to set position manually
-        // playerSprite.position = Sprites.StartLane.First
-        // addChild(player)
     }
 
     func setupAIMovement() {
@@ -218,6 +223,11 @@ class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         playerSprite.update()
         mainCamera.position = playerSprite.position
+
+        if !isCameraRotationFixed {
+            updateCameraRotation()
+        }
+
         if !isUsingJoyStick {
             updateTilt()
         }
@@ -240,6 +250,14 @@ class GameScene: SKScene {
     // MARK: Pause
     private func createPausePanel() {
         self.isPaused = true
+        var cameraRotationAction = UIAlertAction(title: "Fix rotation to screen", style: .default, handler: { _ in
+            self.fixRotationToScreen()
+        })
+        if isCameraRotationFixed {
+            cameraRotationAction = UIAlertAction(title: "Fix rotation to vehicle", style: .default, handler: { _ in
+                self.fixRotationToVehicle()
+            })
+        }
         var controlSettingAction = UIAlertAction(title: "Use joystick for steering", style: .default, handler: { _ in
             self.useJoystick()
         })
@@ -260,7 +278,7 @@ class GameScene: SKScene {
                VC: self.viewController!
             )
         })
-        Alert.generic(closeHandler: { self.resumeGame() }, actions: [controlSettingAction, quitAction],
+        Alert.generic(closeHandler: { self.resumeGame() }, actions: [controlSettingAction, cameraRotationAction, quitAction],
             title: "Game has been paused", message: "Please select an action.", VC: viewController!
         )
     }
@@ -271,7 +289,7 @@ class GameScene: SKScene {
 
     private func useTilting() {
         isUsingJoyStick = false
-        motionManager.deviceMotionUpdateInterval = 1.0
+        motionManager.deviceMotionUpdateInterval = 0.3
         motionManager.startDeviceMotionUpdates()
         steeringStick.isHidden = true
         resumeGame()
@@ -284,10 +302,25 @@ class GameScene: SKScene {
         resumeGame()
     }
 
+    private func fixRotationToScreen() {
+        isCameraRotationFixed = true
+        mainCamera.zRotation = 0
+        resumeGame()
+    }
+
+    private func fixRotationToVehicle() {
+        isCameraRotationFixed = false
+        resumeGame()
+    }
+
+    private func updateCameraRotation() {
+        mainCamera.zRotation = playerSprite.zRotation
+    }
+
     private func updateTilt() {
-        if let attitude = motionManager.deviceMotion?.attitude,
-            abs(attitude.pitch - Double(zRotation)) > SpinDirection.radianLimit {
-            turnPlayer(CGFloat(attitude.yaw.getEulerAngleRad()))
+        if let attitude = motionManager.deviceMotion?.attitude {
+            let tiltRadian = attitude.yaw * 2
+            turnPlayer(CGFloat(tiltRadian.getEulerAngleRad()))
         }
     }
 }

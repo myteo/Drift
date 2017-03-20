@@ -39,7 +39,10 @@ struct Sprites {
             static let blue = "car_blue_"
             static let black = "car_black_"
         }
-        static let mass = CGFloat(21)
+        static let minimumTurningSpeed = 3.0
+        static let mass = CGFloat(30)
+        static let brake = CGFloat(0.95)
+        static let forceMultiplier = mass * 3.9
     }
 
     struct Trees {
