@@ -18,8 +18,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var steeringSprite: SKSpriteNode!
     var brakeSprite: SKSpriteNode!
     var acceleratorSprite: SKSpriteNode!
-    var weaponSprite: SKSpriteNode!
-    var useItemSprite: SKSpriteNode!
+    var useItemSprite: UseItemSprite!
 
     // Entity-Component System
     var entityManager: EntityManager!
@@ -37,7 +36,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var grassBG: SKTileMapNode!
     var roadBG: SKTileMapNode!
     var treesBG: SKNode!
-    
+
     // Temporary multiplayer stuff
     let gameService: GameService = GameServiceManager()
     var otherPlayers = [MCPeerID: VehicleSprite]()
@@ -57,7 +56,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func sceneDidLoad() {
         self.lastUpdateTime = 0
     }
-    
+
     func setupMultiplayer() {
         gameService.set(delegate: self)
     }
@@ -94,7 +93,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     func setupUI() {
-        useItemSprite = mainCamera.childNode(withName: Sprites.Names.item) as! SKSpriteNode
+        useItemSprite = mainCamera.childNode(withName: Sprites.Names.item) as! UseItemSprite
         setupPedals()
         setupSteering()
     }
@@ -214,18 +213,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             guard let powerUpSprite = powerUp as? PowerUpSprite else {
                 continue
             }
-            powerUpSprite.initPowerUp()
-            if powerUp.name == "SpeedBoost" {
-                let speedBoostEntity = PowerUp(powerUpType: .speedBoost,
-                                               spriteNode: powerUpSprite,
-                                               entityManager: entityManager)
-                entityManager.add(speedBoostEntity)
-            } else if powerUp.name == "SpeedReduction" {
-                let speedReductionEntity = PowerUp(powerUpType: .speedReduction,
-                                                   spriteNode: powerUpSprite,
-                                                   entityManager: entityManager)
-                entityManager.add(speedReductionEntity)
-            }
+            let powerUpEntity = PowerUp(powerUpSprite: powerUpSprite,
+                                        entityManager: entityManager)
+            entityManager.add(powerUpEntity)
         }
     }
 
@@ -235,6 +225,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.camera = mainCamera
     }
 
+    // MARK: SKPhysicsContactDelegate
     func didBegin(_ contact: SKPhysicsContact) {
         guard contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask ==
             ColliderType.Vehicles | ColliderType.PowerUp else {
@@ -245,16 +236,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 return
         }
         if let notifiableA = entityA as? ContactNotifiableType {
-            notifiableA.contactWithEntityDidBegin(entityB)
+            notifiableA.contactWithEntityDidBegin(entityB, at: self)
         }
         if let notifiableB = entityB as? ContactNotifiableType {
-            notifiableB.contactWithEntityDidBegin(entityA)
+            notifiableB.contactWithEntityDidBegin(entityA, at: self)
         }
     }
 
     // MARK: Touches
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first, useItemSprite == atPoint(touch.location(in: self)) {
+            useItemSprite.useItem()
             playerRacer.activatePowerUp()
         }
     }
@@ -326,7 +318,7 @@ extension GameScene: GameServiceManagerDelegate {
         otherPlayers[peerID]?.removeFromParent()
         otherPlayers[peerID] = nil
     }
-    
+
     func playerChanged(for peerID: MCPeerID, to position: CGPoint, with rotation: CGFloat) {
         otherPlayers[peerID]?.position = position
         otherPlayers[peerID]?.zRotation = rotation

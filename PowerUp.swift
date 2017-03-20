@@ -12,17 +12,19 @@ import SpriteKit
 
 class PowerUp: GKEntity, ContactNotifiableType {
 
-    init(powerUpType: PowerUpType, spriteNode: SKSpriteNode, entityManager: EntityManager) {
+    init(powerUpSprite: PowerUpSprite, entityManager: EntityManager) {
 
         super.init()
 
+        powerUpSprite.initPowerUp()
         let spriteComponent = SpriteComponent(entity: self,
-                                              spriteNode: spriteNode)
+                                              spriteNode: powerUpSprite)
         addComponent(spriteComponent)
 
-        let powerComponent = PowerUpComponent(entityManager: entityManager,
-                                            powerUpType: powerUpType)
-        addComponent(powerComponent)
+        let powerUpType = PowerUpType.getRandomType()
+        let powerUpComponent = PowerUpComponent(entityManager: entityManager,
+                                                powerUpType: powerUpType)
+        addComponent(powerUpComponent)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -30,17 +32,31 @@ class PowerUp: GKEntity, ContactNotifiableType {
     }
 
     /// Called when `PowerUp` comes into contact with `PlayerRacer` or `AIRacer`
-    func contactWithEntityDidBegin(_ entity: GKEntity) {
+    func contactWithEntityDidBegin(_ entity: GKEntity, at scene: SKScene) {
         assert(entity is AIRacer || entity is PlayerRacer)
 
-        guard let spriteComponent = self.component(ofType: SpriteComponent.self),
-            let powerComponent = self.component(ofType: PowerUpComponent.self) else {
+        guard let spriteComponent = self.component(ofType: SpriteComponent.self)?.node as? PowerUpSprite,
+            let powerUpComponent = self.component(ofType: PowerUpComponent.self) else {
                 return
         }
         /// Add powerComponent to entity if it does not already have a PowerUpComponent
         if entity.component(ofType: PowerUpComponent.self) == nil {
-            entity.addComponent(powerComponent)
+            entity.addComponent(powerUpComponent)
+            updateUseItemSprite(racerEntity: entity,
+                                powerUpComponent: powerUpComponent,
+                                scene: scene)
         }
         spriteComponent.removeAndRespawn()
+    }
+
+    private func updateUseItemSprite(racerEntity: GKEntity,
+                                     powerUpComponent: PowerUpComponent,
+                                     scene: SKScene) {
+        guard let gameScene = scene as? GameScene,
+            racerEntity is PlayerRacer else {
+                return
+        }
+        let powerUpType = powerUpComponent.getPowerUpType()
+        gameScene.useItemSprite.updateDisplay(powerUpType)
     }
 }

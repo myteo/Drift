@@ -33,8 +33,14 @@ class PowerUpComponent: GKComponent {
         switch powerUpType {
         case .speedBoost:
             vehicleSprite.boostSpeed()
-        case .speedReduction:
+        case .trap:
             vehicleSprite.reduceSpeed()
+        default:
+            return
         }
+    }
+
+    func getPowerUpType() -> PowerUpType {
+        return powerUpType
     }
 }

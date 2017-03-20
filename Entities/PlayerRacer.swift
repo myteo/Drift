@@ -41,6 +41,7 @@ class PlayerRacer: GKEntity {
             return
         }
         powerUpComponent.activatePower()
+        removeComponent(ofType: PowerUpComponent.self)
         /*guard let firingComponent = self.component(ofType: FiringComponent.self) else {
             return
         }

@@ -10,6 +10,8 @@ import SpriteKit
 
 class PowerUpSprite: SKSpriteNode {
 
+    var originalPosition = CGPoint()
+
     func initPowerUp() {
         guard let unWrappedtexture = texture else {
             return
@@ -18,5 +20,16 @@ class PowerUpSprite: SKSpriteNode {
                                     size: unWrappedtexture.size())
         physicsBody?.categoryBitMask = ColliderType.PowerUp
         physicsBody?.contactTestBitMask = ColliderType.Vehicles
+        originalPosition = position
+    }
+
+    func removeAndRespawn() {
+        let parentNode = parent
+        removeFromParent()
+        position = originalPosition
+        DispatchQueue.main.asyncAfter(deadline: .now() +
+            5.0, execute: {
+                parentNode?.addChild(self)
+        })
     }
 }

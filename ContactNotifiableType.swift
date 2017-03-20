@@ -10,5 +10,5 @@ import GameplayKit
 
 protocol ContactNotifiableType {
 
-    func contactWithEntityDidBegin(_ entity: GKEntity)
+    func contactWithEntityDidBegin(_ entity: GKEntity, at scene: SKScene)
 }
