@@ -13,6 +13,7 @@ import GameplayKit
 class RaceBeforeStartState: GKState {
 
     unowned let gameScene: GameScene
+    private (set) var count = 3
 
     init(gameScene: GameScene) {
         self.gameScene = gameScene
@@ -27,8 +28,23 @@ class RaceBeforeStartState: GKState {
     private func startCountdown() {
         // do nothing yet maybe just a print?
         // at the end of the countdown, we can just transition to the next stage
-        print("countdown ended!")
         stateMachine?.enter(RaceOngoingState.self)
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
+            [weak self] timer in
+            guard let state = self else {
+                timer.invalidate()
+                return
+            }
+            
+            if state.count == 0 {
+                print("GO!")
+                timer.invalidate()
+            } else {
+                print("Count: \(state.count)")
+            }
+            
+            state.count = state.count - 1
+        }
     }
 
     override func isValidNextState(_ stateClass: AnyClass) -> Bool {
