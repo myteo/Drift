@@ -41,7 +41,7 @@ class VehicleSprite: SKSpriteNode {
         physicsBody?.restitution = 0.9
     }
 
-    func turn(_ direction: SpinDirection, _ percent: CGFloat) {
+    func turn(_ direction: SpinDirection, _ percent: CGFloat = 100) {
         // Turn magniture is from 1 to 6 degrees
         let turnMagnitude = min(SpinDirection.degree * percent / 10 * 6, 6 * SpinDirection.degree)
         switch direction {

@@ -8,10 +8,12 @@
 
 import SpriteKit
 import GameplayKit
+import CoreMotion
 
 class GameScene: SKScene {
     var graphs = [String: GKGraph]()
     var viewController: UIViewController?
+    var motionManager = CMMotionManager()
 
     // Analog Joystick
     var steeringStick: AnalogJoystick!
@@ -53,7 +55,7 @@ class GameScene: SKScene {
         self.lastUpdateTime = 0
     }
 
-    func loadBGNodes() {
+    private func loadBGNodes() {
         // Grass Tiles
         guard let grassBG = childNode(withName: "Grass") as? SKTileMapNode else {
             fatalError("Grass Tile set node not loaded")
@@ -68,25 +70,25 @@ class GameScene: SKScene {
         treesBG = childNode(withName: "Trees")
     }
 
-    func setupEntities() {
+    private func setupEntities() {
         entityManager = EntityManager(scene: self)
     }
 
-    func setupObjects() {
+    private func setupObjects() {
         setupPlayer()
         setupAIMovement()
         setupAIRacers()
         setupObstacles()
     }
 
-    func setupUI() {
+    private func setupUI() {
         pauseBtn = mainCamera.childNode(withName: Sprites.Names.pauseBtn) as! SKSpriteNode
         weaponSprite = mainCamera.childNode(withName: Sprites.Names.weapon) as! SKSpriteNode
         setupPedals()
         setupSteering()
     }
 
-    func setupPedals() {
+    private func setupPedals() {
         acceleratorSprite = mainCamera.childNode(withName: Sprites.Names.accelerator) as! SKSpriteNode
         let accelerator = PedalSprite(playerSprite: playerSprite, name: Sprites.Names.accelerator)
         accelerator.position = acceleratorSprite.position
@@ -98,7 +100,7 @@ class GameScene: SKScene {
         mainCamera.addChild(brake)
     }
 
-    func setupSteering() {
+    private func setupSteering() {
         steeringSprite = mainCamera.childNode(withName: Sprites.Names.steering) as! SKSpriteNode
         steeringStick = AnalogJoystick(diameters: (200, 100), colors: (UIColor.gray, UIColor.white))
         steeringStick.position = steeringSprite.position
@@ -106,33 +108,36 @@ class GameScene: SKScene {
         steeringStick.trackingHandler = { (jData: AnalogJoystickData) in
             // Angular: From top, counter-clockwise: 0 to π, clockwise: 0 to -π
             // NSLog("\(jData.angular), \(jData.velocity.magnitudeSquared)")
-            let zRotation = self.playerSprite.zRotation
             let stickRotation = jData.angular
             let magnitudePercent = jData.velocity.magnitudeSquared / 100
+            self.turnPlayer(stickRotation, magnitudePercent)
+        }
+    }
 
-            // Only turn when: 25% analog stick displacement & difference greater than 6 degrees
-            // to prevent flickering turning
-            if magnitudePercent > 25, abs(stickRotation - zRotation) > 6 * SpinDirection.degree {
-                if stickRotation > 0 {
-                    let opposite = stickRotation - CGFloat.pi
-                    if zRotation > opposite, zRotation < stickRotation {
-                        self.playerSprite.turn(SpinDirection.AntiClockwise, magnitudePercent)
-                    } else {
-                        self.playerSprite.turn(SpinDirection.Clockwise, magnitudePercent)
-                    }
-                } else { // Towards right
-                    let opposite = stickRotation + CGFloat.pi
-                    if zRotation < opposite, zRotation > stickRotation {
-                        self.playerSprite.turn(SpinDirection.Clockwise, magnitudePercent)
-                    } else {
-                        self.playerSprite.turn(SpinDirection.AntiClockwise, magnitudePercent)
-                    }
+    private func turnPlayer(_ stickRotation: CGFloat, _ magnitudePercent: CGFloat = 100) {
+        // Only turn when: 25% analog stick displacement & difference greater than 6 degrees
+        // to prevent flickering turning
+        let zRotation = playerSprite.zRotation
+        if magnitudePercent > 25, abs(stickRotation - zRotation) > SpinDirection.degreeLimit {
+            if stickRotation > 0 {
+                let opposite = stickRotation - CGFloat.pi
+                if zRotation > opposite, zRotation < stickRotation {
+                    self.playerSprite.turn(SpinDirection.AntiClockwise, magnitudePercent)
+                } else {
+                    self.playerSprite.turn(SpinDirection.Clockwise, magnitudePercent)
+                }
+            } else { // Towards right
+                let opposite = stickRotation + CGFloat.pi
+                if zRotation < opposite, zRotation > stickRotation {
+                    self.playerSprite.turn(SpinDirection.Clockwise, magnitudePercent)
+                } else {
+                    self.playerSprite.turn(SpinDirection.AntiClockwise, magnitudePercent)
                 }
             }
         }
     }
 
-    func setupPlayer() {
+    private func setupPlayer() {
         // Use node in GamePlayScene.sks to get position
         // Specify class of node as "VehicleSprite"
         playerSprite = childNode(withName: "Car") as! VehicleSprite
@@ -210,18 +215,12 @@ class GameScene: SKScene {
         }
     }
 
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-    }
-
-    func handleTouches(_ touches: Set<UITouch>) {
-    }
-
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-    }
-
     override func update(_ currentTime: TimeInterval) {
         playerSprite.update()
         mainCamera.position = playerSprite.position
+        if !isUsingJoyStick {
+            updateTilt()
+        }
 
         // Default GameKit boilerplate
         // Initialize _lastUpdateTime if it has not already been
@@ -238,6 +237,7 @@ class GameScene: SKScene {
         self.lastUpdateTime = currentTime
     }
 
+    // MARK: Pause
     private func createPausePanel() {
         self.isPaused = true
         var controlSettingAction = UIAlertAction(title: "Use joystick for steering", style: .default, handler: { _ in
@@ -271,11 +271,23 @@ class GameScene: SKScene {
 
     private func useTilting() {
         isUsingJoyStick = false
+        motionManager.deviceMotionUpdateInterval = 1.0
+        motionManager.startDeviceMotionUpdates()
+        steeringStick.isHidden = true
         resumeGame()
     }
 
     private func useJoystick() {
         isUsingJoyStick = true
+        motionManager.stopGyroUpdates()
+        steeringStick.isHidden = false
         resumeGame()
+    }
+
+    private func updateTilt() {
+        if let attitude = motionManager.deviceMotion?.attitude,
+            abs(attitude.pitch - Double(zRotation)) > SpinDirection.radianLimit {
+            turnPlayer(CGFloat(attitude.yaw.getEulerAngleRad()))
+        }
     }
 }

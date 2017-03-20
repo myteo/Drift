@@ -24,4 +24,8 @@ extension CGFloat {
     func getVector() -> CGVector {
         return CGVector(dx: cos(self + CGFloat.π_2), dy: sin(self + CGFloat.π_2))
     }
+
+    func toRadian() -> CGFloat {
+        return CGFloat(Double(self) / 180.0 * M_PI)
+    }
 }

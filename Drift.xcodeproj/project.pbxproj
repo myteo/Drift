@@ -40,6 +40,7 @@
 		248667BF1E712E7100B8CE7D /* ColliderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248667BE1E712E7100B8CE7D /* ColliderType.swift */; };
 		248667C11E71584B00B8CE7D /* CGVector+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248667C01E71584B00B8CE7D /* CGVector+Operations.swift */; };
 		24C6AF8C1E7FEA09006C073C /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C6AF8B1E7FEA08006C073C /* Alert.swift */; };
+		24D3577D1E80143800C50C5F /* Double+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3577C1E80143800C50C5F /* Double+Operations.swift */; };
 		3F60C7B0C3E98EF66C611039 /* Pods_DriftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4924B7CAC47825295C284F0 /* Pods_DriftTests.framework */; };
 		ABDF490B1E730F77004EEC4C /* AIRacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF490A1E730F77004EEC4C /* AIRacer.swift */; };
 		ABDF490D1E73262D004EEC4C /* CGPoint+Constructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF490C1E73262D004EEC4C /* CGPoint+Constructor.swift */; };
@@ -107,6 +108,7 @@
 		248667BE1E712E7100B8CE7D /* ColliderType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColliderType.swift; path = Constants/ColliderType.swift; sourceTree = "<group>"; };
 		248667C01E71584B00B8CE7D /* CGVector+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGVector+Operations.swift"; path = "Extensions/CGVector+Operations.swift"; sourceTree = "<group>"; };
 		24C6AF8B1E7FEA08006C073C /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alert.swift; path = Helpers/Alert.swift; sourceTree = "<group>"; };
+		24D3577C1E80143800C50C5F /* Double+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Double+Operations.swift"; path = "Extensions/Double+Operations.swift"; sourceTree = "<group>"; };
 		3391C658124E2CA2FABAF3CE /* Pods_Drift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Drift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		37F92CA2FEE3142001F7063E /* Pods_DriftUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DriftUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9497208AE3A551B47C1B79F7 /* Pods-DriftUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriftUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DriftUITests/Pods-DriftUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 				248667C01E71584B00B8CE7D /* CGVector+Operations.swift */,
 				ABDF490C1E73262D004EEC4C /* CGPoint+Constructor.swift */,
 				ABDF490E1E73268A004EEC4C /* float2+Constructor.swift */,
+				24D3577C1E80143800C50C5F /* Double+Operations.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -687,6 +690,7 @@
 				248667A91E70E0F100B8CE7D /* Int+Random.swift in Sources */,
 				248407DC1E7AB80F00ED2C85 /* AnalogStick.swift in Sources */,
 				2414DBAD1E7A5EF0004592DE /* GameScene.swift in Sources */,
+				24D3577D1E80143800C50C5F /* Double+Operations.swift in Sources */,
 				248667B21E70FCEB00B8CE7D /* MoveComponent.swift in Sources */,
 				248667B41E70FCF900B8CE7D /* SpriteComponent.swift in Sources */,
 				2422A20A1E7055F100CE2B84 /* Tiles.swift in Sources */,
