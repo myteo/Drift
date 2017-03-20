@@ -13,6 +13,7 @@ class MainMenuScene: SKScene {
     var allMenuCars = [SKSpriteNode]()
     var nextScene = GKScene()
     var nextSceneNode = GKScene()
+    var viewController: UIViewController?
 
     override func didMove(to view: SKView) {
         allMenuCars.append(childNode(withName: Sprites.Menu.car1Name) as! SKSpriteNode)
@@ -70,6 +71,7 @@ class MainMenuScene: SKScene {
             nextSceneNode.graphs = nextScene.graphs
             // Set the scale mode to scale to fit the window
             nextSceneNode.scaleMode = .aspectFill
+            nextSceneNode.viewController = viewController
             // Present the scene
             if let view = self.view {
                 let transition = SKTransition.crossFade(withDuration: Sprites.Menu.duration)

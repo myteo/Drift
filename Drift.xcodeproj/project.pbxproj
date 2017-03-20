@@ -39,6 +39,7 @@
 		248667BB1E711FF900B8CE7D /* CGPath+Constructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248667BA1E711FF800B8CE7D /* CGPath+Constructor.swift */; };
 		248667BF1E712E7100B8CE7D /* ColliderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248667BE1E712E7100B8CE7D /* ColliderType.swift */; };
 		248667C11E71584B00B8CE7D /* CGVector+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248667C01E71584B00B8CE7D /* CGVector+Operations.swift */; };
+		24C6AF8C1E7FEA09006C073C /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C6AF8B1E7FEA08006C073C /* Alert.swift */; };
 		3F60C7B0C3E98EF66C611039 /* Pods_DriftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4924B7CAC47825295C284F0 /* Pods_DriftTests.framework */; };
 		ABDF490B1E730F77004EEC4C /* AIRacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF490A1E730F77004EEC4C /* AIRacer.swift */; };
 		ABDF490D1E73262D004EEC4C /* CGPoint+Constructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF490C1E73262D004EEC4C /* CGPoint+Constructor.swift */; };
@@ -105,6 +106,7 @@
 		248667BA1E711FF800B8CE7D /* CGPath+Constructor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGPath+Constructor.swift"; path = "Extensions/CGPath+Constructor.swift"; sourceTree = "<group>"; };
 		248667BE1E712E7100B8CE7D /* ColliderType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColliderType.swift; path = Constants/ColliderType.swift; sourceTree = "<group>"; };
 		248667C01E71584B00B8CE7D /* CGVector+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGVector+Operations.swift"; path = "Extensions/CGVector+Operations.swift"; sourceTree = "<group>"; };
+		24C6AF8B1E7FEA08006C073C /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alert.swift; path = Helpers/Alert.swift; sourceTree = "<group>"; };
 		3391C658124E2CA2FABAF3CE /* Pods_Drift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Drift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		37F92CA2FEE3142001F7063E /* Pods_DriftUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DriftUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9497208AE3A551B47C1B79F7 /* Pods-DriftUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriftUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DriftUITests/Pods-DriftUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				2422A2011E70536700CE2B84 /* Game Classes */,
+				24C6AF8A1E7FE9DE006C073C /* Helpers */,
 				248667A71E70E0D200B8CE7D /* Extensions */,
 				2422A2081E7055B100CE2B84 /* Constants */,
 				2422A1CB1E7052F600CE2B84 /* Drift */,
@@ -321,8 +324,8 @@
 		243C61331E7FA5B300AD3E32 /* MainMenuScene */ = {
 			isa = PBXGroup;
 			children = (
-				243C61341E7FA5F400AD3E32 /* MainMenuScene.swift */,
 				243C61381E7FA61C00AD3E32 /* MainMenuScene.sks */,
+				243C61341E7FA5F400AD3E32 /* MainMenuScene.swift */,
 			);
 			name = MainMenuScene;
 			sourceTree = "<group>";
@@ -360,6 +363,14 @@
 				245E829C1E7AEFBB00B1EC81 /* PedalSprite.swift */,
 			);
 			name = Sprites;
+			sourceTree = "<group>";
+		};
+		24C6AF8A1E7FE9DE006C073C /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				24C6AF8B1E7FEA08006C073C /* Alert.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -687,6 +698,7 @@
 				248667AE1E70FC7400B8CE7D /* EntityManager.swift in Sources */,
 				248667AB1E70F47300B8CE7D /* CGFloat+Operations.swift in Sources */,
 				248667B91E7118CD00B8CE7D /* Direction.swift in Sources */,
+				24C6AF8C1E7FEA09006C073C /* Alert.swift in Sources */,
 				248667BB1E711FF900B8CE7D /* CGPath+Constructor.swift in Sources */,
 				248667BF1E712E7100B8CE7D /* ColliderType.swift in Sources */,
 				245E829D1E7AEFBB00B1EC81 /* PedalSprite.swift in Sources */,

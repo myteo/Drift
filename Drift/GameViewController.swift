@@ -14,10 +14,11 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        guard let scene = SKScene(fileNamed: "MainMenuScene") else {
+        guard let scene = MainMenuScene(fileNamed: "MainMenuScene") else {
             fatalError("Scene file not found")
         }
         if let view = self.view as! SKView? {
+            scene.viewController = self
             view.presentScene(scene)
         }
     }

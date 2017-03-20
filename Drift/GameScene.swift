@@ -11,6 +11,7 @@ import GameplayKit
 
 class GameScene: SKScene {
     var graphs = [String: GKGraph]()
+    var viewController: UIViewController?
 
     // Analog Joystick
     var steeringStick: AnalogJoystick!
@@ -18,12 +19,14 @@ class GameScene: SKScene {
     var brakeSprite: SKSpriteNode!
     var acceleratorSprite: SKSpriteNode!
     var weaponSprite: SKSpriteNode!
+    var isUsingJoyStick = true
 
     // Entity-Component System
     var entityManager: EntityManager!
 
     // Camera
     var mainCamera: SKCameraNode!
+    var pauseBtn: SKSpriteNode!
 
     // Scene Nodes
     var playerSprite: VehicleSprite!
@@ -77,6 +80,7 @@ class GameScene: SKScene {
     }
 
     func setupUI() {
+        pauseBtn = mainCamera.childNode(withName: Sprites.Names.pauseBtn) as! SKSpriteNode
         weaponSprite = mainCamera.childNode(withName: Sprites.Names.weapon) as! SKSpriteNode
         setupPedals()
         setupSteering()
@@ -197,8 +201,12 @@ class GameScene: SKScene {
 
     // MARK: Touches
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touch = touches.first, weaponSprite == atPoint(touch.location(in: self)) {
-            playerRacer.fireWeapon()
+        if let touch = touches.first {
+            switch atPoint(touch.location(in: self)) {
+            case weaponSprite: playerRacer.fireWeapon()
+            case pauseBtn: createPausePanel()
+            default: break
+            }
         }
     }
 
@@ -228,5 +236,46 @@ class GameScene: SKScene {
         entityManager.update(deltaTime: dt)
 
         self.lastUpdateTime = currentTime
+    }
+
+    private func createPausePanel() {
+        self.isPaused = true
+        var controlSettingAction = UIAlertAction(title: "Use joystick for steering", style: .default, handler: { _ in
+            self.useJoystick()
+        })
+        if isUsingJoyStick {
+            controlSettingAction = UIAlertAction(title: "Use tilting for steering", style: .default, handler: { _ in
+                self.useTilting()
+            })
+        }
+        let quitAction = UIAlertAction(title: "Exit to Main Menu", style: .destructive, handler: { _ in
+            let scene = MainMenuScene(fileNamed: "MainMenuScene")
+            scene?.viewController = self.viewController
+            Alert.showConfirmAlert(handler: {
+                self.view?.presentScene(scene)
+            }, closeHandler: {
+                self.resumeGame()
+            }, message: "Current game progress will be lost.",
+               actionTitle: "Yes, leave the game.",
+               VC: self.viewController!
+            )
+        })
+        Alert.generic(closeHandler: { self.resumeGame() }, actions: [controlSettingAction, quitAction],
+            title: "Game has been paused", message: "Please select an action.", VC: viewController!
+        )
+    }
+
+    private func resumeGame() {
+        isPaused = false
+    }
+
+    private func useTilting() {
+        isUsingJoyStick = false
+        resumeGame()
+    }
+
+    private func useJoystick() {
+        isUsingJoyStick = true
+        resumeGame()
     }
 }
