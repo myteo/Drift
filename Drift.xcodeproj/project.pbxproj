@@ -47,6 +47,11 @@
 		ABDF490F1E73268A004EEC4C /* float2+Constructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF490E1E73268A004EEC4C /* float2+Constructor.swift */; };
 		ABDF49111E732745004EEC4C /* AIRacerMoveBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF49101E732745004EEC4C /* AIRacerMoveBehavior.swift */; };
 		E255B05440CD675103FD08EC /* Pods_DriftUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37F92CA2FEE3142001F7063E /* Pods_DriftUITests.framework */; };
+		F1AC3EFB1E813D6400DAA4A3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AC3EFA1E813D6400DAA4A3 /* MainViewController.swift */; };
+		F1AC3EFD1E813D7F00DAA4A3 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AC3EFC1E813D7F00DAA4A3 /* MenuViewController.swift */; };
+		F1AC3EFF1E813D9100DAA4A3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AC3EFE1E813D9100DAA4A3 /* SettingsViewController.swift */; };
+		F1AC3F021E813DD200DAA4A3 /* MultiplayerBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AC3F011E813DD200DAA4A3 /* MultiplayerBrowserViewController.swift */; };
+		F1AC3F041E813DE700DAA4A3 /* MultiplayerLobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AC3F031E813DE700DAA4A3 /* MultiplayerLobbyViewController.swift */; };
 		F1DBCCCD1E7BACF3004050E9 /* MultipeerServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DBCCCC1E7BACF3004050E9 /* MultipeerServiceManager.swift */; };
 		F1DBCCD11E7BB61A004050E9 /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DBCCD01E7BB61A004050E9 /* Advertiser.swift */; };
 		F1DBCCD31E7BB625004050E9 /* Browser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DBCCD21E7BB625004050E9 /* Browser.swift */; };
@@ -137,6 +142,11 @@
 		BF2C0047DE9F134E1DE4B100 /* Pods-Drift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Drift.release.xcconfig"; path = "Pods/Target Support Files/Pods-Drift/Pods-Drift.release.xcconfig"; sourceTree = "<group>"; };
 		C333C6EFDAF087E9633E04BD /* Pods-DriftTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriftTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DriftTests/Pods-DriftTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E30465F43F032650DF3213F6 /* Pods-Drift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Drift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Drift/Pods-Drift.debug.xcconfig"; sourceTree = "<group>"; };
+		F1AC3EFA1E813D6400DAA4A3 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = Views/MainViewController.swift; sourceTree = "<group>"; };
+		F1AC3EFC1E813D7F00DAA4A3 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewController.swift; path = Views/MenuViewController.swift; sourceTree = "<group>"; };
+		F1AC3EFE1E813D9100DAA4A3 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = Views/SettingsViewController.swift; sourceTree = "<group>"; };
+		F1AC3F011E813DD200DAA4A3 /* MultiplayerBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultiplayerBrowserViewController.swift; path = Views/MultiplayerBrowserViewController.swift; sourceTree = "<group>"; };
+		F1AC3F031E813DE700DAA4A3 /* MultiplayerLobbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultiplayerLobbyViewController.swift; path = Views/MultiplayerLobbyViewController.swift; sourceTree = "<group>"; };
 		F1DBCCCC1E7BACF3004050E9 /* MultipeerServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultipeerServiceManager.swift; path = Multipeer/MultipeerServiceManager.swift; sourceTree = "<group>"; };
 		F1DBCCD01E7BB61A004050E9 /* Advertiser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Advertiser.swift; path = Multipeer/Advertiser.swift; sourceTree = "<group>"; };
 		F1DBCCD21E7BB625004050E9 /* Browser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Browser.swift; path = Multipeer/Browser.swift; sourceTree = "<group>"; };
@@ -235,9 +245,9 @@
 		2422A1CB1E7052F600CE2B84 /* Drift */ = {
 			isa = PBXGroup;
 			children = (
+				F1AC3EF71E81381600DAA4A3 /* Views */,
 				2422A1CC1E7052F600CE2B84 /* AppDelegate.swift */,
 				2422A1D01E7052F600CE2B84 /* Actions.sks */,
-				2422A1D41E7052F600CE2B84 /* GameViewController.swift */,
 				2414DBAE1E7A5F6C004592DE /* Sprites.xcassets */,
 				2422A1D61E7052F600CE2B84 /* Main.storyboard */,
 				2422A1DB1E7052F600CE2B84 /* LaunchScreen.storyboard */,
@@ -384,6 +394,19 @@
 				245E829C1E7AEFBB00B1EC81 /* PedalSprite.swift */,
 			);
 			name = Sprites;
+			sourceTree = "<group>";
+		};
+		F1AC3EF71E81381600DAA4A3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2422A1D41E7052F600CE2B84 /* GameViewController.swift */,
+				F1AC3EFA1E813D6400DAA4A3 /* MainViewController.swift */,
+				F1AC3EFC1E813D7F00DAA4A3 /* MenuViewController.swift */,
+				F1AC3EFE1E813D9100DAA4A3 /* SettingsViewController.swift */,
+				F1AC3F011E813DD200DAA4A3 /* MultiplayerBrowserViewController.swift */,
+				F1AC3F031E813DE700DAA4A3 /* MultiplayerLobbyViewController.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		F1DBCCCB1E7BAA63004050E9 /* Multipeer */ = {
@@ -720,13 +743,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1DBCCF31E7CDFE0004050E9 /* CGPoint+Operations.swift in Sources */,
+				F1AC3EFB1E813D6400DAA4A3 /* MainViewController.swift in Sources */,
 				F1DBCCE81E7C0534004050E9 /* GameService.swift in Sources */,
 				FA57763A1E750B9C00853225 /* AgentMoveType.swift in Sources */,
+				F1AC3EFD1E813D7F00DAA4A3 /* MenuViewController.swift in Sources */,
 				F1DBCCD51E7BC29E004050E9 /* Session.swift in Sources */,
 				2422A1D51E7052F600CE2B84 /* GameViewController.swift in Sources */,
 				F1DBCCD11E7BB61A004050E9 /* Advertiser.swift in Sources */,
 				ABDF490F1E73268A004EEC4C /* float2+Constructor.swift in Sources */,
 				24064A131E76C7530006E2D4 /* FiringComponent.swift in Sources */,
+				F1AC3F041E813DE700DAA4A3 /* MultiplayerLobbyViewController.swift in Sources */,
 				FAACA0CD1E7ADF21007A2FCD /* SmartMissile.swift in Sources */,
 				248667C11E71584B00B8CE7D /* CGVector+Operations.swift in Sources */,
 				F1DBCCCD1E7BACF3004050E9 /* MultipeerServiceManager.swift in Sources */,
@@ -740,6 +766,7 @@
 				248407DC1E7AB80F00ED2C85 /* AnalogStick.swift in Sources */,
 				2414DBAD1E7A5EF0004592DE /* GameScene.swift in Sources */,
 				F1DBCCEA1E7C05B0004050E9 /* GameServiceManager.swift in Sources */,
+				F1AC3EFF1E813D9100DAA4A3 /* SettingsViewController.swift in Sources */,
 				248667B21E70FCEB00B8CE7D /* MoveComponent.swift in Sources */,
 				F1DBCCE31E7C0302004050E9 /* SessionDelegate.swift in Sources */,
 				248667B41E70FCF900B8CE7D /* SpriteComponent.swift in Sources */,
@@ -754,6 +781,7 @@
 				ABDF49111E732745004EEC4C /* AIRacerMoveBehavior.swift in Sources */,
 				F1DBCCE11E7C02E2004050E9 /* MultipeerService.swift in Sources */,
 				248667AE1E70FC7400B8CE7D /* EntityManager.swift in Sources */,
+				F1AC3F021E813DD200DAA4A3 /* MultiplayerBrowserViewController.swift in Sources */,
 				248667AB1E70F47300B8CE7D /* CGFloat+Operations.swift in Sources */,
 				AB7065D71E7B0E2300E8DFEA /* PowerUp.swift in Sources */,
 				248667B91E7118CD00B8CE7D /* Direction.swift in Sources */,
