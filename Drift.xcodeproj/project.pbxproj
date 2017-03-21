@@ -66,6 +66,8 @@
 		FA20E4AE1E800758003DC387 /* GameSceneOverlayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA20E4AD1E800758003DC387 /* GameSceneOverlayState.swift */; };
 		FA5776381E74FFDC00853225 /* PlayerRacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5776371E74FFDC00853225 /* PlayerRacer.swift */; };
 		FA57763A1E750B9C00853225 /* AgentMoveType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5776391E750B9C00853225 /* AgentMoveType.swift */; };
+		FA6AF09C1E809C2D000DA600 /* SceneOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6AF09B1E809C2D000DA600 /* SceneOverlay.swift */; };
+		FA6AF09F1E80A4D7000DA600 /* RaceBeforeStartOverlay.sks in Resources */ = {isa = PBXBuildFile; fileRef = FA6AF09E1E80A4D7000DA600 /* RaceBeforeStartOverlay.sks */; };
 		FAACA0CD1E7ADF21007A2FCD /* SmartMissile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAACA0CC1E7ADF21007A2FCD /* SmartMissile.swift */; };
 		FAACA0CF1E7AE447007A2FCD /* AIProjectileMoveBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAACA0CE1E7AE447007A2FCD /* AIProjectileMoveBehavior.swift */; };
 /* End PBXBuildFile section */
@@ -159,6 +161,8 @@
 		FA20E4AD1E800758003DC387 /* GameSceneOverlayState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameSceneOverlayState.swift; path = RaceStates/GameSceneOverlayState.swift; sourceTree = "<group>"; };
 		FA5776371E74FFDC00853225 /* PlayerRacer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerRacer.swift; path = Entities/PlayerRacer.swift; sourceTree = "<group>"; };
 		FA5776391E750B9C00853225 /* AgentMoveType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgentMoveType.swift; sourceTree = "<group>"; };
+		FA6AF09B1E809C2D000DA600 /* SceneOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SceneOverlay.swift; path = Drift/SceneOverlay.swift; sourceTree = "<group>"; };
+		FA6AF09E1E80A4D7000DA600 /* RaceBeforeStartOverlay.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = RaceBeforeStartOverlay.sks; path = Overlays/RaceBeforeStartOverlay.sks; sourceTree = "<group>"; };
 		FAACA0CC1E7ADF21007A2FCD /* SmartMissile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SmartMissile.swift; path = Entities/SmartMissile.swift; sourceTree = "<group>"; };
 		FAACA0CE1E7AE447007A2FCD /* AIProjectileMoveBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIProjectileMoveBehavior.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -325,8 +329,10 @@
 		2422A2061E7053EF00CE2B84 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				FA6AF09D1E80A2F4000DA600 /* Overlays */,
 				2414DBAA1E7A5EF0004592DE /* GameScene.sks */,
 				2414DBAB1E7A5EF0004592DE /* GameScene.swift */,
+				FA6AF09B1E809C2D000DA600 /* SceneOverlay.swift */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -436,6 +442,14 @@
 				FA20E4AD1E800758003DC387 /* GameSceneOverlayState.swift */,
 			);
 			name = "Race States";
+			sourceTree = "<group>";
+		};
+		FA6AF09D1E80A2F4000DA600 /* Overlays */ = {
+			isa = PBXGroup;
+			children = (
+				FA6AF09E1E80A4D7000DA600 /* RaceBeforeStartOverlay.sks */,
+			);
+			name = Overlays;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -563,6 +577,7 @@
 				2422A1D11E7052F600CE2B84 /* Actions.sks in Resources */,
 				2414DBAF1E7A5F6C004592DE /* Sprites.xcassets in Resources */,
 				2414DBA41E7A5E09004592DE /* GridTiles.sks in Resources */,
+				FA6AF09F1E80A4D7000DA600 /* RaceBeforeStartOverlay.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -766,6 +781,7 @@
 				248667B41E70FCF900B8CE7D /* SpriteComponent.swift in Sources */,
 				AB7A85701E7C68180086535B /* PowerComponent.swift in Sources */,
 				2422A20A1E7055F100CE2B84 /* Tiles.swift in Sources */,
+				FA6AF09C1E809C2D000DA600 /* SceneOverlay.swift in Sources */,
 				FA5776381E74FFDC00853225 /* PlayerRacer.swift in Sources */,
 				AB7065D91E7B0ECD00E8DFEA /* PowerUpSprite.swift in Sources */,
 				24064A151E76C9720006E2D4 /* Laser.swift in Sources */,

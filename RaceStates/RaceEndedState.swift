@@ -9,11 +9,10 @@
 import SpriteKit
 import GameplayKit
 
-// TODO: implement GameSceneOverlayState instead
 class RaceEndedState: GKState {
 
     unowned let gameScene: GameScene
-
+    
     init(gameScene: GameScene) {
         self.gameScene = gameScene
     }

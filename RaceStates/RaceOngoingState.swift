@@ -12,12 +12,11 @@ import GameplayKit
 class RaceOngoingState: GKState {
 
     unowned let gameScene: GameScene
-    // TODO: add a timer
 
     init(gameScene: GameScene) {
         self.gameScene = gameScene
     }
-    
+
     override func didEnter(from previousState: GKState?) {
         super.didEnter(from: previousState)
 
