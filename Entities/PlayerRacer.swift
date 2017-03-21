@@ -42,10 +42,6 @@ class PlayerRacer: GKEntity {
         }
         powerUpComponent.activatePower()
         removeComponent(ofType: PowerUpComponent.self)
-        /*guard let firingComponent = self.component(ofType: FiringComponent.self) else {
-            return
-        }
-        firingComponent.fireSmartMissile()*/
     }
 
     required init?(coder aDecoder: NSCoder) {

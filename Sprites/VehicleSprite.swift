@@ -15,6 +15,7 @@ class VehicleSprite: SKSpriteNode {
     var isAccelerating = false
     var isDecelerating = false
     var isPoweredUp = false
+    var isImmune = false
 
     var maxSpeed = GameplayConfiguration.VehiclePhysics.maxSpeed
     let neutralPoint = CGFloat(100)
@@ -63,30 +64,40 @@ class VehicleSprite: SKSpriteNode {
     func boostSpeed() {
         physicsBody?.velocity *= GameplayConfiguration.SpeedBoost.currentSpeedBoost
         maxSpeed *= GameplayConfiguration.SpeedBoost.maxSpeedBoost
-        DispatchQueue.main.asyncAfter(deadline: .now() +
-            GameplayConfiguration.SpeedBoost.speedBoostDuration, execute: {
-                self.physicsBody?.velocity /= GameplayConfiguration.SpeedBoost.currentSpeedBoost
-                self.maxSpeed /= GameplayConfiguration.SpeedBoost.maxSpeedBoost
-        })
+    }
+
+    /// Called when Racer's speed boost PowerUp ends
+    func reduceSpeedToNormal() {
+        physicsBody?.velocity /= GameplayConfiguration.SpeedBoost.currentSpeedBoost
+        maxSpeed /= GameplayConfiguration.SpeedBoost.maxSpeedBoost
     }
 
     /// Called when Racer sets trap
     func setTrap() {
-        let trapTexture = SKTexture(image: #imageLiteral(resourceName: "trap"))
-        let trapNode = SKSpriteNode(texture: trapTexture)
-        trapNode.position = position
-        scene?.addChild(trapNode)
+        let trapTexture = SKTexture(image: #imageLiteral(resourceName: "bananaPeel"))
+        let trapSprite = TrapSprite(texture: trapTexture)
+        guard let gameScene = scene as? GameScene else {
+            return
+        }
+        let xComponent = sin(zRotation.negated())
+        let yComponent = cos(zRotation)
+        // 0.65*size.height is the distance the trap should be away from the center of the vehicle
+        let rotationVector = CGVector(dx: xComponent,
+                                      dy: yComponent).unitVector.reversed * 0.85 * size.height
+        let trapPosition = CGPoint(x: position.x + rotationVector.dx,
+                                   y: position.y + rotationVector.dy)
+        trapSprite.initTrap(at: trapPosition)
+        let trap = Trap(spriteNode: trapSprite)
+        gameScene.entityManager.add(trap)
     }
 
-    /// Called when vehicle touches speed reduction PowerUp
-    func reduceSpeed() {
-        /*physicsBody?.velocity /= GameplayConfiguration.SpeedReduction.currentSpeedReduction
-        maxSpeed /= GameplayConfiguration.SpeedReduction.maxSpeedReduction
-        DispatchQueue.main.asyncAfter(deadline: .now() +
-            GameplayConfiguration.SpeedReduction.speedReductionDuration, execute: {
-                self.physicsBody?.velocity *= GameplayConfiguration.SpeedReduction.currentSpeedReduction
-                self.maxSpeed *= GameplayConfiguration.SpeedReduction.maxSpeedReduction
-        })*/
+    /// Called when Racer activates immunity PowerUp
+    func gainImmunity() {
+        isImmune = true
+    }
+
+    func loseImmunity() {
+        isImmune = false
     }
 
     func getTexture(prefix: String, number: Int) -> SKTexture {

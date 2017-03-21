@@ -26,25 +26,66 @@ class PowerUpComponent: GKComponent {
     }
 
     func activatePower() {
-        guard let spriteComponent = entity?.component(ofType: SpriteComponent.self),
-        let vehicleSprite = spriteComponent.node as? VehicleSprite else {
-            return
-        }
         switch powerUpType {
         case .speedBoost:
-            vehicleSprite.boostSpeed()
+            activateSpeedBoost()
         case .trap:
-            vehicleSprite.setTrap()
+            setTrap()
         case .immunity:
-            print("gain immunity!")
+            gainImmunity()
         case .frostBullet:
-            print("fire slow bullet!")
+            fireFrostBullet()
         case .homingMissile:
-            print("fire homing missile!")
+            fireHomingMissile()
         case .globalDownSize:
-            print("global downsize!")
-
+            activateGlobalDownsize()
         }
+    }
+
+    func activateSpeedBoost() {
+        guard let spriteComponent = entity?.component(ofType: SpriteComponent.self),
+            let vehicleSprite = spriteComponent.node as? VehicleSprite else {
+                return
+        }
+        vehicleSprite.boostSpeed()
+        DispatchQueue.main.asyncAfter(deadline: .now() +
+            GameplayConfiguration.SpeedBoost.speedBoostDuration, execute: {
+                vehicleSprite.reduceSpeedToNormal()
+        })
+    }
+
+    func setTrap() {
+        guard let spriteComponent = entity?.component(ofType: SpriteComponent.self),
+            let vehicleSprite = spriteComponent.node as? VehicleSprite else {
+                return
+        }
+        vehicleSprite.setTrap()
+    }
+
+    func gainImmunity() {
+        guard let spriteComponent = entity?.component(ofType: SpriteComponent.self),
+            let vehicleSprite = spriteComponent.node as? VehicleSprite else {
+                return
+        }
+        vehicleSprite.gainImmunity()
+    }
+
+    func fireFrostBullet() {
+        guard let firingComponent = entity?.component(ofType: FiringComponent.self) else {
+            return
+        }
+        firingComponent.fireStraightBullet()
+    }
+
+    func fireHomingMissile() {
+        guard let firingComponent = entity?.component(ofType: FiringComponent.self) else {
+            return
+        }
+        firingComponent.fireSmartMissile()
+    }
+
+    func activateGlobalDownsize() {
+
     }
 
     func getPowerUpType() -> PowerUpType {

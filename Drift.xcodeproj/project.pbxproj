@@ -44,6 +44,8 @@
 		AB7065DD1E7B1F9500E8DFEA /* PowerUpType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7065DC1E7B1F9500E8DFEA /* PowerUpType.swift */; };
 		AB7A85701E7C68180086535B /* PowerUpComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7A856F1E7C68180086535B /* PowerUpComponent.swift */; };
 		ABA847A61E7FF36A000A0373 /* UseItemSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA847A51E7FF36A000A0373 /* UseItemSprite.swift */; };
+		ABA847A81E8148DF000A0373 /* Trap.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA847A71E8148DF000A0373 /* Trap.swift */; };
+		ABA847AA1E814B28000A0373 /* TrapSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA847A91E814B28000A0373 /* TrapSprite.swift */; };
 		ABDF490B1E730F77004EEC4C /* AIRacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF490A1E730F77004EEC4C /* AIRacer.swift */; };
 		ABDF490F1E73268A004EEC4C /* float2+Constructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF490E1E73268A004EEC4C /* float2+Constructor.swift */; };
 		ABDF49111E732745004EEC4C /* AIRacerMoveBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF49101E732745004EEC4C /* AIRacerMoveBehavior.swift */; };
@@ -131,6 +133,8 @@
 		AB7065DC1E7B1F9500E8DFEA /* PowerUpType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerUpType.swift; sourceTree = "<group>"; };
 		AB7A856F1E7C68180086535B /* PowerUpComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerUpComponent.swift; sourceTree = "<group>"; };
 		ABA847A51E7FF36A000A0373 /* UseItemSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UseItemSprite.swift; sourceTree = "<group>"; };
+		ABA847A71E8148DF000A0373 /* Trap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trap.swift; sourceTree = "<group>"; };
+		ABA847A91E814B28000A0373 /* TrapSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrapSprite.swift; sourceTree = "<group>"; };
 		ABDF490A1E730F77004EEC4C /* AIRacer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AIRacer.swift; path = Entities/AIRacer.swift; sourceTree = "<group>"; };
 		ABDF490C1E73262D004EEC4C /* CGPoint+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGPoint+Operations.swift"; path = "Extensions/CGPoint+Operations.swift"; sourceTree = "<group>"; };
 		ABDF490E1E73268A004EEC4C /* float2+Constructor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "float2+Constructor.swift"; path = "Extensions/float2+Constructor.swift"; sourceTree = "<group>"; };
@@ -293,6 +297,7 @@
 				FA5776371E74FFDC00853225 /* PlayerRacer.swift */,
 				AB7065D61E7B0E2300E8DFEA /* PowerUp.swift */,
 				24064A141E76C9720006E2D4 /* Laser.swift */,
+				ABA847A71E8148DF000A0373 /* Trap.swift */,
 				FAACA0CC1E7ADF21007A2FCD /* SmartMissile.swift */,
 			);
 			name = Entities;
@@ -383,6 +388,7 @@
 				248667B61E7105FA00B8CE7D /* VehicleSprite.swift */,
 				248407DB1E7AB80F00ED2C85 /* AnalogStick.swift */,
 				AB7065D81E7B0ECD00E8DFEA /* PowerUpSprite.swift */,
+				ABA847A91E814B28000A0373 /* TrapSprite.swift */,
 				ABA847A51E7FF36A000A0373 /* UseItemSprite.swift */,
 				245E829C1E7AEFBB00B1EC81 /* PedalSprite.swift */,
 			);
@@ -731,6 +737,7 @@
 				ABDF490F1E73268A004EEC4C /* float2+Constructor.swift in Sources */,
 				24064A131E76C7530006E2D4 /* FiringComponent.swift in Sources */,
 				FAACA0CD1E7ADF21007A2FCD /* SmartMissile.swift in Sources */,
+				ABA847AA1E814B28000A0373 /* TrapSprite.swift in Sources */,
 				248667C11E71584B00B8CE7D /* CGVector+Operations.swift in Sources */,
 				F1DBCCCD1E7BACF3004050E9 /* MultipeerServiceManager.swift in Sources */,
 				FA00AADA1E776FB300664EF4 /* GameplayConfiguration.swift in Sources */,
@@ -742,6 +749,7 @@
 				248667A91E70E0F100B8CE7D /* Int+Random.swift in Sources */,
 				248407DC1E7AB80F00ED2C85 /* AnalogStick.swift in Sources */,
 				2414DBAD1E7A5EF0004592DE /* GameScene.swift in Sources */,
+				ABA847A81E8148DF000A0373 /* Trap.swift in Sources */,
 				F1DBCCEA1E7C05B0004050E9 /* GameServiceManager.swift in Sources */,
 				248667B21E70FCEB00B8CE7D /* MoveComponent.swift in Sources */,
 				F1DBCCE31E7C0302004050E9 /* SessionDelegate.swift in Sources */,

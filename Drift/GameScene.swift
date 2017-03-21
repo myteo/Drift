@@ -227,7 +227,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     // MARK: SKPhysicsContactDelegate
     func didBegin(_ contact: SKPhysicsContact) {
-        guard contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask ==
+        guard  contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask ==
             ColliderType.Vehicles | ColliderType.PowerUp else {
                 return
         }

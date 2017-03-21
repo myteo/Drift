@@ -31,7 +31,7 @@ class PowerUp: GKEntity, ContactNotifiableType {
         fatalError("init(coder:) has not been implemented")
     }
 
-    /// Called when `PowerUp` comes into contact with `PlayerRacer` or `AIRacer`
+    // MARK: ContactNotifiableType
     func contactWithEntityDidBegin(_ entity: GKEntity, at scene: SKScene) {
         assert(entity is AIRacer || entity is PlayerRacer)
 
