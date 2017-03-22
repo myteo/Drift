@@ -27,15 +27,15 @@ class VehicleSprite: SKSpriteNode {
         imagePrefix = name
         texture = getTexture(prefix: name, number: number)
         zRotation = CGFloat() // set euler angle to point to North
-        setPhysicsBody()
+        setPhysicsBody(size: texture!.size())
     }
 
-    func setPhysicsBody() {
+    func setPhysicsBody(size: CGSize) {
         var previousVelocity = CGVector()
         if let v = physicsBody?.velocity {
             previousVelocity = v
         }
-        physicsBody = SKPhysicsBody(texture: texture!, size: texture!.size())
+        physicsBody = SKPhysicsBody(texture: texture!, size: size)
         physicsBody?.velocity = previousVelocity
         physicsBody?.mass = GameplayConfiguration.VehiclePhysics.mass
         physicsBody?.categoryBitMask = ColliderType.Vehicles
@@ -118,6 +118,19 @@ class VehicleSprite: SKSpriteNode {
 
     func defrost() {
         forceReduction = 1.0
+    }
+
+    func downSize() {
+        size /= 2
+        setPhysicsBody(size: size)
+        physicsBody?.velocity *= GameplayConfiguration.PowerUps.speedReduction
+        forceReduction = 0.5
+    }
+
+    func endDownSize() {
+        size *= 2
+        setPhysicsBody(size: size)
+        forceReduction = 1
     }
 
     func getTexture(prefix: String, number: Int) -> SKTexture {

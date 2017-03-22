@@ -61,6 +61,17 @@ class EntityManager {
         return agents
     }
 
+    func getAllRacerEntities() -> [GKEntity] {
+        var racerEntities: [GKEntity] = []
+        for entity in entities {
+            guard entity is PlayerRacer || entity is AIRacer else {
+                continue
+            }
+            racerEntities.append(entity)
+        }
+        return racerEntities
+    }
+
     func closestVehicleAgent(point: CGPoint, excluding: [GKAgent2D]) -> GKAgent2D? {
         return getAllVehicleAgents()
             .filter { agent in

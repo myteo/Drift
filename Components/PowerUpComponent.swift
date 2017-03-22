@@ -101,9 +101,32 @@ class PowerUpComponent: GKComponent {
     }
 
     func activateGlobalDownsize() {
-        let vehicles = entityManager.getAllVehicleAgents()
-        for vehicle in vehicles {
-            
+        guard let spriteComponent = entity?.component(ofType: SpriteComponent.self),
+            let vehicleSprite = spriteComponent.node as? VehicleSprite,
+            let gameScene = vehicleSprite.scene as? GameScene else {
+                return
+        }
+
+        let racerEntities = entityManager.getAllRacerEntities()
+        for racer in racerEntities {
+            /*guard racer !== entity else {
+                continue
+            }*/
+            guard let spriteComponent = racer.component(ofType: SpriteComponent.self),
+                let vehicleSprite = spriteComponent.node as? VehicleSprite else {
+                    continue
+            }
+            if racer is PlayerRacer {
+                gameScene.playerStatusSprite.texture = SKTexture(image: #imageLiteral(resourceName: "globalDownsize"))
+            }
+            vehicleSprite.downSize()
+            DispatchQueue.main.asyncAfter(deadline: .now() +
+                GameplayConfiguration.PowerUps.powerUpDuration, execute: {
+                    vehicleSprite.endDownSize()
+                    if racer is PlayerRacer {
+                        gameScene.playerStatusSprite.texture = SKTexture(image: #imageLiteral(resourceName: "blank"))
+                    }
+            })
         }
     }
 
