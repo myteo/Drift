@@ -11,7 +11,6 @@
 		24064A131E76C7530006E2D4 /* FiringComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24064A121E76C7530006E2D4 /* FiringComponent.swift */; };
 		24064A151E76C9720006E2D4 /* Laser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24064A141E76C9720006E2D4 /* Laser.swift */; };
 		24064A171E76D9670006E2D4 /* Projectiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24064A161E76D9670006E2D4 /* Projectiles.swift */; };
-		2414DBA41E7A5E09004592DE /* GridTiles.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2414DBA21E7A5E09004592DE /* GridTiles.sks */; };
 		2414DBA51E7A5E09004592DE /* Tiles.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2414DBA31E7A5E09004592DE /* Tiles.xcassets */; };
 		2414DBAC1E7A5EF0004592DE /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2414DBAA1E7A5EF0004592DE /* GameScene.sks */; };
 		2414DBAD1E7A5EF0004592DE /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2414DBAB1E7A5EF0004592DE /* GameScene.swift */; };
@@ -64,12 +63,22 @@
 		FA20E4AB1E80073F003DC387 /* RaceEndedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA20E4A91E80073F003DC387 /* RaceEndedState.swift */; };
 		FA20E4AC1E80073F003DC387 /* RaceOngoingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA20E4AA1E80073F003DC387 /* RaceOngoingState.swift */; };
 		FA20E4AE1E800758003DC387 /* GameSceneOverlayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA20E4AD1E800758003DC387 /* GameSceneOverlayState.swift */; };
+		FA2182591E820E9A00088C86 /* FinishLines.sks in Resources */ = {isa = PBXBuildFile; fileRef = FA2182581E820E9A00088C86 /* FinishLines.sks */; };
 		FA5776381E74FFDC00853225 /* PlayerRacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5776371E74FFDC00853225 /* PlayerRacer.swift */; };
 		FA57763A1E750B9C00853225 /* AgentMoveType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5776391E750B9C00853225 /* AgentMoveType.swift */; };
+		FA6A464A1E82193D00C928CB /* LapTrackerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6A46491E82193D00C928CB /* LapTrackerComponent.swift */; };
+		FA6A464D1E822D9B00C928CB /* CrossedStartOfFinishLineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6A464C1E822D9B00C928CB /* CrossedStartOfFinishLineState.swift */; };
+		FA6A464F1E82300C00C928CB /* FinishedLapState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6A464E1E82300C00C928CB /* FinishedLapState.swift */; };
+		FA6A46521E82305A00C928CB /* CheatingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6A46501E82305A00C928CB /* CheatingState.swift */; };
+		FA6A46531E82305A00C928CB /* InRaceLapState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6A46511E82305A00C928CB /* InRaceLapState.swift */; };
 		FA6AF09C1E809C2D000DA600 /* SceneOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6AF09B1E809C2D000DA600 /* SceneOverlay.swift */; };
 		FA6AF09F1E80A4D7000DA600 /* RaceBeforeStartOverlay.sks in Resources */ = {isa = PBXBuildFile; fileRef = FA6AF09E1E80A4D7000DA600 /* RaceBeforeStartOverlay.sks */; };
+		FAAB3F021E817EDD006782BB /* GridTiles.sks in Resources */ = {isa = PBXBuildFile; fileRef = FAAB3F011E817EDD006782BB /* GridTiles.sks */; };
 		FAACA0CD1E7ADF21007A2FCD /* SmartMissile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAACA0CC1E7ADF21007A2FCD /* SmartMissile.swift */; };
 		FAACA0CF1E7AE447007A2FCD /* AIProjectileMoveBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAACA0CE1E7AE447007A2FCD /* AIProjectileMoveBehavior.swift */; };
+		FAD8B0521E8241660067034A /* OnCrossedFinishLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8B0511E8241660067034A /* OnCrossedFinishLine.swift */; };
+		FAD8B0561E82558A0067034A /* FinishLineEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8B0551E82558A0067034A /* FinishLineEdge.swift */; };
+		FAD8B0581E8258340067034A /* FinishLineEdgeSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8B0571E8258340067034A /* FinishLineEdgeSprite.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,7 +102,6 @@
 		24064A121E76C7530006E2D4 /* FiringComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiringComponent.swift; sourceTree = "<group>"; };
 		24064A141E76C9720006E2D4 /* Laser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Laser.swift; path = Entities/Laser.swift; sourceTree = "<group>"; };
 		24064A161E76D9670006E2D4 /* Projectiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Projectiles.swift; path = Constants/Projectiles.swift; sourceTree = "<group>"; };
-		2414DBA21E7A5E09004592DE /* GridTiles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = GridTiles.sks; path = Tiles/GridTiles.sks; sourceTree = "<group>"; };
 		2414DBA31E7A5E09004592DE /* Tiles.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Tiles.xcassets; path = Tiles/Tiles.xcassets; sourceTree = "<group>"; };
 		2414DBAA1E7A5EF0004592DE /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = GameScene.sks; path = Drift/GameScene.sks; sourceTree = "<group>"; };
 		2414DBAB1E7A5EF0004592DE /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameScene.swift; path = Drift/GameScene.swift; sourceTree = "<group>"; };
@@ -159,12 +167,22 @@
 		FA20E4A91E80073F003DC387 /* RaceEndedState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RaceEndedState.swift; path = RaceStates/RaceEndedState.swift; sourceTree = "<group>"; };
 		FA20E4AA1E80073F003DC387 /* RaceOngoingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RaceOngoingState.swift; path = RaceStates/RaceOngoingState.swift; sourceTree = "<group>"; };
 		FA20E4AD1E800758003DC387 /* GameSceneOverlayState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameSceneOverlayState.swift; path = RaceStates/GameSceneOverlayState.swift; sourceTree = "<group>"; };
+		FA2182581E820E9A00088C86 /* FinishLines.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = FinishLines.sks; path = Tiles/FinishLines.sks; sourceTree = "<group>"; };
 		FA5776371E74FFDC00853225 /* PlayerRacer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerRacer.swift; path = Entities/PlayerRacer.swift; sourceTree = "<group>"; };
 		FA5776391E750B9C00853225 /* AgentMoveType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgentMoveType.swift; sourceTree = "<group>"; };
+		FA6A46491E82193D00C928CB /* LapTrackerComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LapTrackerComponent.swift; sourceTree = "<group>"; };
+		FA6A464C1E822D9B00C928CB /* CrossedStartOfFinishLineState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CrossedStartOfFinishLineState.swift; path = LapStates/CrossedStartOfFinishLineState.swift; sourceTree = "<group>"; };
+		FA6A464E1E82300C00C928CB /* FinishedLapState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FinishedLapState.swift; path = LapStates/FinishedLapState.swift; sourceTree = "<group>"; };
+		FA6A46501E82305A00C928CB /* CheatingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CheatingState.swift; path = LapStates/CheatingState.swift; sourceTree = "<group>"; };
+		FA6A46511E82305A00C928CB /* InRaceLapState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InRaceLapState.swift; path = LapStates/InRaceLapState.swift; sourceTree = "<group>"; };
 		FA6AF09B1E809C2D000DA600 /* SceneOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SceneOverlay.swift; path = Drift/SceneOverlay.swift; sourceTree = "<group>"; };
 		FA6AF09E1E80A4D7000DA600 /* RaceBeforeStartOverlay.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = RaceBeforeStartOverlay.sks; path = Overlays/RaceBeforeStartOverlay.sks; sourceTree = "<group>"; };
+		FAAB3F011E817EDD006782BB /* GridTiles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = GridTiles.sks; path = Tiles/GridTiles.sks; sourceTree = "<group>"; };
 		FAACA0CC1E7ADF21007A2FCD /* SmartMissile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SmartMissile.swift; path = Entities/SmartMissile.swift; sourceTree = "<group>"; };
 		FAACA0CE1E7AE447007A2FCD /* AIProjectileMoveBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIProjectileMoveBehavior.swift; sourceTree = "<group>"; };
+		FAD8B0511E8241660067034A /* OnCrossedFinishLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnCrossedFinishLine.swift; path = LapStates/OnCrossedFinishLine.swift; sourceTree = "<group>"; };
+		FAD8B0551E82558A0067034A /* FinishLineEdge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FinishLineEdge.swift; path = Entities/FinishLineEdge.swift; sourceTree = "<group>"; };
+		FAD8B0571E8258340067034A /* FinishLineEdgeSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FinishLineEdgeSprite.swift; path = Sprites/FinishLineEdgeSprite.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +304,7 @@
 		2422A2011E70536700CE2B84 /* Game Classes */ = {
 			isa = PBXGroup;
 			children = (
+				FA6A464B1E822AB800C928CB /* Lap States */,
 				FA20E4A21E800542003DC387 /* Race States */,
 				248667AC1E70FBF100B8CE7D /* Components */,
 				2422A2021E70537100CE2B84 /* Entities */,
@@ -305,6 +324,7 @@
 				AB7065D61E7B0E2300E8DFEA /* PowerUp.swift */,
 				24064A141E76C9720006E2D4 /* Laser.swift */,
 				FAACA0CC1E7ADF21007A2FCD /* SmartMissile.swift */,
+				FAD8B0551E82558A0067034A /* FinishLineEdge.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -331,6 +351,7 @@
 			children = (
 				FA6AF09D1E80A2F4000DA600 /* Overlays */,
 				2414DBAA1E7A5EF0004592DE /* GameScene.sks */,
+				FA2182581E820E9A00088C86 /* FinishLines.sks */,
 				2414DBAB1E7A5EF0004592DE /* GameScene.swift */,
 				FA6AF09B1E809C2D000DA600 /* SceneOverlay.swift */,
 			);
@@ -356,7 +377,7 @@
 		2422A2121E7059B200CE2B84 /* Tiles */ = {
 			isa = PBXGroup;
 			children = (
-				2414DBA21E7A5E09004592DE /* GridTiles.sks */,
+				FAAB3F011E817EDD006782BB /* GridTiles.sks */,
 				2414DBA31E7A5E09004592DE /* Tiles.xcassets */,
 			);
 			name = Tiles;
@@ -386,6 +407,7 @@
 				AB7A856F1E7C68180086535B /* PowerComponent.swift */,
 				248667B31E70FCF900B8CE7D /* SpriteComponent.swift */,
 				24064A121E76C7530006E2D4 /* FiringComponent.swift */,
+				FA6A46491E82193D00C928CB /* LapTrackerComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -397,6 +419,7 @@
 				248407DB1E7AB80F00ED2C85 /* AnalogStick.swift */,
 				AB7065D81E7B0ECD00E8DFEA /* PowerUpSprite.swift */,
 				245E829C1E7AEFBB00B1EC81 /* PedalSprite.swift */,
+				FAD8B0571E8258340067034A /* FinishLineEdgeSprite.swift */,
 			);
 			name = Sprites;
 			sourceTree = "<group>";
@@ -442,6 +465,18 @@
 				FA20E4AD1E800758003DC387 /* GameSceneOverlayState.swift */,
 			);
 			name = "Race States";
+			sourceTree = "<group>";
+		};
+		FA6A464B1E822AB800C928CB /* Lap States */ = {
+			isa = PBXGroup;
+			children = (
+				FA6A464C1E822D9B00C928CB /* CrossedStartOfFinishLineState.swift */,
+				FA6A46501E82305A00C928CB /* CheatingState.swift */,
+				FA6A46511E82305A00C928CB /* InRaceLapState.swift */,
+				FA6A464E1E82300C00C928CB /* FinishedLapState.swift */,
+				FAD8B0511E8241660067034A /* OnCrossedFinishLine.swift */,
+			);
+			name = "Lap States";
 			sourceTree = "<group>";
 		};
 		FA6AF09D1E80A2F4000DA600 /* Overlays */ = {
@@ -573,11 +608,12 @@
 				2422A1D81E7052F600CE2B84 /* Main.storyboard in Resources */,
 				2414DBA51E7A5E09004592DE /* Tiles.xcassets in Resources */,
 				2422A1DD1E7052F600CE2B84 /* LaunchScreen.storyboard in Resources */,
+				FAAB3F021E817EDD006782BB /* GridTiles.sks in Resources */,
 				2414DBAC1E7A5EF0004592DE /* GameScene.sks in Resources */,
 				2422A1D11E7052F600CE2B84 /* Actions.sks in Resources */,
 				2414DBAF1E7A5F6C004592DE /* Sprites.xcassets in Resources */,
-				2414DBA41E7A5E09004592DE /* GridTiles.sks in Resources */,
 				FA6AF09F1E80A4D7000DA600 /* RaceBeforeStartOverlay.sks in Resources */,
+				FA2182591E820E9A00088C86 /* FinishLines.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -754,6 +790,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA6A464F1E82300C00C928CB /* FinishedLapState.swift in Sources */,
 				F1DBCCF31E7CDFE0004050E9 /* CGPoint+Operations.swift in Sources */,
 				F1DBCCE81E7C0534004050E9 /* GameService.swift in Sources */,
 				FA57763A1E750B9C00853225 /* AgentMoveType.swift in Sources */,
@@ -761,6 +798,7 @@
 				2422A1D51E7052F600CE2B84 /* GameViewController.swift in Sources */,
 				F1DBCCD11E7BB61A004050E9 /* Advertiser.swift in Sources */,
 				ABDF490F1E73268A004EEC4C /* float2+Constructor.swift in Sources */,
+				FA6A46521E82305A00C928CB /* CheatingState.swift in Sources */,
 				24064A131E76C7530006E2D4 /* FiringComponent.swift in Sources */,
 				FAACA0CD1E7ADF21007A2FCD /* SmartMissile.swift in Sources */,
 				248667C11E71584B00B8CE7D /* CGVector+Operations.swift in Sources */,
@@ -776,6 +814,7 @@
 				248407DC1E7AB80F00ED2C85 /* AnalogStick.swift in Sources */,
 				2414DBAD1E7A5EF0004592DE /* GameScene.swift in Sources */,
 				F1DBCCEA1E7C05B0004050E9 /* GameServiceManager.swift in Sources */,
+				FA6A464A1E82193D00C928CB /* LapTrackerComponent.swift in Sources */,
 				248667B21E70FCEB00B8CE7D /* MoveComponent.swift in Sources */,
 				F1DBCCE31E7C0302004050E9 /* SessionDelegate.swift in Sources */,
 				248667B41E70FCF900B8CE7D /* SpriteComponent.swift in Sources */,
@@ -789,11 +828,15 @@
 				248667B71E7105FB00B8CE7D /* VehicleSprite.swift in Sources */,
 				FAACA0CF1E7AE447007A2FCD /* AIProjectileMoveBehavior.swift in Sources */,
 				F1DBCCD31E7BB625004050E9 /* Browser.swift in Sources */,
+				FAD8B0521E8241660067034A /* OnCrossedFinishLine.swift in Sources */,
 				ABDF49111E732745004EEC4C /* AIRacerMoveBehavior.swift in Sources */,
 				F1DBCCE11E7C02E2004050E9 /* MultipeerService.swift in Sources */,
+				FAD8B0581E8258340067034A /* FinishLineEdgeSprite.swift in Sources */,
 				248667AE1E70FC7400B8CE7D /* EntityManager.swift in Sources */,
 				248667AB1E70F47300B8CE7D /* CGFloat+Operations.swift in Sources */,
+				FA6A46531E82305A00C928CB /* InRaceLapState.swift in Sources */,
 				AB7065D71E7B0E2300E8DFEA /* PowerUp.swift in Sources */,
+				FAD8B0561E82558A0067034A /* FinishLineEdge.swift in Sources */,
 				248667B91E7118CD00B8CE7D /* Direction.swift in Sources */,
 				248667BB1E711FF900B8CE7D /* CGPath+Constructor.swift in Sources */,
 				AB7065DD1E7B1F9500E8DFEA /* PowerUpType.swift in Sources */,
@@ -802,6 +845,7 @@
 				ABDF490B1E730F77004EEC4C /* AIRacer.swift in Sources */,
 				F1DBCCDD1E7C029B004050E9 /* MultipeerConstants.swift in Sources */,
 				FA20E4AC1E80073F003DC387 /* RaceOngoingState.swift in Sources */,
+				FA6A464D1E822D9B00C928CB /* CrossedStartOfFinishLineState.swift in Sources */,
 				F1DBCCF21E7C06CD004050E9 /* Constants.swift in Sources */,
 				FA20E4AE1E800758003DC387 /* GameSceneOverlayState.swift in Sources */,
 			);

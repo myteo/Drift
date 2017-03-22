@@ -26,6 +26,9 @@ class PlayerRacer: GKEntity {
 
         let firingComponent = FiringComponent(entityManager: entityManager)
         addComponent(firingComponent)
+
+        let lapTrackerComponent = LapTrackerComponent(entity: self, sprite: spriteNode)
+        addComponent(lapTrackerComponent)
     }
 
     func fireWeapon() {

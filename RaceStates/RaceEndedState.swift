@@ -12,7 +12,7 @@ import GameplayKit
 class RaceEndedState: GKState {
 
     unowned let gameScene: GameScene
-    
+
     init(gameScene: GameScene) {
         self.gameScene = gameScene
     }

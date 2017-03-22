@@ -97,8 +97,49 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         setupPlayer()
         setupAIMovement()
         setupAIRacers()
+        setupRaceTrack()
         setupObstacles()
         setupPowerUps()
+    }
+
+    func setupRaceTrack() {
+        setupRaceBoundaries()
+        setupFinishLine()
+    }
+
+    // TODO: decide what to do with this later..
+    func setupRaceBoundaries() {
+        /*
+        let raceBoundariesContainer = self.childNode(withName: "RaceBoundaries")!
+        for child in raceBoundariesContainer.children {
+            let previousRotation = child.zRotation
+            // rotate to 0 to ensure rotation of physics body aligns with rotation of node
+            child.zRotation = 0
+
+            let physicsBody = SKPhysicsBody(rectangleOf: child.frame.size)
+            physicsBody.isDynamic = false
+            child.physicsBody = physicsBody
+
+            // rotate the node back to desired position
+            child.zRotation = previousRotation
+        }
+ */
+    }
+
+    func setupFinishLine() {
+        let finishLineContainer = self.childNode(withName: "FinishLine")!
+
+        // start line
+        let start = finishLineContainer.childNode(withName: "SKNode/Edges/Start") as! FinishLineEdgeSprite
+        start.initFinishLineEdgeSprite(isStartEdge: true)
+        let startEdgeEntity = FinishLineEdge(sprite: start, isStartEdge: true)
+        entityManager.add(startEdgeEntity)
+
+        // end line
+        let end = finishLineContainer.childNode(withName: "SKNode/Edges/End") as! FinishLineEdgeSprite
+        end.initFinishLineEdgeSprite(isStartEdge: false)
+        let endEdgeEntity = FinishLineEdge(sprite: end, isStartEdge: false)
+        entityManager.add(endEdgeEntity)
     }
 
     func setupUI() {
@@ -169,7 +210,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     func setupAIMovement() {
         aiMovementBoundaries = []
-        let aiMovementContainer = self.childNode(withName: "Boundaries")!
+        let aiMovementContainer = self.childNode(withName: "AIBoundaries")!
         for child in aiMovementContainer.children {
             aiMovementBoundaries.append(child)
         }
@@ -245,10 +286,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     func didBegin(_ contact: SKPhysicsContact) {
-        guard contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask ==
-            ColliderType.Vehicles | ColliderType.PowerUp else {
-                return
-        }
         guard let entityA = contact.bodyA.node?.entity,
             let entityB = contact.bodyB.node?.entity else {
                 return

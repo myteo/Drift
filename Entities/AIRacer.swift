@@ -20,6 +20,9 @@ class AIRacer: GKEntity {
         addComponent(spriteComponent)
         let moveComponent = MoveComponent.aiMoveComponent(node: spriteNode, entityManager: entityManager)
         addComponent(moveComponent)
+
+        let lapTrackerComponent = LapTrackerComponent(entity: self, sprite: spriteNode)
+        addComponent(lapTrackerComponent)
     }
 
     required init?(coder aDecoder: NSCoder) {
