@@ -31,14 +31,11 @@ class FiringComponent: GKComponent {
             let vehicle = spriteComponent.node as? VehicleSprite else {
             return
         }
-
         let zRotation = vehicle.zRotation
         laserSpriteComponent.node.position = vehicle.position
 
-        laserSpriteComponent.node.position.x += zRotation.getVector().dx * vehicle.size.height / 2
-        laserSpriteComponent.node.position.y += zRotation.getVector().dy * vehicle.size.height / 2
-        laserSpriteComponent.node.physicsBody = SKPhysicsBody(rectangleOf: laserSpriteComponent.node.size)
-        laserSpriteComponent.node.physicsBody?.allowsRotation = false
+        laserSpriteComponent.node.position.x += zRotation.getVector().dx * vehicle.size.height * 0.8
+        laserSpriteComponent.node.position.y += zRotation.getVector().dy * vehicle.size.height * 0.8
         let laserPointsPerSecond = CGFloat(500)
         let laserDistance = CGFloat(1000)
 
@@ -53,9 +50,7 @@ class FiringComponent: GKComponent {
             SKAction.run { self.entityManager.remove(laser) }
             ])
         )
-
         entityManager.add(laser)
-
     }
 
     func fireSmartMissile() {
@@ -73,8 +68,10 @@ class FiringComponent: GKComponent {
 
         // shift the missile to the head of the vehicle
         let zRotation = vehicle.zRotation
-        missileSpriteComponent.node.position.x += zRotation.getVector().dx * vehicle.size.height / 2
-        missileSpriteComponent.node.position.y += zRotation.getVector().dy * vehicle.size.height / 2
+        missileSpriteComponent.node.position = vehicle.position
+        let normalVector = (zRotation + CGFloat.π/2).getVector()
+        missileSpriteComponent.node.position.x += normalVector.dx * vehicle.size.width
+        missileSpriteComponent.node.position.y += normalVector.dy * vehicle.size.width
         missileSpriteComponent.node.zRotation = zRotation
         missileSpriteComponent.node.zPosition = 1
 

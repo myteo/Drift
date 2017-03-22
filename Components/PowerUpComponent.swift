@@ -44,13 +44,20 @@ class PowerUpComponent: GKComponent {
 
     func activateSpeedBoost() {
         guard let spriteComponent = entity?.component(ofType: SpriteComponent.self),
-            let vehicleSprite = spriteComponent.node as? VehicleSprite else {
+            let vehicleSprite = spriteComponent.node as? VehicleSprite,
+            let gameScene = vehicleSprite.scene as? GameScene else {
                 return
         }
         vehicleSprite.boostSpeed()
+        if entity is PlayerRacer {
+            gameScene.playerStatusSprite.texture = SKTexture(image: #imageLiteral(resourceName: "speedBoost"))
+        }
         DispatchQueue.main.asyncAfter(deadline: .now() +
-            GameplayConfiguration.SpeedBoost.speedBoostDuration, execute: {
+            GameplayConfiguration.PowerUps.powerUpDuration, execute: {
                 vehicleSprite.reduceSpeedToNormal()
+                if vehicleSprite.entity is PlayerRacer {
+                    gameScene.playerStatusSprite.texture = SKTexture(image: #imageLiteral(resourceName: "blank"))
+                }
         })
     }
 
@@ -64,10 +71,19 @@ class PowerUpComponent: GKComponent {
 
     func gainImmunity() {
         guard let spriteComponent = entity?.component(ofType: SpriteComponent.self),
-            let vehicleSprite = spriteComponent.node as? VehicleSprite else {
+            let vehicleSprite = spriteComponent.node as? VehicleSprite,
+            let gameScene = vehicleSprite.scene as? GameScene else {
                 return
         }
         vehicleSprite.gainImmunity()
+        if entity is PlayerRacer {
+            gameScene.playerStatusSprite.texture = SKTexture(image: #imageLiteral(resourceName: "immunity"))
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() +
+            GameplayConfiguration.PowerUps.powerUpDuration, execute: {
+                vehicleSprite.loseImmunity()
+                gameScene.playerStatusSprite.texture = SKTexture(image: #imageLiteral(resourceName: "blank"))
+        })
     }
 
     func fireFrostBullet() {
@@ -85,7 +101,10 @@ class PowerUpComponent: GKComponent {
     }
 
     func activateGlobalDownsize() {
-
+        let vehicles = entityManager.getAllVehicleAgents()
+        for vehicle in vehicles {
+            
+        }
     }
 
     func getPowerUpType() -> PowerUpType {

@@ -19,6 +19,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var brakeSprite: SKSpriteNode!
     var acceleratorSprite: SKSpriteNode!
     var useItemSprite: UseItemSprite!
+    var playerStatusSprite: SKSpriteNode!
 
     // Entity-Component System
     var entityManager: EntityManager!
@@ -94,6 +95,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     func setupUI() {
         useItemSprite = mainCamera.childNode(withName: Sprites.Names.item) as! UseItemSprite
+        playerStatusSprite = mainCamera.childNode(withName: Sprites.Names.status) as! SKSpriteNode
         setupPedals()
         setupSteering()
     }

@@ -24,8 +24,8 @@ struct GameplayConfiguration {
     }
 
     struct SmartMissile {
-        static let agentMaxSpeed: Float = 200
-        static let agentMaxAcceleration: Float = 50
+        static let agentMaxSpeed: Float = 1000
+        static let agentMaxAcceleration: Float = 100
         static let agentMass: Float = 0.2
 
         static let seekAgentWeight: Float = 1.5
@@ -55,16 +55,9 @@ struct GameplayConfiguration {
         static let avoidObstaclesPredictionTime: TimeInterval = 1
     }
 
-    struct SpeedBoost {
-        static let speedBoostDuration: Double = 5.0
-        static let maxSpeedBoost: CGFloat = 2.0
-        static let currentSpeedBoost: CGFloat = 2.0
-    }
-
-    struct SpeedReduction {
-        static let speedReductionDuration: Double = 5.0
-        static let maxSpeedReduction: CGFloat = 2.0
-        static let currentSpeedReduction: CGFloat = 2.0
-
+    struct PowerUps {
+        static let powerUpDuration: Double = 5.0
+        static let speedBoost: CGFloat = 2.0
+        static let speedReduction: CGFloat = 0.5
     }
 }

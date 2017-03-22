@@ -10,16 +10,19 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
-class Laser: GKEntity {
+class Laser: GKEntity, ContactNotifiableType {
     var texture: SKTexture!
     var spriteComponent: SpriteComponent!
+    let entityManager: EntityManager
 
     init(entityManager: EntityManager) {
-
+        self.entityManager = entityManager
         super.init()
 
-        texture = SKTexture(imageNamed: Projectiles.Laser.Name)
-        spriteComponent = SpriteComponent(entity: self, texture: texture, size: texture.size())
+        texture = SKTexture(image: #imageLiteral(resourceName: "bulletBlueSilver_outline"))
+        let spriteNode = ProjectileSprite(texture: texture)
+        spriteNode.initProjectile()
+        spriteComponent = SpriteComponent(entity: self, spriteNode: spriteNode)
         addComponent(spriteComponent)
     }
 
@@ -27,4 +30,43 @@ class Laser: GKEntity {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: ContactNotifiableType
+    func contactWithEntityDidBegin(_ entity: GKEntity, at scene: SKScene) {
+        entityManager.remove(self)
+        if let playerRacer = entity as? PlayerRacer {
+            handleCollisionWithPlayer(playerRacer: playerRacer)
+        } else if let AIRacer = entity as? AIRacer {
+            handleCollisionWithAI(AIRacer: AIRacer)
+        }
+    }
+
+    func handleCollisionWithPlayer(playerRacer: PlayerRacer) {
+        guard let vehicleSprite = playerRacer.component(ofType: SpriteComponent.self)?.node as? VehicleSprite,
+            let gameScene = vehicleSprite.scene as? GameScene else {
+                return
+        }
+        guard vehicleSprite.hitByFrostBullet() else {
+            return
+        }
+        gameScene.playerStatusSprite.texture = SKTexture(image: #imageLiteral(resourceName: "frostBullet"))
+        DispatchQueue.main.asyncAfter(deadline: .now() +
+            GameplayConfiguration.PowerUps.powerUpDuration, execute: {
+                vehicleSprite.defrost()
+                gameScene.playerStatusSprite.texture = SKTexture(image: #imageLiteral(resourceName: "blank"))
+                self.entityManager.remove(self)
+        })
+    }
+
+    func handleCollisionWithAI(AIRacer: AIRacer) {
+        guard let moveComponent = AIRacer.component(ofType: MoveComponent.self) else {
+            return
+        }
+        moveComponent.maxSpeed /= 2
+        moveComponent.maxAcceleration /= 2
+        DispatchQueue.main.asyncAfter(deadline: .now() +
+            GameplayConfiguration.PowerUps.powerUpDuration, execute: {
+                moveComponent.maxSpeed = moveComponent.type.maxSpeed
+                moveComponent.maxAcceleration = moveComponent.type.maxAcceleration
+        })
+    }
 }
