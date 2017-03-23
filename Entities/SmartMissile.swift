@@ -52,7 +52,7 @@ class SmartMissile: GKEntity, ContactNotifiableType {
         gameScene.playerStatusSprite.texture = SKTexture(image: #imageLiteral(resourceName: "homingMissile"))
         DispatchQueue.main.asyncAfter(deadline: .now() +
             GameplayConfiguration.PowerUps.powerUpDuration, execute: {
-                vehicleSprite.isImmobilized = false
+                vehicleSprite.endImmobility()
                 gameScene.playerStatusSprite.texture = SKTexture(image: #imageLiteral(resourceName: "blank"))
                 self.entityManager.remove(self)
         })

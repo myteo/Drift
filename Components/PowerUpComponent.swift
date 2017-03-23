@@ -48,6 +48,9 @@ class PowerUpComponent: GKComponent {
             let gameScene = vehicleSprite.scene as? GameScene else {
                 return
         }
+        guard !vehicleSprite.isNerfed else {
+            return
+        }
         vehicleSprite.boostSpeed()
         if entity is PlayerRacer {
             gameScene.playerStatusSprite.texture = SKTexture(image: #imageLiteral(resourceName: "speedBoost"))
@@ -74,6 +77,9 @@ class PowerUpComponent: GKComponent {
             let vehicleSprite = spriteComponent.node as? VehicleSprite,
             let gameScene = vehicleSprite.scene as? GameScene else {
                 return
+        }
+        guard !vehicleSprite.isNerfed else {
+            return
         }
         vehicleSprite.gainImmunity()
         if entity is PlayerRacer {
@@ -106,25 +112,37 @@ class PowerUpComponent: GKComponent {
             let gameScene = vehicleSprite.scene as? GameScene else {
                 return
         }
-
         let racerEntities = entityManager.getAllRacerEntities()
         for racer in racerEntities {
-            /*guard racer !== entity else {
-                continue
-            }*/
+            guard racer !== entity else {
+             continue
+             }
             guard let spriteComponent = racer.component(ofType: SpriteComponent.self),
                 let vehicleSprite = spriteComponent.node as? VehicleSprite else {
                     continue
             }
+            guard vehicleSprite.downSize() else {
+                continue
+            }
             if racer is PlayerRacer {
                 gameScene.playerStatusSprite.texture = SKTexture(image: #imageLiteral(resourceName: "globalDownsize"))
+            } else {
+                guard let moveComponent = racer.component(ofType: MoveComponent.self) else {
+                    continue
+                }
+                moveComponent.maxSpeed /= 200
+                moveComponent.maxAcceleration /= 2
             }
-            vehicleSprite.downSize()
             DispatchQueue.main.asyncAfter(deadline: .now() +
                 GameplayConfiguration.PowerUps.powerUpDuration, execute: {
                     vehicleSprite.endDownSize()
-                    if racer is PlayerRacer {
+                    if racer is PlayerRacer && vehicleSprite.isBuffed {
                         gameScene.playerStatusSprite.texture = SKTexture(image: #imageLiteral(resourceName: "blank"))
+                    } else {
+                        if let moveComponent = racer.component(ofType: MoveComponent.self) {
+                            moveComponent.maxSpeed *= 200
+                            moveComponent.maxAcceleration *= 2
+                        }
                     }
             })
         }

@@ -18,9 +18,8 @@ enum PowerUpType: Int {
     case globalDownSize
 
     static func getRandomType() -> PowerUpType {
-        /*let randomNum = Int(arc4random() % 3)
-        return PowerUpType(rawValue: randomNum) ?? PowerUpType.speedBoost*/
-        return .globalDownSize
+        let randomNum = Int(arc4random() % 6)
+        return PowerUpType(rawValue: randomNum) ?? PowerUpType.speedBoost
     }
 
     func getImage() -> UIImage {

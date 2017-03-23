@@ -14,10 +14,13 @@ class VehicleSprite: SKSpriteNode {
     var imagePrefix = Sprites.Car.Colors.black
     var isAccelerating = false
     var isDecelerating = false
+
     var forceReduction: CGFloat = 1.0
     var forceIncrement: CGFloat = 1.0
     var isImmobilized = false
     var isImmune = false
+    var isBuffed = false
+    var isNerfed = false
 
     var maxSpeed = GameplayConfiguration.VehiclePhysics.maxSpeed
     let neutralPoint = CGFloat(100)
@@ -64,12 +67,14 @@ class VehicleSprite: SKSpriteNode {
 
     /// Called when Racer activates speed boost PowerUp
     func boostSpeed() {
+        isBuffed = true
         physicsBody?.velocity *= GameplayConfiguration.PowerUps.speedBoost
         forceIncrement = GameplayConfiguration.PowerUps.speedBoost
     }
 
     /// Called when Racer's speed boost PowerUp ends
     func reduceSpeedToNormal() {
+        isBuffed = false
         forceIncrement = 1.0
     }
 
@@ -93,8 +98,15 @@ class VehicleSprite: SKSpriteNode {
         guard !isImmune else {
             return false
         }
+        resetBuffs()
+        isNerfed = true
         isImmobilized = true
         return true
+    }
+
+    func endImmobility() {
+        isNerfed = false
+        isImmobilized = false
     }
 
     /// Called when Racer activates immunity PowerUp
@@ -111,26 +123,42 @@ class VehicleSprite: SKSpriteNode {
         guard !isImmune else {
             return false
         }
+        resetBuffs()
+        isNerfed = true
         physicsBody?.velocity *= GameplayConfiguration.PowerUps.speedReduction
         forceReduction = GameplayConfiguration.PowerUps.speedReduction
+
         return true
     }
 
     func defrost() {
+        isNerfed = false
         forceReduction = 1.0
     }
 
-    func downSize() {
+    func downSize() -> Bool {
+        guard !isImmune else {
+            return false
+        }
+        resetBuffs()
+        isNerfed = true
         size /= 2
         setPhysicsBody(size: size)
         physicsBody?.velocity *= GameplayConfiguration.PowerUps.speedReduction
         forceReduction = 0.5
+        return true
     }
 
     func endDownSize() {
+        isNerfed = false
         size *= 2
         setPhysicsBody(size: size)
         forceReduction = 1
+    }
+
+    func resetBuffs() {
+        forceIncrement = 1.0
+        isBuffed = false
     }
 
     func getTexture(prefix: String, number: Int) -> SKTexture {
