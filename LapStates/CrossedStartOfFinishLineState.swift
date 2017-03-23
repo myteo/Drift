@@ -10,7 +10,16 @@ import GameplayKit
 
 class CrossedStartOfFinishLineState: GKState, OnCrossedFinishLine {
 
-    func justCrossedStartOfFinishLine() {}
-    func justCrossedEndOfFinishLine() {}
+    func justCrossedStartOfFinishLine() {
+        // do nothing, remain in the same state
+    }
+
+    func justCrossedEndOfFinishLine() {
+        stateMachine?.enter(InRaceLapState.self)
+    }
+
+    override func isValidNextState(_ stateClass: AnyClass) -> Bool {
+        return stateClass is InRaceLapState.Type
+    }
 
 }

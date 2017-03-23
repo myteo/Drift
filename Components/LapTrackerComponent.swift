@@ -11,13 +11,19 @@ import GameplayKit
 class LapTrackerComponent: GKComponent, OnCrossedFinishLine {
 
     let stateMachine: GKStateMachine
-    private (set) var currentLap: Int = 0
+    private (set) var currentLap: Int = 0 {
+        willSet {
+            // do win game logic here!
+        }
+        didSet {
+            print("Current lap: \(currentLap)")
+        }
+    }
     private var tracker: SKNode?
 
     init(entity: GKEntity, sprite: SKSpriteNode) {
         stateMachine = GKStateMachine(states: [InRaceLapState(),
                                                CheatingState(),
-                                               FinishedLapState(), // TODO: let state take in this component, we will increment the current lap there.
                                                CrossedStartOfFinishLineState()])
 
         stateMachine.enter(InRaceLapState.self)
@@ -45,16 +51,23 @@ class LapTrackerComponent: GKComponent, OnCrossedFinishLine {
         fatalError("init(coder:) has not been implemented")
     }
 
-        // TODO: contact the children
     func justCrossedStartOfFinishLine() {
-        if let state = stateMachine.currentState as? OnCrossedFinishLine {
-            state.justCrossedStartOfFinishLine()
+        guard let state = stateMachine.currentState as? OnCrossedFinishLine else {
+            return
         }
+
+        state.justCrossedStartOfFinishLine()
     }
+
     func justCrossedEndOfFinishLine() {
-        if let state = stateMachine.currentState as? OnCrossedFinishLine {
-            state.justCrossedEndOfFinishLine()
+        guard let state = stateMachine.currentState as? OnCrossedFinishLine else {
+            return
         }
+
+        if stateMachine.currentState is CrossedStartOfFinishLineState {
+            currentLap = currentLap + 1
+        }
+        state.justCrossedEndOfFinishLine()
     }
 
 }

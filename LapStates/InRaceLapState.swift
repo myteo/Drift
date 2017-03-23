@@ -10,6 +10,21 @@ import GameplayKit
 
 class InRaceLapState: GKState, OnCrossedFinishLine {
 
-    func justCrossedStartOfFinishLine() {}
-    func justCrossedEndOfFinishLine() {}
+    override func isValidNextState(_ stateClass: AnyClass) -> Bool {
+        switch stateClass {
+        case is CrossedStartOfFinishLineState.Type, 
+            is CheatingState.Type:
+            return true
+        default:
+            return false
+        }
+    }
+
+    func justCrossedStartOfFinishLine() {
+        stateMachine?.enter(CrossedStartOfFinishLineState.self)
+    }
+
+    func justCrossedEndOfFinishLine() {
+        stateMachine?.enter(CheatingState.self)
+    }
 }

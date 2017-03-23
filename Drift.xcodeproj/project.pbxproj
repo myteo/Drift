@@ -68,7 +68,6 @@
 		FA57763A1E750B9C00853225 /* AgentMoveType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5776391E750B9C00853225 /* AgentMoveType.swift */; };
 		FA6A464A1E82193D00C928CB /* LapTrackerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6A46491E82193D00C928CB /* LapTrackerComponent.swift */; };
 		FA6A464D1E822D9B00C928CB /* CrossedStartOfFinishLineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6A464C1E822D9B00C928CB /* CrossedStartOfFinishLineState.swift */; };
-		FA6A464F1E82300C00C928CB /* FinishedLapState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6A464E1E82300C00C928CB /* FinishedLapState.swift */; };
 		FA6A46521E82305A00C928CB /* CheatingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6A46501E82305A00C928CB /* CheatingState.swift */; };
 		FA6A46531E82305A00C928CB /* InRaceLapState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6A46511E82305A00C928CB /* InRaceLapState.swift */; };
 		FA6AF09C1E809C2D000DA600 /* SceneOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6AF09B1E809C2D000DA600 /* SceneOverlay.swift */; };
@@ -172,7 +171,6 @@
 		FA5776391E750B9C00853225 /* AgentMoveType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgentMoveType.swift; sourceTree = "<group>"; };
 		FA6A46491E82193D00C928CB /* LapTrackerComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LapTrackerComponent.swift; sourceTree = "<group>"; };
 		FA6A464C1E822D9B00C928CB /* CrossedStartOfFinishLineState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CrossedStartOfFinishLineState.swift; path = LapStates/CrossedStartOfFinishLineState.swift; sourceTree = "<group>"; };
-		FA6A464E1E82300C00C928CB /* FinishedLapState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FinishedLapState.swift; path = LapStates/FinishedLapState.swift; sourceTree = "<group>"; };
 		FA6A46501E82305A00C928CB /* CheatingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CheatingState.swift; path = LapStates/CheatingState.swift; sourceTree = "<group>"; };
 		FA6A46511E82305A00C928CB /* InRaceLapState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InRaceLapState.swift; path = LapStates/InRaceLapState.swift; sourceTree = "<group>"; };
 		FA6AF09B1E809C2D000DA600 /* SceneOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SceneOverlay.swift; path = Drift/SceneOverlay.swift; sourceTree = "<group>"; };
@@ -473,7 +471,6 @@
 				FA6A464C1E822D9B00C928CB /* CrossedStartOfFinishLineState.swift */,
 				FA6A46501E82305A00C928CB /* CheatingState.swift */,
 				FA6A46511E82305A00C928CB /* InRaceLapState.swift */,
-				FA6A464E1E82300C00C928CB /* FinishedLapState.swift */,
 				FAD8B0511E8241660067034A /* OnCrossedFinishLine.swift */,
 			);
 			name = "Lap States";
@@ -790,7 +787,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA6A464F1E82300C00C928CB /* FinishedLapState.swift in Sources */,
 				F1DBCCF31E7CDFE0004050E9 /* CGPoint+Operations.swift in Sources */,
 				F1DBCCE81E7C0534004050E9 /* GameService.swift in Sources */,
 				FA57763A1E750B9C00853225 /* AgentMoveType.swift in Sources */,
